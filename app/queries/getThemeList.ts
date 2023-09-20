@@ -3,6 +3,7 @@ import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { ApiResponse, QueryConfigOptions } from "@/types";
 import { useQuery } from "@tanstack/react-query";
+import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 
 type Request = void;
 export type Theme = {
@@ -32,12 +33,14 @@ export const getThemeList = async (config?: AxiosRequestConfig) => {
 
 export const useGetThemeList = (configOptions?: QueryConfigOptions) => {
   const setSnackBar = useSnackBarWrite();
+  const isLoggedIn = useIsLoggedInValue();
 
   const info = useQuery<Response, AxiosError, Themes>({
     queryKey: QUERY_KEY,
     queryFn: () => getThemeList(configOptions?.config),
     ...configOptions?.options,
     select: (res) => res.data,
+    enabled: !!isLoggedIn,
 
     onError: (error: AxiosError) => {
       setSnackBar({
