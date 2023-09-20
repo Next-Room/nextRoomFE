@@ -1,6 +1,6 @@
-import { Snackbar, SnackbarProps } from "./Snackbar.component";
 import React from "react";
 import Stack from "@mui/material/Stack";
+import { Snackbar, SnackbarProps } from "./Snackbar.component";
 
 export default {
   title: "Example/Snackbar",
@@ -22,19 +22,19 @@ export const Variants = {
     <Stack spacing={2} maxWidth={300}>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        open={true}
+        open
         autoHideDuration={5000}
         label="Top Left"
       />
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={true}
+        open
         autoHideDuration={3000}
         label="Top Center"
       />
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={true}
+        open
         autoHideDuration={1000}
         label="Top Right"
       />

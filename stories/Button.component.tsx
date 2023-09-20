@@ -11,12 +11,15 @@ export interface ButtonProps extends ButtonBaseProps {
   label: string;
 }
 
-export const Button = ({ label, ...rest }: ButtonProps) => (
-  <MuiButton {...rest}>{label}</MuiButton>
-);
-
-Button.defaultProps = {
-  variant: "contained",
-  size: "medium",
-  color: "primary",
-};
+export function Button({
+  label,
+  variant = "contained",
+  size = "medium",
+  color = "primary",
+}: ButtonProps) {
+  return (
+    <MuiButton variant={variant} size={size} color={color}>
+      {label}
+    </MuiButton>
+  );
+}

@@ -2,9 +2,9 @@
 // import { StoryFn, ComponentMeta } from "@storybook/react";
 // import Stack from "@mui/material/Stack";
 
-import { Button, ButtonProps } from "./Button.component";
 import React from "react";
 import Stack from "@mui/material/Stack";
+import { Button, ButtonProps } from "./Button.component";
 
 export default {
   title: "Example/Button",
