@@ -22,61 +22,45 @@ function RequireAuth({
   const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
   const { data: categories = [] } = useGetThemeList();
-  const props = { categories };
-
-  useEffect(() => {
-    if (categories.length > 0) {
-      setCurrentTheme(
-        categories.map((obj) => ({
-          id: obj.id,
-          title: obj.title,
-        }))
-      );
-    }
-  }, [categories, setCurrentTheme]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (
-        window.navigator.userAgent.match(/Android/i) ||
-        window.navigator.userAgent.match(/webOS/i) ||
-        window.navigator.userAgent.match(/iPhone/i) ||
-        window.navigator.userAgent.match(/iPad/i) ||
-        window.navigator.userAgent.match(/iPod/i) ||
-        window.navigator.userAgent.match(/BlackBerry/i) ||
-        window.navigator.userAgent.match(/Windows Phone/i)
-      ) {
-        setIsMobile(true);
-      }
+      const { userAgent } = window.navigator;
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      setIsMobile(mobileRegex.test(userAgent));
     }
   }, []);
 
   useEffect(() => {
+    if (categories.length > 0) {
+      setCurrentTheme(categories.map(({ id, title }) => ({ id, title })));
+    }
+  }, [categories, setCurrentTheme]);
+
+  useEffect(() => {
     if (isLoggedIn && currentTheme.length > 0) {
-      router.push(
-        `/home?title=${encodeURIComponent(
-          currentTheme[currentTheme.length - 1].title
-        )}`
+      const lastTitle = encodeURIComponent(
+        currentTheme[currentTheme.length - 1].title
       );
+      router.push(`/home?title=${lastTitle}`);
     }
   }, [isLoggedIn, currentTheme, router]);
-
-  if (isLoggedIn) {
-    return (
-      <S.Wrapper>
-        <MainDrawer {...props} />
-        <S.Cont component="main">
-          <Header />
-          {children}
-        </S.Cont>
-      </S.Wrapper>
-    );
-  }
 
   if (isMobile) return <Mobile />;
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{children}</>;
+  if (!isLoggedIn) return <>{children}</>;
+
+  return (
+    <S.Wrapper>
+      <MainDrawer {...{ categories }} />
+      <S.Cont component="main">
+        <Header />
+        {children}
+      </S.Cont>
+    </S.Wrapper>
+  );
 }
 
 export default RequireAuth;
