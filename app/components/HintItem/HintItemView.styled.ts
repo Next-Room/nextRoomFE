@@ -93,6 +93,7 @@ export const ItemWrapper = styled.div`
     align-items: center;
     width: 448px;
     padding: 12px 0;
+    overflow: hidden;
 
     span {
       width: 100%;
