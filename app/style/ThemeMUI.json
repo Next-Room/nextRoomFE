@@ -158,7 +158,7 @@
           "style": {
             "boxShadow": "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
             "backgroundColor": "#f7f2f7",
-            "color": "#ffffff",
+            "color": "red",
             "&:hover": {
               "background": "#e9e3ed",
               "boxShadow": "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
@@ -181,7 +181,7 @@
             "variant": "filled"
           },
           "style": {
-            "backgroundColor": "#ffffff",
+            "backgroundColor": "#f7f2f7",
             "color": "#000",
             "boxShadow": "none",
             "&.Mui-disabled": {
@@ -208,7 +208,7 @@
             "variant": "contained"
           },
           "style": {
-            "backgroundColor": "#ffffff",
+            "backgroundColor": "#f7f2f7",
             "color": "#000",
             "boxShadow": "none",
             "&.Mui-disabled": {
@@ -289,7 +289,7 @@
             "variant": "text"
           },
           "style": {
-            "backgroundColor": "unset",
+            "backgroundColor": "",
             "color": "#ffffff",
             "boxShadow": "none",
             "padding": "5px 15px",
@@ -411,6 +411,7 @@
     "MuiDialogContent": {
       "styleOverrides": {
         "root": {
+          "color": "#fff",
           "flex": "unset",
           "padding": "0 24px"
         }
@@ -578,13 +579,25 @@
         }
       }
     },
+    "MuiSnackber": {
+      "defaultProps": {
+        "color": "default"
+      },
+      "paper": {
+        "backgroundColor": "#211F26",
+        "boxShadow": "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+        "color": "#E6E0E9",
+        "&:hover": {
+          "backgroundColor": "rgba(255, 255, 255, 0.2)"
+        }
+      }
+    },
     "MuiMenu": {
       "defaultProps": {
         "color": "default"
       },
       "styleOverrides": {
-        "root": {
-        },
+        "root": {},
         "paper": {
           "backgroundColor": "#211F26",
           "boxShadow": "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
@@ -739,6 +752,12 @@
           "&:before, &:after": {
             "borderBottom": "1px solid var(--TextField-brandBorderColor)"
           },
+          "&.Mui-disabled, &.Mui-disabled:hover": {
+            "color": "#E6E0E9",
+            "backgroundColor": "#FFFFFF14",
+            "borderBottom": "1px solid brandBorderColor"
+          },
+
           "&:hover:not(.Mui-disabled, .Mui-error):before": {
             "borderBottom": "1px solid var(--TextField-brandBorderHoverColor)"
           },
@@ -746,12 +765,16 @@
             "borderBottom": "1px solid var(--TextField-brandBorderFocusedColor)"
           },
           "color": "#fff",
-          "backgroundColor": "#FFFFFF1A",
+          "backgroundColor": "#FFFFFF14",
           "&.Mui-focused": {
             "backgroundColor": "#FFFFFF1A"
           },
+
           "&:Mui-hover": {
-            "backgroundColor": "#36343B"
+            "backgroundColor": "#FFFFFF1A"
+          },
+          "&:hover": {
+            "backgroundColor": "#FFFFFF1A"
           }
         }
       }
