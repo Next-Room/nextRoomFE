@@ -14,10 +14,14 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/styles": "^4.11.5",
     "@material/material-color-utilities": "^0.2.7",
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.13.7",
     "@mui/styled-engine": "^5.13.2",
+    "@storybook/addon-actions": "^7.4.6",
+    "@storybook/addons": "^7.4.6",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-query-devtools": "^4.29.19",
     "@types/node": "20.3.3",
@@ -61,6 +65,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.13",
     "prettier": "^2.8.8",
-    "storybook": "^7.4.2"
+    "storybook": "^7.4.2",
+    "storybook-addon-material-ui": "^0.9.0-alpha.24"
   }
 }
