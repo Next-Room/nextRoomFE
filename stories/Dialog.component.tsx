@@ -20,11 +20,12 @@ export function Dialog({ label, open, content, onClose, ...rest }: DialogProps) 
   return (
     <MuiDialog open={open} onClose={onClose} {...rest}>
       <DialogTitle>{label}</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ paddingBottom:16 }}>
         {content}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>닫기</Button>
+        <Button onClick={onClose}>그만두기</Button>
       </DialogActions>
     </MuiDialog>
   );

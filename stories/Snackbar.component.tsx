@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Snackbar as MuiSnackbar,
+  SnackbarContent as MuiSnackbarContent,
   SnackbarProps as MuiSnackbarProps,
 } from "@mui/material";
 
@@ -26,7 +27,11 @@ export function Snackbar({
       autoHideDuration={autoHideDuration}
       open={open}
       {...rest}
-      message={label}
-    />
+    >
+      <MuiSnackbarContent
+        style={{ backgroundColor: "white", color: "black" }}
+        message={label}
+      />
+    </MuiSnackbar>
   );
 }

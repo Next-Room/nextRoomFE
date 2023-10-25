@@ -12,7 +12,7 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
     label: { control: "text" },
-    disabled: {control: "boolean"}
+    disabled: { control: "boolean" },
   },
 };
 
@@ -24,22 +24,21 @@ export const Playground = {
   render: (args: ButtonProps) => <Button {...args} />,
 };
 export const Variants = {
-  render: () => (
+  render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
-      <Button variant="text" color="secondary" label="Text Button" />
-      <Button variant="contained" label="Contained Button" />
-      <Button variant="outlined" label="Outlined Button" />
+      <Button variant="text" color="secondary" label="Text Button" {...args} />
+      <Button variant="contained" label="Contained Button" {...args} />
+      <Button variant="outlined" label="Outlined Button" {...args} />
     </Stack>
   ),
 };
 
 export const Sizes = {
-  render: () => (
+  render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
-      <Button variant="contained" size="small" label="Small" />
-      <Button variant="contained" size="medium" label="Medium" />
-      <Button variant="contained" size="large" label="Large" />
+      <Button variant="contained" size="small" label="Small" {...args} />
+      <Button variant="contained" size="medium" label="Medium" {...args} />
+      <Button variant="contained" size="large" label="Large" {...args} />
     </Stack>
   ),
 };
-

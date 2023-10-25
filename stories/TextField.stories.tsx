@@ -22,11 +22,11 @@ export const Playground = {
   render: (args: TextFieldProps) => <TextField {...args} />,
 };
 export const Variants = {
-  render: () => (
+  render: (args: TextFieldProps) => (
     <Stack spacing={2} maxWidth={300}>
-      <TextField variant="filled" label="filled TextField" />
-      <TextField variant="standard" label="standard TextField" />
-      <TextField variant="outlined" label="Outlined TextField" />
+      <TextField variant="filled"   {...args}/>
+      <TextField variant="standard" {...args}/>
+      <TextField variant="outlined" {...args}/>
     </Stack>
   ),
 };
