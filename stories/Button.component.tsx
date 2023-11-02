@@ -10,7 +10,9 @@ type ButtonBaseProps = Pick<
 >;
 
 export interface ButtonProps extends ButtonBaseProps {
-  label: string;
+
+  // eslint-disable-next-line react/require-default-props
+  label?: string;
   // eslint-disable-next-line react/require-default-props
   backgroundColor?: string; // 새로운 prop 추가
 }

@@ -30,8 +30,8 @@ export function TextField({
       disabled={disabled}
       error={error}
       placeholder={placeholder}
-    >
-      {label}
-    </MuiTextField>
+      label={label}
+    />
+
   );
 }
