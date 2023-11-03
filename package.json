@@ -14,6 +14,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@fullpage/react-fullpage": "^0.1.40",
     "@material-ui/core": "^4.12.4",
     "@material-ui/styles": "^4.11.5",
     "@material/material-color-utilities": "^0.2.7",
