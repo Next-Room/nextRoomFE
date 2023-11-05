@@ -25,10 +25,11 @@ function RequireAuth({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
+      // const { userAgent } = window.navigator;
+      // const mobileRegex =
+      // /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      // setIsMobile(mobileRegex.test(userAgent));
+      setIsMobile(false);
     }
   }, []);
 
