@@ -1,13 +1,9 @@
+"use client"
+
 import "@/style/reset.css";
-import LendingView from "./LandingView";
+import LandingView from "./LandingView";
 
 function Landing() {
-  const logoProps = {
-    src: "/images/svg/logo.svg",
-    alt: "NEXT ROOM",
-    width: 184,
-    height: 26,
-  };
 
   const buttonProps = {
     type: "submit",
@@ -16,10 +12,9 @@ function Landing() {
 
   const LandingViewProps = {
     buttonProps,
-    logoProps,
   };
 
-  return <LendingView {...LandingViewProps} />;
+  return <LandingView {...LandingViewProps} />;
 }
 
 export default Landing;
