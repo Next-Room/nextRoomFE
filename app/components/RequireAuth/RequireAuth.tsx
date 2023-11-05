@@ -21,6 +21,7 @@ function RequireAuth({
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
   const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ function RequireAuth({
       // setIsMobile(mobileRegex.test(userAgent));
       setIsMobile(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -48,11 +50,15 @@ function RequireAuth({
     }
   }, [isLoggedIn, currentTheme, router]);
 
+  if (isLoading) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <></>;
+  }
+
   if (isMobile) return <Mobile />;
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
-
   return (
     <S.Wrapper>
       <MainDrawer {...{ categories }} />

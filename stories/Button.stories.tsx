@@ -12,6 +12,7 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
     label: { control: "text" },
+
     disabled: { control: "boolean" },
   },
 };
@@ -24,6 +25,7 @@ export const Playground = {
   render: (args: ButtonProps) => <Button {...args} />,
 };
 export const Variants = {
+
   render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
       <Button variant="text" color="secondary" label="Text Button" {...args} />
@@ -34,6 +36,7 @@ export const Variants = {
 };
 
 export const Sizes = {
+
   render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
       <Button variant="contained" size="small" label="Small" {...args} />
@@ -42,3 +45,4 @@ export const Sizes = {
     </Stack>
   ),
 };
+
