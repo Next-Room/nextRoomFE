@@ -16,6 +16,7 @@ import Component3Mobile from "@/components/landing/mobile/Component3Mobile";
 import Component4Mobile from "@/components/landing/mobile/Component4Mobile";
 import Component5Mobile from "@/components/landing/mobile/Component5Mobile";
 import Component6Mobile from "@/components/landing/mobile/Component6Mobile";
+import Component7Mobile from "@/components/landing/mobile/Component7Mobile";
 import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
 import Component9Mobile from "@/components/landing/mobile/Component9Mobile";
 import Component7 from "@/components/landing/pc/Component7";
@@ -82,7 +83,7 @@ function LandingView(props: Props) {
                 <Component4Mobile />
                 <Component5Mobile />
                 <Component6Mobile />
-                <Component7 />
+                <Component7Mobile />
 
                 <Component8Mobile />
                 <Component9Mobile />

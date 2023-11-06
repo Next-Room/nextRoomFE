@@ -20,6 +20,14 @@ export const SubTitle6 = styled.p`
   line-height: 38px;
 `;
 
+export const SubTitle7 = styled.p`
+  color: #6e6e73;
+
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+`;
+
 export const SubTitle2 = styled.p`
   font-size: 44px;
   font-weight: 700;
@@ -54,6 +62,15 @@ export const Title6 = styled.p`
   font-weight: 700;
   line-height: normal;
   margin: 24px 0 48px;
+`;
+
+export const Title7 = styled.div`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 50px 26px;
+  text-align: start;
 `;
 
 export const Title8 = styled.p`
@@ -156,7 +173,22 @@ export const Main4 = styled.div`
     flex: 1;
   }
 `;
-
+export const Wrapper7 = styled(motion.div)`
+  margin: 106px 0;
+  height: 400vh;
+  text-align: center;
+  position: relative;
+`;
+export const ImgCont = styled(motion.div)`
+  position: sticky;
+  top: 70px;
+  z-index: 4;
+`;
+export const ImgCont2 = styled(motion.div)`
+  position: sticky;
+  top: 50px;
+  z-index: 4;
+`;
 export const Wrapper8 = styled(motion.div)`
   text-align: center;
   max-width: 980px;

@@ -4,10 +4,9 @@ import Phone from "./Phone";
 import Phone2 from "./Phone2";
 import Phone3 from "./Phone3";
 import Phone4 from "./Phone4";
-import * as S from "./Component.styled";
+import * as S from "./ComponentMobile.styled";
 
-export default function Component7() {
-
+export default function Component7Mobile() {
   const component7Ref = useRef<HTMLDivElement>(null);
 
   return (

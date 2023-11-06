@@ -73,9 +73,11 @@ export const Title7 = styled.div`
   line-height: 27px;
   width: 280px;
   left: calc(50% + 230px);
-  position: absolute;
-  top: 200px;
+  /* position: absolute; */
+  top: calc(40vh);
+
   text-align: start;
+  position: fixed;
 `;
 
 export const Title8 = styled.p`
@@ -121,8 +123,8 @@ export const Wrapper4 = styled(motion.div)`
 `;
 
 export const Wrapper7 = styled(motion.div)`
-  margin: 106px 0;
-  height: 100vh;
+  margin: 50px 0;
+  height: 400vh;
   text-align: center;
   position: relative;
 `;
@@ -131,8 +133,6 @@ export const Wrapper8 = styled(motion.div)`
   text-align: center;
   padding: 60px 0;
 `;
-
-
 
 export const Main = styled.div`
   color: #6e6e73;
