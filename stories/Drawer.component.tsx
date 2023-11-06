@@ -60,7 +60,9 @@ export const LogoWrapper = styled.div`
 export const Theme = styled(ListItemText)`
   font-size: 1rem;
   font-weight: 400;
+
   line-height:50%;
+
 `;
 
 function MainDrawer() {
@@ -79,6 +81,7 @@ function MainDrawer() {
             justifyContent: "center",
             marginTop: "14px",
             lineHeight:"30px"
+
           }}
         >
           <Button>
