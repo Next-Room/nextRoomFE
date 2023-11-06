@@ -26,11 +26,11 @@ function RequireAuth({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
-      setIsLoading(false);
+      // const { userAgent } = window.navigator;
+      // const mobileRegex =
+      // /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      // setIsMobile(mobileRegex.test(userAgent));
+      setIsMobile(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
