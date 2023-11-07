@@ -6,6 +6,7 @@ import Component3 from "@/components/landing/pc/Component3";
 import Component4 from "@/components/landing/pc/Component4";
 import Component5 from "@/components/landing/pc/Component5";
 import Component6 from "@/components/landing/pc/Component6";
+import Component7 from "@/components/landing/pc/Component7";
 import Component8 from "@/components/landing/pc/Component8";
 import Component9 from "@/components/landing/pc/Component9";
 import React, { useState, useEffect, useRef } from "react";
@@ -19,7 +20,6 @@ import Component6Mobile from "@/components/landing/mobile/Component6Mobile";
 import Component7Mobile from "@/components/landing/mobile/Component7Mobile";
 import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
 import Component9Mobile from "@/components/landing/mobile/Component9Mobile";
-import Component7 from "@/components/landing/pc/Component7";
 import * as S from "./LandingView.styled";
 import Btn from "../components/landing/Btn";
 
@@ -33,6 +33,7 @@ function LandingView(props: Props) {
 
   const [showBtn, setShowBtn] = useState(false); // Btn 컴포넌트의 가시성 상태
   const component1Ref = useRef<HTMLElement | null>(null);
+  const component7Ref = useRef<HTMLDivElement | null>(null);
   const component9Ref = useRef<HTMLElement | null>(null); // Component9의 참조 추가
 
   const handleScroll = () => {
@@ -83,7 +84,7 @@ function LandingView(props: Props) {
                 <Component4Mobile />
                 <Component5Mobile />
                 <Component6Mobile />
-                <Component7Mobile />
+                <Component7Mobile ref={component7Ref} />
 
                 <Component8Mobile />
                 <Component9Mobile />
@@ -96,7 +97,7 @@ function LandingView(props: Props) {
                 <Component4 />
                 <Component5 />
                 <Component6 />
-                <Component7 />
+                <Component7 ref={component7Ref} />
                 <Component8 />
                 <Component9 ref={component9Ref} {...buttonProps} />
               </>

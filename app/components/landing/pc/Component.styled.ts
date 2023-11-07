@@ -23,9 +23,9 @@ export const SubTitle6 = styled.p`
 export const SubTitle7 = styled.p`
   color: #6e6e73;
 
-font-size: 16px;
-font-weight: 500;
-line-height: 24px;
+font-size: 21px;
+font-weight: 700;
+line-height: 27px;
 `;
 
 export const SubTitle2 = styled.p`
@@ -64,14 +64,6 @@ export const Title6 = styled.p`
   margin: 24px 0 48px;
 `;
 
-export const Title7 = styled.div`
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  margin: 50px 26px;
-  text-align: start;
-`;
 
 export const Title8 = styled.p`
   font-size: 52px;
@@ -179,14 +171,29 @@ export const Wrapper7 = styled(motion.div)`
   text-align: center;
   position: relative;
 `;
+export const Title7 = styled.div`
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 27px;
+  width: 280px;
+  left: calc(50% + 230px);
+  position: absolute;
+  top: calc(40vh);
+
+  text-align: start;
+
+`;
+
+
 export const ImgCont = styled(motion.div)`
+height: 80vh;
   position: sticky;
-  top: 70px;
+  top: 106px;
   z-index: 4;
 `;
 export const ImgCont2 = styled(motion.div)`
   position: sticky;
-  top: 50px;
+  top: 106px;
   z-index: 4;
 `;
 export const Wrapper8 = styled(motion.div)`
