@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 
 import Image from "next/image";
-import * as S from "@/components/landing/pc/Component.styled";
+import * as S from "@/components/landing/mobile/ComponentMobile.styled";
 
 export default function Phone2() {
   const imgProps = {

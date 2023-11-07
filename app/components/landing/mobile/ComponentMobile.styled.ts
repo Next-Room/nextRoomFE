@@ -21,10 +21,9 @@ export const SubTitle6 = styled.p`
 
 export const SubTitle7 = styled.p`
   color: #6e6e73;
-
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 27px;
+  line-height: 24px;
 `;
 
 export const SubTitle2 = styled.p`
@@ -68,16 +67,25 @@ export const Title6 = styled.p`
   margin: 8px 0 24px;
 `;
 export const Title7 = styled.div`
-  font-size: 21px;
+  color: #fff;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 27px;
-  width: 280px;
-  left: calc(50% + 230px);
-  /* position: absolute; */
-  top: calc(40vh);
+  line-height: 24px;
 
+  margin: 50px 26px;
   text-align: start;
-  position: fixed;
+`;
+
+export const ImgCont = styled(motion.div)`
+  position: sticky;
+  top: 70px;
+  z-index: 4;
+`;
+
+export const ImgCont2 = styled(motion.div)`
+  position: sticky;
+  top: 50px;
+  z-index: 4;
 `;
 
 export const Title8 = styled.p`

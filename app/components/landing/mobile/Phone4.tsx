@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useScroll, useMotionValue } from "framer-motion";
 import Image from "next/image";
-import * as S from "@/components/landing/pc/Component.styled";
+import * as S from "@/components/landing/mobile/ComponentMobile.styled";
 
 export default function Phone4() {
   const imgProps = {
