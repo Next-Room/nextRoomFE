@@ -28,9 +28,9 @@ export const Variants = {
 
   render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
-      <Button variant="text" color="secondary" label="Text Button" {...args} />
+      <Button variant="text" label="Text Button" backgroundColor="black" {...args} />
       <Button variant="contained" label="Contained Button" {...args} />
-      <Button variant="outlined" label="Outlined Button" {...args} />
+      <Button variant="outlined" label="Outlined Button" backgroundColor="black"  {...args} />
     </Stack>
   ),
 };
@@ -39,7 +39,7 @@ export const Sizes = {
 
   render: (args: ButtonProps) => (
     <Stack spacing={2} maxWidth={300}>
-      <Button variant="contained" size="small" label="Small" {...args} />
+      <Button variant="contained" width="97px" height="40px" label="Small" {...args} />
       <Button variant="contained" size="medium" label="Medium" {...args} />
       <Button variant="contained" size="large" label="Large" {...args} />
     </Stack>
