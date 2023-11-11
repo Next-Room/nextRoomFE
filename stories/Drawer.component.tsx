@@ -1,6 +1,13 @@
 // Drawer.component.tsx
 import React from "react";
-import { List, Button, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  List,
+  Button,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styled from "styled-components"; // 정확한 import 구문 사용
 
@@ -61,37 +68,38 @@ export const Theme = styled(ListItemText)`
   font-size: 1rem;
   font-weight: 400;
 
-  line-height:50%;
+  line-height: 50%;
+`;
 
+export const NewTheme = styled(Button)`
+  width: 224px;
+  height: 36px;
 `;
 
 function MainDrawer() {
-
-
   return (
-      <ListWrap>
-        <ListItem>
-          <ListItemButton>
-            <Theme>theme</Theme>
-          </ListItemButton>
-        </ListItem>
-        <ListItem
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "14px",
-            lineHeight:"30px"
-
-          }}
-        >
-          <Button>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText>새로운 테마 추가하기</ListItemText>
-          </Button>
-        </ListItem>
-      </ListWrap>
+    <ListWrap>
+      <ListItem>
+        <ListItemButton>
+          <Theme>theme</Theme>
+        </ListItemButton>
+      </ListItem>
+      <ListItem
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "14px",
+          lineHeight: "30px",
+        }}
+      >
+        <NewTheme>
+          <ListItemIcon>
+            <AddIcon />
+          </ListItemIcon>
+          <span>새로운 테마 추가하기</span>
+        </NewTheme>
+      </ListItem>
+    </ListWrap>
   );
 }
 

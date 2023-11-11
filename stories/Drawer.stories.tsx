@@ -4,7 +4,7 @@ import React from "react";
 import MainDrawer from "./Drawer.component";
 
 export default {
-  title: "Example/Drawer",
+  title: "Component/Drawer",
   component: MainDrawer,
 };
 export const Playground = {

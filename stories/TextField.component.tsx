@@ -6,7 +6,15 @@ import {
 
 type TextFieldBaseProps = Pick<
   MuiTextFieldProps,
-  "variant" | "size" | "color" | "disabled" | "error" | "placeholder"
+  | "label"
+  | "variant"
+  | "size"
+  | "color"
+  | "disabled"
+  | "error"
+  | "placeholder"
+  | "helperText"
+  | "hiddenLabel"
 >;
 
 export interface TextFieldProps extends TextFieldBaseProps {
@@ -14,13 +22,15 @@ export interface TextFieldProps extends TextFieldBaseProps {
 }
 
 export function TextField({
-  label,
+  label = "제목",
   variant = "filled",
   size = "medium",
   color = "primary",
   disabled = false,
   error = false,
   placeholder = "미리보기",
+  helperText = "subText",
+  hiddenLabel = false,
 }: TextFieldProps) {
   return (
     <MuiTextField
@@ -31,7 +41,8 @@ export function TextField({
       error={error}
       placeholder={placeholder}
       label={label}
+      helperText={helperText}
+      hiddenLabel={hiddenLabel}
     />
-
   );
 }

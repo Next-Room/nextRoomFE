@@ -16,20 +16,22 @@ export interface DialogProps extends DialogBaseProps {
   onClose: () => void; // 대화 상자를 닫을 때 호출할 함수를 추가할 수 있습니다.
 }
 
-export function Dialog({ label, open, content, onClose, ...rest }: DialogProps) {
+export function Dialog({
+  label,
+  open,
+  content,
+  onClose,
+  ...rest
+}: DialogProps) {
   return (
     <MuiDialog open={open} onClose={onClose} {...rest}>
       <DialogTitle>{label}</DialogTitle>
 
-      <DialogContent sx={{ paddingBottom:16 }}>
-
-        {content}
-      </DialogContent>
+      <DialogContent >{content}</DialogContent>
       <DialogActions>
         <Button onClick={onClose}>닫기</Button>
 
         <Button onClick={onClose}>그만두기</Button>
-
       </DialogActions>
     </MuiDialog>
   );

@@ -141,7 +141,6 @@
         "root": {
           "borderRadius": "30px",
           "textTransform": "none",
-          "fontWeight": "bold",
           "&:has(>svg)": {
             "padding": "8px",
             "borderRadius": "50%",
@@ -395,7 +394,7 @@
       "styleOverrides": {
         "paper": {
           "width": "400px",
-          "height": "180px",
+          "minHeight": "180px",
           "borderRadius": "28px"
         }
       }
@@ -404,7 +403,15 @@
       "styleOverrides": {
         "root": {
           "color": "#fff",
+          "fontSize": "24px",
           "padding": "24px 24px 16px 24px"
+        }
+      }
+    },
+    "MuiDialogActions": {
+      "styleOverrides": {
+        "root": {
+          "padding": "16px 24px 24px 24px"
         }
       }
     },
@@ -412,7 +419,10 @@
       "styleOverrides": {
         "root": {
           "color": "#fff",
-          "flex": "unset",
+          "flex": "1",
+          "fontSize": "14px",
+          "fontFamily": "\"Pretendard\", sans-serif",
+          "fontWeight": "400",
           "padding": "0 24px"
         }
       }
@@ -1497,7 +1507,6 @@
     },
     "button": {
       "fontFamily": "\"Pretendard\", sans-serif",
-      "fontWeight": 500,
       "fontSize": "0.875rem",
       "lineHeight": 1.75,
       "letterSpacing": "0.02857em",
