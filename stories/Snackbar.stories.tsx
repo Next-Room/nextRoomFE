@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import { Snackbar, SnackbarProps } from "./Snackbar.component";
 
 export default {
-  title: "Example/Snackbar",
+  title: "Component/Snackbar",
   component: Snackbar,
 };
 

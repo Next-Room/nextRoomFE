@@ -4,7 +4,10 @@ import {
   ButtonProps as MuiButtonProps,
 } from "@mui/material";
 
-type ButtonBaseProps = Pick<MuiButtonProps, "variant" | "size" | "disabled">;
+type ButtonBaseProps = Pick<
+  MuiButtonProps,
+  "variant" | "size" | "disabled" | "startIcon"
+>;
 
 export interface ButtonProps extends ButtonBaseProps {
   // eslint-disable-next-line react/require-default-props
@@ -15,6 +18,8 @@ export interface ButtonProps extends ButtonBaseProps {
   width?: string;
   // eslint-disable-next-line react/no-unused-prop-types, react/require-default-props
   height?: string;
+  // eslint-disable-next-line react/require-default-props
+  fontWeight?: string;
 }
 
 export function Button({
@@ -24,12 +29,15 @@ export function Button({
   backgroundColor = "white", // 새로운 prop
   width = "360px",
   height = "56px",
+  fontWeight = "500",
+  startIcon 
 }: ButtonProps) {
   return (
     <MuiButton
       variant={variant}
-      style={{ backgroundColor, width, height }} // style prop을 사용하여 배경색 설정
+      style={{ backgroundColor, width, height, fontWeight }} // style prop을 사용하여 배경색 설정
       disabled={disabled}
+      startIcon={startIcon}
     >
       {label}
     </MuiButton>

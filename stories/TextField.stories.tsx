@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import { TextField, TextFieldProps } from "./TextField.component";
 
 export default {
-  title: "Example/TextField",
+  title: "Component/TextField",
   component: TextField,
   argTypes: {
     disabled: { control: "boolean" },
@@ -24,7 +24,10 @@ export const Variants = {
   render: (args: TextFieldProps) => (
     <Stack spacing={2} maxWidth={300}>
       <TextField variant="filled" {...args} />
+      <TextField variant="filled" error {...args} />
       <TextField variant="filled" hiddenLabel {...args} label="" />
+      <TextField variant="filled" error hiddenLabel {...args} label="" />
+      <TextField variant="filled" hiddenLabel {...args} disabled label="" />
     </Stack>
   ),
 };

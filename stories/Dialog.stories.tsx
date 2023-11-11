@@ -3,7 +3,7 @@ import React from "react";
 import { Dialog, DialogProps } from "./Dialog.component"; // Dialog 컴포넌트의 경로에 맞게 수정하세요
 
 export default {
-  title: "Example/Dialog",
+  title: "Component/Dialog",
   component: Dialog };
 export const Playground = {
   args: {
