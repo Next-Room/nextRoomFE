@@ -69,7 +69,7 @@ export default function Component5() {
             진행 시간에 맞게 복구합니다
           </S.SubTitle4>
         </div>
-        <div>
+        <div className="item3">
           <Image {...imgProps2} />
           <S.SubTitle4>
             인터넷 신호가 끊겨도

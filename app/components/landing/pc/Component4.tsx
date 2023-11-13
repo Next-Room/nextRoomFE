@@ -51,6 +51,7 @@ export default function Component4() {
           </S.SubTitle4>
           <S.Score>78%</S.Score>
         </div>
+        <div className="bar" />
         <div>
           <S.SubTitle4>
             직원이 잘못된 힌트를 <br />

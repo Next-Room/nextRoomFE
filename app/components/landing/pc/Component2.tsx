@@ -40,7 +40,7 @@ export default function Component2() {
 
   return (
     <S.Wrapper>
-      <S.SubTitle1>왜 넥스트룸일까요?</S.SubTitle1>
+      <S.Title2>왜 넥스트룸일까요?</S.Title2>
       <S.Wrapper2
         ref={ref}
         variants={boxVariants}
@@ -49,9 +49,9 @@ export default function Component2() {
       >
         <div>
           <S.SubTitle2>
-            방탈출 운영 경험을
+            직접 경험해보고
             <br />
-            살려 만들었습니다.
+            만든 서비스는 다릅니다.
           </S.SubTitle2>
         </div>
         <S.Main>

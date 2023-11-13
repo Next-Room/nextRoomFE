@@ -53,11 +53,11 @@ export default function Component5Mobile() {
       initial="hidden"
       animate={controls}
     >
-      <S.SubTitle3>
+      <S.SubTitle33>
         돌발 상황에도
         <br />
         문제 없습니다
-      </S.SubTitle3>
+      </S.SubTitle33>
 
       <S.SubTitle4>
         <Image {...imgProps1} />

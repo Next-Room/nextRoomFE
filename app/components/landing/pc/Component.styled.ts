@@ -8,10 +8,16 @@ export const Title1 = styled.h1`
   margin: 24px 0 80px;
 `;
 
-export const SubTitle1 = styled.p`
+export const Title2 = styled.h1`
   font-size: 24px;
   font-weight: 700;
   line-height: 39px;
+`;
+
+export const SubTitle1 = styled.p`
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
 `;
 
 export const SubTitle6 = styled.p`
@@ -23,9 +29,9 @@ export const SubTitle6 = styled.p`
 export const SubTitle7 = styled.p`
   color: #6e6e73;
 
-font-size: 21px;
-font-weight: 700;
-line-height: 27px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 27px;
 `;
 
 export const SubTitle2 = styled.p`
@@ -40,7 +46,7 @@ export const SubTitle3 = styled.p`
   font-size: 44px;
   font-weight: 700;
   line-height: 58px;
-  padding-bottom: 40px;
+  padding-bottom: 54px;
 `;
 
 export const Title4 = styled.div`
@@ -48,7 +54,8 @@ export const Title4 = styled.div`
   font-size: 44px;
   font-weight: 700;
   line-height: 58px;
-  /* background-image: url("/images/landing/background.png"); */
+  padding: 118px 0 34px;
+  background-image: url("/images/landing/background.png");
 `;
 
 export const SubTitle4 = styled.p`
@@ -63,7 +70,6 @@ export const Title6 = styled.p`
   line-height: normal;
   margin: 24px 0 48px;
 `;
-
 
 export const Title8 = styled.p`
   font-size: 52px;
@@ -112,13 +118,12 @@ export const Wrapper2 = styled(motion.div)`
   /* padding: 160px 0; */
 `;
 export const Wrapper5 = styled(motion.div)`
-  width: 98vw;
-  height: 100vh;
+  height: 961px;
   margin: 0;
   align-items: center;
   display: flex;
   text-align: center;
-  padding: 106px 0;
+
   ${"div"} {
     flex: 1;
     display: flex;
@@ -133,36 +138,50 @@ export const Wrapper5 = styled(motion.div)`
     font-weight: 700;
     line-height: normal;
     background-image: url("/images/landing/background.png");
+    border: 1px solid #424245;
+    border-left: none;
   }
 
   ${".item2"} {
     height: 100%;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #6e6e73;
   }
 
   ${".item3"} {
     width: 100%;
-    border-bottom: 1px solid #6e6e73;
+    gap: 12px;
+    border-top: 1px solid #424245;
+    border-bottom: 1px solid #424245;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
   }
 `;
 
 export const Wrapper4 = styled(motion.div)`
-  /* margin-top: 157px; */
-  /* max-width: 980px; */
   margin: 0 auto;
-  padding: 118px 0;
+  border-top: 1px solid #424245;
 `;
 
 export const Main4 = styled.div`
-  max-width: 980px;
+  /* max-width: 980px; */
   margin: 0 auto;
   display: flex;
-  margin-top: 157px;
-  /* padding: 160px 0; */
+  padding: 123px 0;
+  position: relative;
+
   ${"div"} {
     flex: 1;
+  }
+
+  ${".bar"} {
+    width: 1px;
+    height: 320px;
+    position: absolute;
+    left: 50%;
+    background-image: url("/images/landing/bar.png");
   }
 `;
 export const Wrapper7 = styled(motion.div)`
@@ -181,12 +200,10 @@ export const Title7 = styled.div`
   top: calc(40vh);
 
   text-align: start;
-
 `;
 
-
 export const ImgCont = styled(motion.div)`
-height: 80vh;
+  height: 80vh;
   position: sticky;
   top: 106px;
   z-index: 4;
@@ -223,7 +240,6 @@ export const Main3 = styled(motion.div)`
 
 export const Wrapper9 = styled(motion.div)`
   background: #151516;
-  width: 100vw;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -231,8 +247,7 @@ export const Wrapper9 = styled(motion.div)`
 
 export const Main9 = styled(motion.div)`
   text-align: center;
-  height: 100vh;
-  padding: 126px 0;
+  padding: 120px 0 122px;
   max-width: 980px;
   margin: 0 auto;
   //수정예정
@@ -240,7 +255,7 @@ export const Main9 = styled(motion.div)`
 
 export const Box = styled.div`
   width: 233px;
-  padding: 22px;
+  padding: 32px;
   box-sizing: border-box;
   border-radius: 18px;
   border: 1px solid #222223;
@@ -253,13 +268,15 @@ export const Box = styled.div`
   ${"span"} {
     font-size: 14px;
     font-weight: 500;
+    line-height: 22px;
+    margin-top: 16px;
   }
 `;
 export const BoxWrapper = styled.div`
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 32px;
+  margin-top: 80px;
 `;
 
 export const Btn = styled.button`
@@ -285,6 +302,10 @@ export const MainBtn = styled.button`
   font-weight: 600;
   cursor: pointer;
   z-index: 999;
+  border-radius: 25px;
+  border: 1px solid #000;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3),
+    0px 8px 12px 6px rgba(0, 0, 0, 0.15);
 `;
 
 export const Box8 = styled.div`
@@ -321,6 +342,10 @@ export const BoxExCost = styled.span`
 export const BoxNowCost = styled.span`
   font-size: 36px;
   font-weight: 700;
+  ${"span"} {
+    font-size: 32px;
+    font-weight: 400;
+  }
 `;
 export const BoxBtn = styled.button`
   font-size: 16px;
@@ -348,7 +373,7 @@ export const ListCont = styled.ul`
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  opacity: 0.4;
+  opacity: 0.6;
   margin: 52px 0 80px;
 `;
 

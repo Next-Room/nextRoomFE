@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import * as S from "./pc/Component.styled";
+// import { useRouter } from "next/navigation";
+import * as S from "./ComponentMobile.styled";
 
 export default function Inputbar(): JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const navigateToTrial = () => {
-    router.push("/trial");
+    // router.push("/trial");
+    window.open('/trial', '_blank');
+
   };
 
   const toggleVisibility = () => {

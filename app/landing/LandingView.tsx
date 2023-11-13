@@ -21,11 +21,14 @@ import Component7Mobile from "@/components/landing/mobile/Component7Mobile";
 import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
 import Component9Mobile from "@/components/landing/mobile/Component9Mobile";
 import * as S from "./LandingView.styled";
-import Btn from "../components/landing/Btn";
+import PcBtn from "../components/landing/pc/PcBtn";
+import MobileBtn from "../components/landing/mobile/MobileBtn";
 
 // import HomeView from "./HomeView";
 type Props = Record<string, any>;
 function LandingView(props: Props) {
+
+  
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,7 +76,6 @@ function LandingView(props: Props) {
             <S.LogoWrapper>
               <S.Logo />
             </S.LogoWrapper>
-            {showBtn && <Btn />}{" "}
             {/* 조건부 렌더링을 통해 Btn 컴포넌트를 표시 */}
             {/* buttonProps를 전달하고 ref를 설정하여 DOM 요소를 참조합니다. */}
             {isMobile ? (
@@ -87,7 +89,8 @@ function LandingView(props: Props) {
                 <Component7Mobile ref={component7Ref} />
 
                 <Component8Mobile />
-                <Component9Mobile />
+                <Component9Mobile ref={component9Ref} {...buttonProps} />
+                {showBtn && <MobileBtn />}
               </S.MobileWrapper>
             ) : (
               <>
@@ -100,6 +103,7 @@ function LandingView(props: Props) {
                 <Component7 ref={component7Ref} />
                 <Component8 />
                 <Component9 ref={component9Ref} {...buttonProps} />
+                {showBtn && <PcBtn />}
               </>
             )}
             {/* <Button {...buttonProps}>지금 무료로 시작하기</Button> */}
