@@ -19,7 +19,6 @@ function Trial() {
 
 
   const onSubmit: SubmitHandler<FormValues> = () => {
-
     setIsComplete(true);
   };
   // const onSubmit: SubmitHandler<FormValues> = (data) => {};
