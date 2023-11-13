@@ -9,10 +9,11 @@ export const MobileWrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  padding: 8px 16px;
+  padding: 17px 16px;
   position: fixed;
   width: 100vw;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
 
   @media (max-width: 767px) {
     padding: 23px 26px;
@@ -25,7 +26,6 @@ export const Logo = styled.div`
   background-image: url("/images/svg/logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
-
   @media (max-width: 767px) {
     width: 114px;
     height: 16px;

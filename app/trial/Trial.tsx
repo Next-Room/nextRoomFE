@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { EMAIL } from "@/consts/components/trial";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TrialView from "./TrialView";
-// import { usePostLogin } from "@/mutations/postLogin";
 
 interface FormValues {
   email: string;
@@ -18,14 +17,9 @@ function Trial() {
   } = useForm<FormValues>();
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
-  // const {
-  //   mutateAsync: postLogin,
-  //   isLoading = false,
-  //   isError = false,
-  //   error,
-  // } = usePostLogin();
+
   const onSubmit: SubmitHandler<FormValues> = () => {
-    // postLogin(data);
+
     setIsComplete(true);
   };
   // const onSubmit: SubmitHandler<FormValues> = (data) => {};

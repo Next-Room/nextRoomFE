@@ -2,17 +2,19 @@ import React, { forwardRef } from "react";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import * as S from "./ComponentMobile.styled";
 
 type Props = Record<string, any>;
 
 const Component9Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { buttonProps } = props;
-  const router = useRouter();
+  // const router = useRouter();
 
   const navigateToTrial = () => {
-    router.push("/trial");
+    window.open('/trial', '_blank');
+
+    // router.push("/trial");
   };
   const imgProps = {
     src: "/images/landing/check_circle.svg",
@@ -70,10 +72,14 @@ const Component9Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
           </S.ListItem>
           <S.ListItem>
             <Image {...imgProps} />
-            찾아가는 설명 안내(서울, 인천, 경기)
+            찾아가는 설명 안내
+            <br />
+            <span>(서울, 인천, 경기)</span>
           </S.ListItem>
         </S.ListCont>
-        <S.Btn onClick={navigateToTrial}  {...buttonProps}>지금 무료로 시작하기</S.Btn>
+        <S.Btn onClick={navigateToTrial} {...buttonProps}>
+          지금 무료로 시작하기
+        </S.Btn>
       </S.Main9>
     </S.Wrapper9>
   );

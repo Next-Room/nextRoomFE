@@ -208,7 +208,7 @@
           },
           "style": {
             "backgroundColor": "white",
-            "color": "#000",
+            "color": "black",
             "boxShadow": "none",
             "&.Mui-disabled": {
               "backgroundColor": "rgba(255, 255, 255, 0.7)",

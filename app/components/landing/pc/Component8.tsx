@@ -1,7 +1,7 @@
 import React from "react";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import * as S from "./Component.styled";
 
 export default function Component8() {
@@ -12,10 +12,12 @@ export default function Component8() {
   ];
   const controls = useAnimation();
   const [ref, inView] = useInView();
-  const router = useRouter();
+  // const router = useRouter();
 
   const navigateToTrial = () => {
-    router.push("/trial");
+    // router.push("/trial");
+    window.open('/trial', '_blank');
+
   };
   React.useEffect(() => {
     if (inView) {
@@ -58,7 +60,10 @@ export default function Component8() {
               등록할 수 있어요
             </S.BoxDescription>
             <S.BoxExCost>{exCost}원</S.BoxExCost> <br />
-            <S.BoxNowCost>{nowCost}원/월</S.BoxNowCost> <br /> <br />
+            <S.BoxNowCost>
+              {nowCost}원<span>/월</span>
+            </S.BoxNowCost>{" "}
+            <br /> <br />
             <S.BoxBtn onClick={navigateToTrial}>구독하기</S.BoxBtn>
           </S.Box8>
         ))}

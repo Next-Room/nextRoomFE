@@ -21,7 +21,7 @@ export default function Phone() {
   const opacity = useTransform(scrollYProgress, (value) => {
     const elementTop = ref.current?.offsetTop ?? 0;
     const elementHeight = ref.current?.offsetHeight ?? 0;
-    const progress = (value * 100 - elementTop + elementHeight) / opacityOffset;
+    const progress = (value * 80 - elementTop + elementHeight) / opacityOffset;
     return Math.max(0, Math.max(0, progress));
   });
 

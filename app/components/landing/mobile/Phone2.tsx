@@ -18,8 +18,8 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
       if (typeof ref !== 'function' && ref?.current) {
         const viewportHeight = window.innerHeight;
 
-        const start = ref.current.offsetTop + viewportHeight * 0.7; 
-        const end = ref.current.offsetTop + viewportHeight * 1.4; 
+        const start = ref.current.offsetTop + viewportHeight * 0.4; 
+        const end = ref.current.offsetTop + viewportHeight * 1.0; 
 
         const { scrollY } = window;
 
