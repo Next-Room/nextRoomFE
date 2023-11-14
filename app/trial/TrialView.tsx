@@ -1,5 +1,6 @@
 "use client";
 
+import "@/style/reset.css";
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton, TextField } from "@mui/material";
@@ -13,7 +14,7 @@ import {
   CONTACT_CONFIRMATION,
   RETURN_HOME,
 } from "@/consts/components/trial";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 import * as S from "./TrialView.styled";
 
@@ -21,16 +22,19 @@ type Props = Record<string, any>;
 function TrialView(props: Props) {
   const { formProps, emailProps, buttonProps, isComplete } = props;
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const navigateToLanding = () => {
-    router.push("/landing");
+    // router.push("/landing");
+    window.close()
   };
 
   const titleText = isComplete ? COMPLETE : TRIAL_TITLE;
   const contactText = isComplete ? CONTACT_CONFIRMATION : CONTECT;
   const mainActionButton = isComplete ? (
-    <S.Btn onClick={navigateToLanding} {...buttonProps}>{RETURN_HOME}</S.Btn>
+    <S.Btn onClick={navigateToLanding} {...buttonProps}>
+      {RETURN_HOME}
+    </S.Btn>
   ) : (
     <S.TextCont>
       <TextField placeholder={EMAIL} {...emailProps} />

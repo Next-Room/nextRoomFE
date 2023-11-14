@@ -38,6 +38,14 @@ export const SubTitle3 = styled.div`
   font-size: 28px;
   font-weight: 700;
   line-height: 38px;
+  padding-bottom: 40px;
+`;
+
+export const SubTitle33 = styled.div`
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 38px;
   padding: 162px 0;
   background-image: url("/images/landing/background.png");
 `;
@@ -78,13 +86,13 @@ export const Title7 = styled.div`
 
 export const ImgCont = styled(motion.div)`
   position: sticky;
-  top: 70px;
+  top: 80px;
   z-index: 4;
 `;
 
 export const ImgCont2 = styled(motion.div)`
   position: sticky;
-  top: 50px;
+  top: 80px;
   z-index: 4;
 `;
 
@@ -92,7 +100,6 @@ export const Title8 = styled.p`
   font-size: 28px;
   font-weight: 700;
   line-height: 38px;
-  margin: 8px 0 32px;
 `;
 
 export const Span = styled.span`
@@ -116,6 +123,9 @@ export const Wrapper1 = styled(motion.div)`
   padding: 96px 0;
   height: 100vh;
   text-align: center;
+  ${"img"} {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Wrapper2 = styled(motion.div)`
@@ -131,7 +141,7 @@ export const Wrapper4 = styled(motion.div)`
 `;
 
 export const Wrapper7 = styled(motion.div)`
-  margin: 50px 0;
+  margin: 92px 0;
   height: 400vh;
   text-align: center;
   position: relative;
@@ -164,14 +174,11 @@ export const Main3 = styled(motion.div)`
 
 export const Wrapper9 = styled(motion.div)`
   background: #151516;
-  width: 100vw;
 `;
 
 export const Main9 = styled(motion.div)`
   text-align: center;
-  height: 100vh;
-  padding: 126px 0;
-  max-width: 980px;
+  padding: 60px 0;
   margin: 0 auto;
   //수정예정
 `;
@@ -204,7 +211,6 @@ export const Btn = styled.button`
   background: #fff;
   width: 302px;
   height: 52px;
-  margin: 32px 29px;
   height: 50px;
   border-radius: 25px;
   font-size: 14px;
@@ -218,9 +224,9 @@ export const MainBtn = styled.button`
   bottom: 50px;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 210px;
-  height: 50px;
-  border-radius: 25px;
+  width: 302px;
+  height: 52px;
+  border-radius: 75px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -294,6 +300,8 @@ export const BoxBtn = styled.button`
 export const BoxWrapper8 = styled.div`
   display: grid;
   gap: 14px;
+  margin: 0 26px;
+
   grid-template-rows: repeat(3, 1fr);
 `;
 
@@ -301,11 +309,15 @@ export const ListCont = styled.ul`
   display: grid;
   gap: 18px;
   grid-template-rows: repeat(3, auto);
-  font-size: 20px;
-  font-style: normal;
+  font-size: 16px;
+  line-height: normal;
   font-weight: 500;
   opacity: 0.4;
   margin: 24px 0 100px;
+  ${"span"} {
+    margin-top: 2px;
+    font-weight: 400;
+  }
 `;
 
 export const ListItem = styled.li`

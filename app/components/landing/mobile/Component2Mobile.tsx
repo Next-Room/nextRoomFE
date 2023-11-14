@@ -22,7 +22,6 @@ export default function Component2Mobile() {
     }
   }, [controls, inView]);
 
-
   const boxVariants = {
     hidden: {
       y: 100, // 시작 위치를 아래로 조정합니다.
@@ -37,7 +36,6 @@ export default function Component2Mobile() {
       },
     },
   };
-  
 
   return (
     <S.Wrapper>
@@ -50,9 +48,9 @@ export default function Component2Mobile() {
       >
         <div>
           <S.SubTitle2>
-            방탈출 운영 경험을
+            직접 경험해보고
             <br />
-            살려 만들었습니다.
+            만든 서비스는 다릅니다.
           </S.SubTitle2>
         </div>
         <S.Main>

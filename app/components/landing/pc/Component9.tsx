@@ -2,17 +2,19 @@ import React, { forwardRef } from "react";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import * as S from "./Component.styled";
 
 type Props = Record<string, any>;
 
 const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { buttonProps } = props;
-  const router = useRouter();
+  // const router = useRouter();
 
   const navigateToTrial = () => {
-    router.push("/trial");
+    // router.push("/trial");
+    window.open('/trial', '_blank');
+
   };
 
   const imgProps = {

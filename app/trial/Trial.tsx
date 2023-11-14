@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { EMAIL } from "@/consts/components/trial";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TrialView from "./TrialView";
-// import { usePostLogin } from "@/mutations/postLogin";
 
 interface FormValues {
   email: string;
@@ -18,15 +17,9 @@ function Trial() {
   } = useForm<FormValues>();
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
-  // const {
-  //   mutateAsync: postLogin,
-  //   isLoading = false,
-  //   isError = false,
-  //   error,
-  // } = usePostLogin();
+
   const onSubmit: SubmitHandler<FormValues> = () => {
-    // postLogin(data);
-    setIsComplete(true)
+    setIsComplete(true);
   };
   // const onSubmit: SubmitHandler<FormValues> = (data) => {};
   const formProps = {
@@ -39,9 +32,10 @@ function Trial() {
 
   const emailProps = {
     id: "filled-email",
+    label: EMAIL,
     type: "email",
     variant: "filled",
-    placeholder: EMAIL,
+    placeholder: "",
     ...register("email", { required: "이메일이나 연락처를 입력해 주세요." }),
     helperText: errors?.email && errors.email.message,
     // error: Boolean(errors?.email) || isError,
@@ -61,7 +55,7 @@ function Trial() {
     emailProps,
     // errorMessage,
     // isLoading,
-    isComplete
+    isComplete,
   };
 
   return <TrialView {...TrialViewProps} />;
