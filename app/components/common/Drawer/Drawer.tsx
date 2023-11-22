@@ -15,7 +15,7 @@ import { useModalState } from "@/components/atoms/modals.atom";
 import { useSelectedThemeWrite } from "@/components/atoms/selectedTheme.atom";
 import { Theme, Themes } from "@/queries/getThemeList";
 import Image from "next/image";
-import { getShopName } from "@/uilts/localStorage";
+import { getShopName } from "@/utils/localStorage";
 import Dialog from "@/components/common/Dialog/Dialog";
 
 import * as S from "./DrawerView.styled";
@@ -45,7 +45,7 @@ function MainDrawer(props: Props) {
     width: 184,
     height: 26,
   };
-  const [focusedTheme, setFocusedTheme] = useState<Theme|null>(null); // 현재 선택된 테마를 저장할 상태 추가
+  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null); // 현재 선택된 테마를 저장할 상태 추가
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [open, setOpen] = useState<boolean>(false);
@@ -123,7 +123,9 @@ function MainDrawer(props: Props) {
             setModalState({ ...modalState, isOpen: false });
             setSelectedIndex(focusedTheme.id);
             setSelectedTheme({ ...focusedTheme });
-            router.push(`/home?title=${encodeURIComponent(focusedTheme.title)}`);
+            router.push(
+              `/home?title=${encodeURIComponent(focusedTheme.title)}`
+            );
           }
         }}
         handleDialogClose={() => setOpen(false)}

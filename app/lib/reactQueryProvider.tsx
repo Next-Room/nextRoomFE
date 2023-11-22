@@ -5,7 +5,7 @@ import { PropsWithChildren, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { getAccessToken, removeAccessToken } from "@/uilts/localStorage";
+import { getAccessToken, removeAccessToken } from "@/utils/localStorage";
 
 import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
