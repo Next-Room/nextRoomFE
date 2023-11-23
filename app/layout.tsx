@@ -4,6 +4,8 @@ import ReactQueryProvider from "@/lib/reactQueryProvider";
 import MuiProvider from "@/lib/muiProvider";
 import StyledProvider from "@/lib/themeProvider";
 import RequireAuth from "@/components/RequireAuth/RequireAuth";
+import { Suspense } from "react";
+import Analytics from "./apis/Analytics";
 
 export const metadata = {
   title: "NEXT ROOM",
@@ -18,6 +20,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <Suspense>
+          <Analytics />
+        </Suspense>
         <Recoil>
           <ReactQueryProvider>
             <StyledProvider>
