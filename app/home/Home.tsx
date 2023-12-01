@@ -23,7 +23,7 @@ function Home() {
 
   useEffect(() => {
     if (!isSignIn) {
-      router.push("/");
+      router.push("/admin");
     }
   }, [isSignIn, router]);
 
