@@ -68,5 +68,10 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "storybook": "^7.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run build"
+    }
   }
 }
