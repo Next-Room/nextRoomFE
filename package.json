@@ -15,8 +15,6 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fullpage/react-fullpage": "^0.1.40",
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/styles": "^4.11.5",
     "@material/material-color-utilities": "^0.2.7",
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.13.7",
@@ -67,8 +65,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8",
-    "storybook": "^7.4.2",
-    "storybook-addon-material-ui": "^0.9.0-alpha.24"
+    "storybook": "^7.4.2"
   }
 }
