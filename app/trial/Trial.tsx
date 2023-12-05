@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { EMAIL } from "@/consts/components/trial";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { getAnalytics, logEvent } from "firebase/analytics";
@@ -13,11 +13,14 @@ interface FormValues {
 }
 function Trial() {
   const { mutate: postMutate } = usePostInfo();
-  const analytics = getAnalytics();
-  logEvent(analytics, "screen_view", {
-    firebase_screen: "homepage_input_contact",
-    firebase_screen_class: "homepage_input_contact",
-  });
+
+  useEffect(() => {
+    const analytics = getAnalytics();
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "homepage_input_contact",
+      firebase_screen_class: "homepage_input_contact",
+    });
+  }, []);
   const {
     register,
     handleSubmit,

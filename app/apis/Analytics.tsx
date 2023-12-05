@@ -5,7 +5,6 @@ import * as gtag from "./gtag";
 
 function Analytics() {
   // You can show in the console the GA_TRACKING_ID to confirm
-  console.log(gtag.GA_TRACKING_ID);
 
   return (
     <>
