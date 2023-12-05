@@ -1,10 +1,17 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "@/components/landing/mobile/ComponentMobile.styled";
 
 const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_2",
+    firebase_screen_class: "homepage_function_2",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone2.png",
     alt: "NEXT ROOM",
@@ -15,11 +22,11 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
 
   useEffect(() => {
     const updateOpacity = () => {
-      if (typeof ref !== 'function' && ref?.current) {
+      if (typeof ref !== "function" && ref?.current) {
         const viewportHeight = window.innerHeight;
 
-        const start = ref.current.offsetTop + viewportHeight * 0.4; 
-        const end = ref.current.offsetTop + viewportHeight * 1.0; 
+        const start = ref.current.offsetTop + viewportHeight * 0.4;
+        const end = ref.current.offsetTop + viewportHeight * 1.0;
 
         const { scrollY } = window;
 
@@ -36,7 +43,7 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
     };
 
     window.addEventListener("scroll", updateOpacity);
-    updateOpacity(); 
+    updateOpacity();
     return () => {
       window.removeEventListener("scroll", updateOpacity);
     };

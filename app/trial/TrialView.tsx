@@ -14,19 +14,23 @@ import {
   CONTACT_CONFIRMATION,
   RETURN_HOME,
 } from "@/consts/components/trial";
-// import { useRouter } from "next/navigation";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "./TrialView.styled";
 
 type Props = Record<string, any>;
 function TrialView(props: Props) {
+  const analytics = getAnalytics();
+
   const { formProps, emailProps, buttonProps, isComplete } = props;
 
-  // const router = useRouter();
-
   const navigateToLanding = () => {
-    // router.push("/landing");
-    window.close()
+    window.close();
+
+    logEvent(analytics, "btn_click", {
+      btn_name: "homepage_apply_free_trial",
+    });
   };
 
   const titleText = isComplete ? COMPLETE : TRIAL_TITLE;

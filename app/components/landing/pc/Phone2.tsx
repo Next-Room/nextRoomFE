@@ -1,10 +1,16 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 import * as S from "@/components/landing/pc/Component.styled";
 
 const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_2",
+    firebase_screen_class: "homepage_function_2",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone2.png",
     alt: "NEXT ROOM",
@@ -15,11 +21,11 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
 
   useEffect(() => {
     const updateOpacity = () => {
-      if (typeof ref !== 'function' && ref?.current) {
+      if (typeof ref !== "function" && ref?.current) {
         const viewportHeight = window.innerHeight;
 
-        const start = ref.current.offsetTop + viewportHeight * 0.7; 
-        const end = ref.current.offsetTop + viewportHeight * 1.4; 
+        const start = ref.current.offsetTop + viewportHeight * 0.7;
+        const end = ref.current.offsetTop + viewportHeight * 1.4;
 
         const { scrollY } = window;
 
@@ -36,7 +42,7 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
     };
 
     window.addEventListener("scroll", updateOpacity);
-    updateOpacity(); 
+    updateOpacity();
     return () => {
       window.removeEventListener("scroll", updateOpacity);
     };
@@ -60,8 +66,10 @@ const Phone2 = forwardRef<HTMLDivElement>((props, ref) => {
       <S.Title7>
         몰입이 깨지지 않는 어두운 화면
         <S.SubTitle7>
-          어두운 공간에서 방탈출을 진행<br />할 때, 힌트폰의 빛으로 인해 몰<br />입이
-          깨지거나 눈이 아픈 경험을 <br />해소했습니다.
+          어두운 공간에서 방탈출을 진행
+          <br />할 때, 힌트폰의 빛으로 인해 몰<br />
+          입이 깨지거나 눈이 아픈 경험을 <br />
+          해소했습니다.
         </S.SubTitle7>
       </S.Title7>
     </S.ImgCont>

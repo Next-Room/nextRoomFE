@@ -16,7 +16,6 @@ if (!getApps().length) {
   initializeApp(firebaseConfig);
 }
 
-// Firebase 앱 인스턴스 얻기 (필요한 경우)
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const app = getApp();
 export const db = getFirestore(app);

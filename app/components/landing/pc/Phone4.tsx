@@ -1,10 +1,17 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "@/components/landing/pc/Component.styled";
 
 const Phone4 = forwardRef<HTMLDivElement>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_4",
+    firebase_screen_class: "homepage_function_4",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone4.png",
     alt: "NEXT ROOM",
@@ -60,8 +67,10 @@ const Phone4 = forwardRef<HTMLDivElement>((props, ref) => {
       <S.Title7>
         문제 푸는 중에도 시간 확인하기
         <S.SubTitle7>
-          메모장에서도 남은 시간을 표시<br />하여 화면을 이동하지 않고 확인<br />할 수
-          있습니다.
+          메모장에서도 남은 시간을 표시
+          <br />
+          하여 화면을 이동하지 않고 확인
+          <br />할 수 있습니다.
         </S.SubTitle7>
       </S.Title7>
     </S.ImgCont>

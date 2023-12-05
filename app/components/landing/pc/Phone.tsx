@@ -2,10 +2,16 @@ import React, { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 
 import Image from "next/image";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 import * as S from "@/components/landing/pc/Component.styled";
 
 export default function Phone() {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_1",
+    firebase_screen_class: "homepage_function_1",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone.png",
     alt: "NEXT ROOM",
@@ -34,11 +40,19 @@ export default function Phone() {
     >
       <Image {...imgProps} />
       <S.Title7>
-        직관적인 시간 체크
+        직관적으로 알 수 있는 시간
         <S.SubTitle7>
-        플레이가 시작되면 남은 시간을<br /> 그래프와 함께 제공합니다.<br />
-직관적으로 진행률과 대조하여<br /> 남은 시간이 여유있는지, 아닌지<br />판단할 수 있습니다.<br />
-진행률과 대조하여 직관적으로 <br />판단할 수 있습니다.        </S.SubTitle7>
+          플레이가 시작되면 남은 시간을
+          <br /> 그래프와 함께 제공합니다.
+          <br />
+          직관적으로 진행률과 대조하여
+          <br /> 남은 시간이 여유있는지, 아닌지
+          <br />
+          판단할 수 있습니다.
+          <br />
+          진행률과 대조하여 직관적으로 <br />
+          판단할 수 있습니다.{" "}
+        </S.SubTitle7>
       </S.Title7>
     </S.ImgCont>
   );

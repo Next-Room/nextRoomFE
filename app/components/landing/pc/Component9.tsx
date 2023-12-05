@@ -2,19 +2,28 @@ import React, { forwardRef } from "react";
 import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-// import { useRouter } from "next/navigation";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
+
 import * as S from "./Component.styled";
 
 type Props = Record<string, any>;
 
 const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { buttonProps } = props;
-  // const router = useRouter();
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_bottom",
+    firebase_screen_class: "homepage_bottom",
+  });
 
   const navigateToTrial = () => {
     // router.push("/trial");
-    window.open('/trial', '_blank');
-
+    window.open("/trial", "_blank");
+    logEvent(analytics, "btn_click", {
+      btn_name: "homepage_start_free_trial_click",
+      btn_position: "bottom",
+    });
   };
 
   const imgProps = {

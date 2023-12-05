@@ -1,9 +1,17 @@
 import React from "react";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
+
 import * as S from "./ComponentMobile.styled";
 
 export default function Component8Mobile() {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_plan",
+    firebase_screen_class: "homepage_plan",
+  });
   const arr = [
     { name: "미니", count: 2, exCost: "19,900", nowCost: "9,900" },
     { name: "미디움", count: 5, exCost: "29,900", nowCost: "14,900" },
