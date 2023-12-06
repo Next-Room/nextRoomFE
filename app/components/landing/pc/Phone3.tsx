@@ -1,10 +1,17 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "@/components/landing/pc/Component.styled";
 
 const Phone3 = forwardRef<HTMLDivElement>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_3",
+    firebase_screen_class: "homepage_function_3",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone3.png",
     alt: "NEXT ROOM",
@@ -61,7 +68,10 @@ const Phone3 = forwardRef<HTMLDivElement>((props, ref) => {
       <S.Title7>
         쉽고 빠른 힌트코드 입력
         <S.SubTitle7>
-          1분 1초가 급한 방탈출 과정에서 <br />키패드를 열고 닫는 시간을 아꼈<br />습니다.
+          1분 1초가 급한 방탈출 과정에서 <br />
+          키패드를 열고 닫는 시간을 아꼈
+          <br />
+          습니다.
         </S.SubTitle7>
       </S.Title7>
     </S.ImgCont>

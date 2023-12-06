@@ -423,6 +423,7 @@
           "fontSize": "14px",
           "fontFamily": "\"Pretendard\", sans-serif",
           "fontWeight": "400",
+          "lineHeight": "20px",
           "padding": "0 24px"
         }
       }

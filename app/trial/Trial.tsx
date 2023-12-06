@@ -1,15 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { EMAIL } from "@/consts/components/trial";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
+import { usePostInfo } from "@/mutations/postInfo";
 import TrialView from "./TrialView";
 
 interface FormValues {
-  email: string;
+  info: string;
 }
-
 function Trial() {
+  const { mutate: postMutate } = usePostInfo();
+
+  useEffect(() => {
+    const analytics = getAnalytics();
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "homepage_input_contact",
+      firebase_screen_class: "homepage_input_contact",
+    });
+  }, []);
   const {
     register,
     handleSubmit,
@@ -17,9 +28,9 @@ function Trial() {
   } = useForm<FormValues>();
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
-
-  const onSubmit: SubmitHandler<FormValues> = () => {
+  const onSubmit: SubmitHandler<FormValues> = (info) => {
     setIsComplete(true);
+    postMutate(info);
   };
   // const onSubmit: SubmitHandler<FormValues> = (data) => {};
   const formProps = {
@@ -36,8 +47,8 @@ function Trial() {
     type: "email",
     variant: "filled",
     placeholder: "",
-    ...register("email", { required: "이메일이나 연락처를 입력해 주세요." }),
-    helperText: errors?.email && errors.email.message,
+    ...register("info", { required: "이메일이나 연락처를 입력해 주세요." }),
+    helperText: errors?.info && errors.info.message,
     // error: Boolean(errors?.email) || isError,
     sx: { backgroundColor: "#ffffff10" },
   };

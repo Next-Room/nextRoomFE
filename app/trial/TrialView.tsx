@@ -1,7 +1,7 @@
 "use client";
 
 import "@/style/reset.css";
-import React from "react";
+import React, { useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton, TextField } from "@mui/material";
 
@@ -14,19 +14,26 @@ import {
   CONTACT_CONFIRMATION,
   RETURN_HOME,
 } from "@/consts/components/trial";
-// import { useRouter } from "next/navigation";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase"; // Firebase 초기화 파일 임포트
 
 import * as S from "./TrialView.styled";
 
 type Props = Record<string, any>;
 function TrialView(props: Props) {
   const { formProps, emailProps, buttonProps, isComplete } = props;
-
-  // const router = useRouter();
+  useEffect(() => {
+    const analytics = getAnalytics();
+    logEvent(analytics, "btn_click", {
+      btn_name: "homepage_apply_free_trial",
+    });
+  }, []);
 
   const navigateToLanding = () => {
-    // router.push("/landing");
-    window.close()
+    if (typeof window !== "undefined") {
+      window.close();
+      // 여기에 클라이언트-사이드 로직 추가
+    }
   };
 
   const titleText = isComplete ? COMPLETE : TRIAL_TITLE;

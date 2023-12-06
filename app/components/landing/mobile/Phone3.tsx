@@ -1,10 +1,17 @@
 import React, { forwardRef, useEffect } from "react";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "@/components/landing/mobile/ComponentMobile.styled";
 
 const Phone3 = forwardRef<HTMLDivElement>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_function_3",
+    firebase_screen_class: "homepage_function_3",
+  });
   const imgProps = {
     src: "/images/landing/hint_phone3.png",
     alt: "NEXT ROOM",

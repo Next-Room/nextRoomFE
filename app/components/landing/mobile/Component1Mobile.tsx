@@ -3,12 +3,19 @@ import Image from "next/image";
 // import { useRouter } from "next/navigation";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 
 import * as S from "./ComponentMobile.styled";
 
 type Props = Record<string, any>;
 
 const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_top",
+    firebase_screen_class: "homepage_top",
+  });
   const { buttonProps } = props;
   const imgProps = {
     src: "/images/landing/main_image.png",
@@ -29,7 +36,11 @@ const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
   }, [controls, inView]);
 
   const navigateToTrial = () => {
-    window.open('/trial', '_blank');
+    window.open("/trial", "_blank");
+    logEvent(analytics, "btn_click", {
+      btn_name: "homepage_start_free_trial_click",
+      btn_position: "top",
+    });
   };
 
   const boxVariants = {

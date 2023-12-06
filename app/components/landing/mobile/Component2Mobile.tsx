@@ -2,9 +2,17 @@ import React from "react";
 // import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
+
 import * as S from "./ComponentMobile.styled";
 
 export default function Component2Mobile() {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "homepage_carrer",
+    firebase_screen_class: "homepage_carrer",
+  });
   const arr = [
     { name: `셜록홈즈 방탈출카페`, date: "2017.03 ~ 2017.11" },
     { name: "205번가 방털기 카페", date: "2017.12 ~ 2018.09" },

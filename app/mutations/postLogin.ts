@@ -3,7 +3,7 @@ import { apiClient } from "@/lib/reactQueryProvider";
 import { ApiError, ApiResponse, MutationConfigOptions } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
-import { setAccessToken, setShopName } from "@/uilts/localStorage";
+import { setAccessToken, setShopName } from "@/utils/localStorage";
 import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 
 interface Request {
@@ -37,7 +37,6 @@ export const usePostLogin = (configOptions?: MutationConfigOptions) => {
   const setIsLoggedIn = useIsLoggedInWrite();
   const setSnackBar = useSnackBarWrite();
   const info = useMutation<Response, AxiosError<ApiError>, Request, void>({
-
     mutationKey: MUTATION_KEY,
     mutationFn: (req) => postLogin(req),
     ...configOptions?.options,

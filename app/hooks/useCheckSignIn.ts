@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { apiClient } from "@/lib/reactQueryProvider";
-import { getAccessToken } from "@/uilts/localStorage";
+import { getAccessToken } from "@/utils/localStorage";
 
 import { useIsLoggedIn } from "@/components/atoms/account.atom";
 

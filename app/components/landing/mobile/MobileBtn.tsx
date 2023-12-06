@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
+
 import * as S from "./ComponentMobile.styled";
 
 export default function Inputbar(): JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
-  // const router = useRouter();
+  const analytics = getAnalytics();
 
   const navigateToTrial = () => {
-    // router.push("/trial");
-    window.open('/trial', '_blank');
-
+    window.open("/trial", "_blank");
+    logEvent(analytics, "btn_click", {
+      btn_name: "homepage_start_free_trial_click",
+      btn_position: "floating",
+    });
   };
 
   const toggleVisibility = () => {
