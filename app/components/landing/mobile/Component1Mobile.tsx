@@ -66,14 +66,16 @@ const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
         initial="hidden"
         animate={controls}
       >
-        <S.SubTitle1>합리적인 가격으로 방탈출 운영을 편리하게</S.SubTitle1>
+        <S.SubTitle1>
+          방탈출 운영이 편리해지고 테마 만족도가 올라가는
+        </S.SubTitle1>
         <S.Title1>
           힌트폰 서비스 <br />
           넥스트룸
         </S.Title1>
         <Image {...imgProps} />
         <S.Btn {...buttonProps} onClick={navigateToTrial}>
-          지금 무료로 시작하기
+          지금 바로 시작하기
         </S.Btn>
       </S.Wrapper1>
     </div>

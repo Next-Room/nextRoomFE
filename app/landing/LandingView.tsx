@@ -7,7 +7,7 @@ import Component4 from "@/components/landing/pc/Component4";
 import Component5 from "@/components/landing/pc/Component5";
 import Component6 from "@/components/landing/pc/Component6";
 import Component7 from "@/components/landing/pc/Component7";
-import Component8 from "@/components/landing/pc/Component8";
+// import Component8 from "@/components/landing/pc/Component8";
 import Component9 from "@/components/landing/pc/Component9";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -18,7 +18,7 @@ import Component4Mobile from "@/components/landing/mobile/Component4Mobile";
 import Component5Mobile from "@/components/landing/mobile/Component5Mobile";
 import Component6Mobile from "@/components/landing/mobile/Component6Mobile";
 import Component7Mobile from "@/components/landing/mobile/Component7Mobile";
-import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
+// import Component8Mobile from "@/components/landing/mobile/Component8Mobile";
 import Component9Mobile from "@/components/landing/mobile/Component9Mobile";
 import * as S from "./LandingView.styled";
 import PcBtn from "../components/landing/pc/PcBtn";
@@ -27,8 +27,6 @@ import MobileBtn from "../components/landing/mobile/MobileBtn";
 // import HomeView from "./HomeView";
 type Props = Record<string, any>;
 function LandingView(props: Props) {
-
-  
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -88,7 +86,7 @@ function LandingView(props: Props) {
                 <Component6Mobile />
                 <Component7Mobile ref={component7Ref} />
 
-                <Component8Mobile />
+                {/* <Component8Mobile /> */}
                 <Component9Mobile ref={component9Ref} {...buttonProps} />
                 {showBtn && <MobileBtn />}
               </S.MobileWrapper>
@@ -101,12 +99,12 @@ function LandingView(props: Props) {
                 <Component5 />
                 <Component6 />
                 <Component7 ref={component7Ref} />
-                <Component8 />
+                {/* <Component8 /> */}
                 <Component9 ref={component9Ref} {...buttonProps} />
                 {showBtn && <PcBtn />}
               </>
             )}
-            {/* <Button {...buttonProps}>지금 무료로 시작하기</Button> */}
+            {/* <Button {...buttonProps}>지금 바로 시작하기</Button> */}
           </S.Wrapper>
           <S.Footer> Copyright © 2023 Next room</S.Footer>
         </>
