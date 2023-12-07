@@ -78,7 +78,7 @@ const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
           </S.ListItem>
           <S.ListItem>
             <Image {...imgProps} />
-            모든 기능 체험 가능
+            모든 기능 사용 가능
           </S.ListItem>
           <S.ListItem>
             <Image {...imgProps} />
@@ -86,7 +86,7 @@ const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
           </S.ListItem>
         </S.ListCont>
         <S.Btn onClick={navigateToTrial} {...buttonProps}>
-          지금 무료로 시작하기
+          지금 바로 시작하기
         </S.Btn>
       </S.Main9>
     </S.Wrapper9>

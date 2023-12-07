@@ -36,6 +36,6 @@ export default function Inputbar(): JSX.Element | null {
   }, []);
 
   return isVisible ? (
-    <S.MainBtn onClick={navigateToTrial}> 지금 무료로 시작하기 </S.MainBtn>
+    <S.MainBtn onClick={navigateToTrial}> 지금 바로 시작하기 </S.MainBtn>
   ) : null;
 }
