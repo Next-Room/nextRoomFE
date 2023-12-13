@@ -49,7 +49,7 @@ export default function Component4() {
             <br />
             태도 때문에 불만족한 경험이 있다.
           </S.SubTitle4>
-          <S.Score>78%</S.Score>
+          <S.Score>62%</S.Score>
         </div>
         <div className="bar" />
         <div>

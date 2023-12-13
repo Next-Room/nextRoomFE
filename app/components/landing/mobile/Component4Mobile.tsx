@@ -47,7 +47,7 @@ export default function Component4Mobile() {
         힌트를 제공 받을 때 고객이 직원의 말투나
         <br />
         태도 때문에 불만족한 경험이 있다.
-        <S.Score>78%</S.Score>
+        <S.Score>62%</S.Score>
       </S.SubTitle4>
       <S.SubTitle4>
         <p>
