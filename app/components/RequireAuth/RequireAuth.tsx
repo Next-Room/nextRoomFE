@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import Header from "@/components/common/Header/Header";
 import { useGetThemeList } from "@/queries/getThemeList";
 import { useCurrentTheme } from "@/components/atoms/currentTheme.atom";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import * as S from "@/home/HomeView.styled";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import MainDrawer from "@/components/common/Drawer/Drawer";
@@ -13,24 +13,25 @@ import Mobile from "../Mobile/Mobile";
 interface RequireAuthProps {
   children: ReactNode;
 }
-
 function RequireAuth({
   children,
 }: RequireAuthProps): React.ReactElement | null {
   const isLoggedIn = useIsLoggedInValue();
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
   const router = useRouter();
+  const pathname = usePathname();
+  const isRootPath = pathname !== "/";
   const [isMobile, setIsMobile] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // const { userAgent } = window.navigator;
-      // const mobileRegex =
-      // /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      // setIsMobile(mobileRegex.test(userAgent));
-      setIsMobile(false);
+      const { userAgent } = window.navigator;
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      setIsMobile(mobileRegex.test(userAgent));
+      setIsLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,10 +43,12 @@ function RequireAuth({
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/login");
-    } else {
-      router.push("/admin");
+    if (isRootPath) {
+      if (!isLoggedIn) {
+        router.push("/login");
+      } else {
+        router.push("/admin");
+      }
     }
 
     if (isLoggedIn && currentTheme.length > 0) {
@@ -54,12 +57,12 @@ function RequireAuth({
       );
       router.push(`/admin?title=${lastTitle}`);
     }
-  }, [isLoggedIn, currentTheme, router]);
+  }, [isLoggedIn, currentTheme, router, isRootPath]);
 
-  // if (isLoading) {
-  //   // eslint-disable-next-line react/jsx-no-useless-fragment
-  //   return <></>;
-  // }
+  if (isLoading) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <></>;
+  }
 
   if (isMobile) return <Mobile />;
 
