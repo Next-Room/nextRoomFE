@@ -18,12 +18,14 @@ function EmptyHomeView() {
   return (
     <S.Wrapper>
       <S.Title>
-        <pre>
-          {shopName?.replaceAll(`"`, "")}
-          {HOME_TITLE}
-        </pre>
+        {shopName?.replaceAll(`"`, "")}의<br />
+        {HOME_TITLE}
       </S.Title>
-      <S.AddButton onClick={toggleOnModalState} startIcon={<AddIcon />}>
+      <S.AddButton
+        variant="contained"
+        onClick={toggleOnModalState}
+        startIcon={<AddIcon />}
+      >
         새로운 테마 추가하기
       </S.AddButton>
     </S.Wrapper>
