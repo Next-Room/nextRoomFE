@@ -1,5 +1,6 @@
-import Login from "@/login/Login";
+import Home from "@/home/Home";
+// import Login from "@/login/Login";
 
 export default function adminLoginPage() {
-  return <Login />;
+  return <Home />;
 }

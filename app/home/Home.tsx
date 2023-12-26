@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetThemeList } from "@/queries/getThemeList";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
-import { useRouter } from "next/navigation";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import Loader from "@/components/Loader/Loader";
@@ -11,7 +10,6 @@ import HomeView from "./HomeView";
 
 function Home() {
   const { data: categories = [] } = useGetThemeList();
-  const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
 
@@ -21,11 +19,6 @@ function Home() {
 
   const isSignIn = useCheckSignIn();
 
-  useEffect(() => {
-    if (!isSignIn) {
-      router.push("/admin");
-    }
-  }, [isSignIn, router]);
 
   useEffect(() => {
     if (snackInfo.isOpen) {

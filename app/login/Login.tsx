@@ -99,6 +99,7 @@ function Login() {
     isLoading,
     errorMessage,
   };
+  console.log(isLoggedIn);
 
   if (isLoggedIn) {
     return <Loader />;

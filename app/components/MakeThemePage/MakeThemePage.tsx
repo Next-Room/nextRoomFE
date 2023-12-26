@@ -66,7 +66,6 @@ function MakeThemePage() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-
     const submitData = {
       id: selectedTheme.id,
       title: data.title,
@@ -77,12 +76,11 @@ function MakeThemePage() {
     if (modalState.type === "put") {
       putTheme(submitData);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/home?title=${encodeURIComponent(selectedTheme.title)}`);
+      router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`);
     } else {
       postTheme(data);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/home?title=${encodeURIComponent(data.title)}`);
-
+      router.push(`/admin?title=${encodeURIComponent(data.title)}`);
     }
   };
 
@@ -147,7 +145,7 @@ function MakeThemePage() {
       <MakeThemeModalView {...MakeThemeModalViewProps} />
       <Dialog
         handleBtn={() =>
-          router.push(`/home?title=${encodeURIComponent(selectedTheme.title)}`)
+          router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`)
         }
         open={open}
         handleDialogClose={() => setOpen(false)}
