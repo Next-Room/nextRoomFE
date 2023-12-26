@@ -1,12 +1,15 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState } from "react";
-import Header from "@/components/common/Header/Header";
+import React, { ReactNode, useEffect, useMemo, useState } from "react";
+
 import { useGetThemeList } from "@/queries/getThemeList";
 import { useCurrentTheme } from "@/components/atoms/currentTheme.atom";
 import { useRouter, usePathname } from "next/navigation";
-import * as S from "@/home/HomeView.styled";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
+
+import * as S from "@/home/HomeView.styled";
+
+import Header from "@/components/common/Header/Header";
 import MainDrawer from "@/components/common/Drawer/Drawer";
 import Mobile from "../Mobile/Mobile";
 
@@ -20,6 +23,7 @@ function RequireAuth({
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const allowUnauthPaths = useMemo(() => ["/", "/trial", "/login"], []);
   const isRootPath = pathname !== "/";
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,21 +47,26 @@ function RequireAuth({
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {
-    if (isRootPath) {
-      if (!isLoggedIn) {
-        router.push("/login");
+    if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
+      router.push("/login");
+    } else if (isLoggedIn) {
+      if (currentTheme.length > 0) {
+        const lastTitle = encodeURIComponent(
+          currentTheme[currentTheme.length - 1].title
+        );
+        router.push(`/admin?title=${lastTitle}`);
       } else {
         router.push("/admin");
       }
     }
-
-    if (isLoggedIn && currentTheme.length > 0) {
-      const lastTitle = encodeURIComponent(
-        currentTheme[currentTheme.length - 1].title
-      );
-      router.push(`/admin?title=${lastTitle}`);
-    }
-  }, [isLoggedIn, currentTheme, router, isRootPath]);
+  }, [
+    isLoggedIn,
+    currentTheme,
+    router,
+    isRootPath,
+    allowUnauthPaths,
+    pathname,
+  ]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
