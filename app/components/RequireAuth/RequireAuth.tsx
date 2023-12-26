@@ -42,11 +42,17 @@ function RequireAuth({
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      router.push("/admin");
+    }
+
     if (isLoggedIn && currentTheme.length > 0) {
       const lastTitle = encodeURIComponent(
         currentTheme[currentTheme.length - 1].title
       );
-      router.push(`/home?title=${lastTitle}`);
+      router.push(`/admin?title=${lastTitle}`);
     }
   }, [isLoggedIn, currentTheme, router]);
 
@@ -59,6 +65,7 @@ function RequireAuth({
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
+
   return (
     <S.Wrapper>
       <MainDrawer {...{ categories }} />

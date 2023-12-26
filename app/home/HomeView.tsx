@@ -4,7 +4,6 @@ import HintList from "@/components/ThemeDetail/ThemeDetail";
 
 import { Themes } from "@/queries/getThemeList";
 
-
 type Props = {
   categories: Themes;
 };
