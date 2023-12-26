@@ -64,7 +64,7 @@ function RequireAuth({
     return <></>;
   }
 
-  if (isMobile) return <Mobile />;
+  if (isMobile && isRootPath) return <Mobile />;
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
