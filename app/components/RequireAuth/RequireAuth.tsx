@@ -24,7 +24,6 @@ function RequireAuth({
   const router = useRouter();
   const pathname = usePathname();
   const allowUnauthPaths = useMemo(() => ["/", "/trial", "/login"], []);
-  const isRootPath = pathname !== "/";
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();
@@ -59,21 +58,14 @@ function RequireAuth({
         router.push("/admin");
       }
     }
-  }, [
-    isLoggedIn,
-    currentTheme,
-    router,
-    isRootPath,
-    allowUnauthPaths,
-    pathname,
-  ]);
+  }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     return <></>;
   }
 
-  if (isMobile && isRootPath) return <Mobile />;
+  if (isMobile && !allowUnauthPaths.includes(pathname)) return <Mobile />;
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
