@@ -68,7 +68,7 @@ function MainDrawer(props: Props) {
     } else {
       setSelectedIndex(theme.id);
       setSelectedTheme({ ...theme });
-      router.push(`/home?title=${encodeURIComponent(theme.title)}`);
+      router.push(`/admin?title=${encodeURIComponent(theme.title)}`);
     }
   };
 
@@ -124,7 +124,7 @@ function MainDrawer(props: Props) {
             setSelectedIndex(focusedTheme.id);
             setSelectedTheme({ ...focusedTheme });
             router.push(
-              `/home?title=${encodeURIComponent(focusedTheme.title)}`
+              `/admin?title=${encodeURIComponent(focusedTheme.title)}`
             );
           }
         }}

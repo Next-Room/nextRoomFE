@@ -24,13 +24,16 @@ function DeleteDialog(props: Props) {
   const handleThemeDelete = () => {
     const filteredArray = currentTheme.filter((obj) => obj.id !== id);
     setCurrentTheme(filteredArray);
+
     deleteTheme({ id });
     handleDialogClose();
-    router.push(
-      `/home?title=${encodeURIComponent(
-        filteredArray[filteredArray.length - 1].title
-      )}`
-    );
+    const url =
+      filteredArray.length === 0
+        ? "/admin"
+        : `/admin?title=${encodeURIComponent(
+            filteredArray[filteredArray.length - 1].title
+          )}`;
+    router.push(url);
   };
 
   const handleHintDelete = () => {
