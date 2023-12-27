@@ -18,7 +18,6 @@ export const usePostInfo = () => {
   const queryClient = useQueryClient();
   return useMutation(postInfo, {
     onSuccess: () => {
-      console.log("실행");
       
       queryClient.invalidateQueries(["info"]);
     },

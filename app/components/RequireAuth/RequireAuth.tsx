@@ -12,6 +12,7 @@ import * as S from "@/home/HomeView.styled";
 import Header from "@/components/common/Header/Header";
 import MainDrawer from "@/components/common/Drawer/Drawer";
 import Mobile from "../Mobile/Mobile";
+import { useModalStateValue } from "../atoms/modals.atom";
 
 interface RequireAuthProps {
   children: ReactNode;
@@ -27,7 +28,7 @@ function RequireAuth({
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();
-
+  const modalState = useModalStateValue();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -48,7 +49,7 @@ function RequireAuth({
   useEffect(() => {
     if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
       router.push("/login");
-    } else if (isLoggedIn) {
+    } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
         const lastTitle = encodeURIComponent(
           currentTheme[currentTheme.length - 1].title
@@ -58,7 +59,14 @@ function RequireAuth({
         router.push("/admin");
       }
     }
-  }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
+  }, [
+    isLoggedIn,
+    currentTheme,
+    router,
+    allowUnauthPaths,
+    pathname,
+    modalState,
+  ]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
