@@ -47,18 +47,24 @@ function RequireAuth({
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {
-    if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
-      router.push("/login");
-    } else if (isLoggedIn && !modalState.isOpen) {
-      if (currentTheme.length > 0) {
-        const lastTitle = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].title
-        );
-        router.push(`/admin?title=${lastTitle}`);
-      } else {
-        router.push("/admin");
-      }
+    const redirectToLogin = () => router.push("/login");
+    const redirectToAdmin = (themeTitle: string | null) => {
+      const url = themeTitle
+        ? `/admin?title=${encodeURIComponent(themeTitle)}`
+        : "/admin";
+      router.push(url);
+    };
+
+    if (!isLoggedIn) {
+      if (!allowUnauthPaths.includes(pathname)) redirectToLogin();
+      return;
     }
+
+    if (modalState.isOpen) return;
+
+    const lastTheme = currentTheme[currentTheme.length - 1];
+    const lastThemeTitle = lastTheme ? lastTheme.title : null;
+    redirectToAdmin(lastThemeTitle);
   }, [
     isLoggedIn,
     currentTheme,
