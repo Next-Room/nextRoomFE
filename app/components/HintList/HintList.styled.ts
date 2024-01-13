@@ -14,12 +14,13 @@ export const Header = styled.div`
   gap: 8px;
 
   .smallHeader {
-    width: 96px;
+    min-width: 96px;
   }
 
   .largeHeader {
     /* width: calc(((100% - (96px * 2)) / 2) - 8px); */
-    width: 448px;
+    /* width: 448px; */
+    flex: 1;
   }
 `;
 
