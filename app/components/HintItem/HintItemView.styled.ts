@@ -84,21 +84,23 @@ export const ItemWrapper = styled.div`
   .numberBox {
     display: flex;
     align-items: center;
-    width: 96px;
+    min-width: 96px;
     color: ${({ theme }) => theme.color.white};
   }
 
   .textBox {
     display: flex;
+    flex: 1;
     align-items: center;
-    width: 448px;
+    /* width: 448px; */
     padding: 12px 0;
+    white-space: nowrap;
+    overflow: hidden;
 
     span {
-      width: 100%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     }
   }
 `;
