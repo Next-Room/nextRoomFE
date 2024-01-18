@@ -1,11 +1,16 @@
-import StyledJsxRegistry from "@/lib/registry";
-import Recoil from "@/lib/recoil";
-import ReactQueryProvider from "@/lib/reactQueryProvider";
-import MuiProvider from "@/lib/muiProvider";
-import StyledProvider from "@/lib/themeProvider";
-import RequireAuth from "@/components/RequireAuth/RequireAuth";
 import { Suspense } from "react";
+
+import Recoil from "@/lib/recoil";
+import MuiProvider from "@/lib/muiProvider";
+import StyledJsxRegistry from "@/lib/registry";
+import StyledProvider from "@/lib/themeProvider";
+import ReactQueryProvider from "@/lib/reactQueryProvider";
+
+import RequireAuth from "@/components/RequireAuth/RequireAuth";
+
 import Analytics from "./apis/Analytics";
+import ChannelTalk from "./apis/ChannelTalk";
+import Clarity from "./apis/Clarity";
 
 export const metadata = {
   title: "NEXT ROOM",
@@ -22,6 +27,8 @@ export default function RootLayout({
       <body>
         <Suspense>
           <Analytics />
+          <ChannelTalk />
+          <Clarity />
         </Suspense>
         <Recoil>
           <ReactQueryProvider>
