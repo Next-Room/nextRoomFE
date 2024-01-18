@@ -4,6 +4,7 @@ import { Button, Input } from "@mui/material";
 import * as S from "./HintManagerView.styled";
 
 interface Props {
+  errorMsg: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   progressInputProps: Record<string, any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,6 +37,7 @@ function HintManagerView(props: Props) {
     formProps,
     isCurrentHintActive,
     wrapperProps,
+    errorMsg,
   } = props;
 
   return (
@@ -47,6 +49,7 @@ function HintManagerView(props: Props) {
           <Input className="TextareaBox" {...contentsInputProps} />
           <Input className="TextareaBox" {...answerInputProps} />
         </S.InputsWrapper>
+        <S.ErrorMsgWrapper>{errorMsg}</S.ErrorMsgWrapper>
         <S.FunctionButtonsWrapper {...wrapperProps}>
           <Button {...deleteButtonProps}>{DELETE}</Button>
           <Button {...makeHintButtonProps}>{MAKE_HINT}</Button>

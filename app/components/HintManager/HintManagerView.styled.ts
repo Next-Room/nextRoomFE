@@ -22,6 +22,7 @@ export const StyledBox = styled(Box)<{ active?: boolean }>`
 export const Wrapper = styled.div<{ selected?: boolean }>`
   width: 100%;
   padding: 8px;
+  position: relative;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.color.white10};
 
@@ -71,4 +72,14 @@ export const FunctionButtonsWrapper = styled.div`
   justify-content: end;
   align-items: end;
   gap: 8px;
+`;
+
+export const ErrorMsgWrapper = styled.div`
+  position: absolute;
+  color: red;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-align: right;
+  left: 15px;
 `;

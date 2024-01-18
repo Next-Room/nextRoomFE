@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { usePostHint } from "@/mutations/postHint";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { usePostHint } from "@/mutations/postHint";
 import { usePutHint } from "@/mutations/putHint";
+
 import { useSelectedThemeValue } from "../atoms/selectedTheme.atom";
-import HintManagerView from "./HintManagerView";
 import {
   useIsActiveHintItemState,
   useIsOpenDeleteDialogStateWrite,
 } from "../atoms/hints.atom";
+
+import HintManagerView from "./HintManagerView";
 import Dialog from "../common/Dialog/Dialog";
 
 const MAKE = "make";
@@ -48,8 +51,11 @@ function HintManager(props: Props) {
   const { mutateAsync: postHint, isSuccess: postHintSuccess } = usePostHint();
   const { mutateAsync: putHint } = usePutHint();
   const { id: themeId } = useSelectedThemeValue();
-  const setIsOpenDeleteDialogState = useIsOpenDeleteDialogStateWrite();
   const formRef = useRef<HTMLFormElement>(null);
+
+  const setIsOpenDeleteDialogState = useIsOpenDeleteDialogStateWrite();
+
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const [isActiveHintItemState, setIsActiveHintItemState] =
     useIsActiveHintItemState();
 
@@ -224,10 +230,18 @@ function HintManager(props: Props) {
     helperText: errors?.hintCode && errors?.hintCode.message,
     type: "number",
     onClick: activateForm,
+
     ...register("hintCode", {
       pattern: {
         value: /^\d{4}$/,
         message: "4자리 숫자만 입력 가능합니다.",
+      },
+      onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.target.value.length !== 4) {
+          setErrorMsg("힌트 코드는 4자리 숫자만 입력 가능합니다.");
+        } else {
+          setErrorMsg("");
+        }
       },
     }),
   };
@@ -281,6 +295,7 @@ function HintManager(props: Props) {
     makeHintButtonProps,
     isCurrentHintActive,
     wrapperProps,
+    errorMsg,
   };
 
   return (

@@ -40,7 +40,6 @@ function HintList() {
     setIsModifyEnableds(enableds);
   };
 
-
   const handleCreateHint = useCallback(() => {
     if (activeHint.isOpen) {
       setDialogOpen(true);
