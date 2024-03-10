@@ -1,8 +1,13 @@
 "use client";
 
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 
 function Clarity() {
+  const pathname = usePathname();
+
+  if (pathname === "/admin") return null;
+
   const clarityScript = `
   (function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
