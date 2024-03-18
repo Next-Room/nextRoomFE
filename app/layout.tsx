@@ -33,6 +33,10 @@ export default function RootLayout({
         <meta property="og:image" content="/images/og/og_3x.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://nextroom.co.kr" />
+        <meta
+          name="naver-site-verification"
+          content="21a2d5b3c2d9ca207466aecc9a9c747bc551afff"
+        />
       </Head>
       <body>
         <Suspense>
