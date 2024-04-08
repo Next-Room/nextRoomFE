@@ -96,7 +96,13 @@ function MakeThemePage() {
     label: "테마 이름",
     placeholder: "입력해 주세요.",
     message: "손님에게는 보이지 않아요.",
-    ...register("title", { required: "테마 이름은 필수 값 입니다" }),
+    ...register("title", {
+      required: "테마 이름은 필수값입니다",
+      pattern: {
+        value: /^\S+$/,
+        message: "테마 이름은 필수값입니다",
+      },
+    }),
   };
   const timeLimitProps = {
     id: "timeLimit",
