@@ -7,7 +7,7 @@ import { setAccessToken, setShopName } from "@/utils/localStorage";
 import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 
 interface Request {
-  adminCode: string;
+  email: string;
   password: string;
 }
 
