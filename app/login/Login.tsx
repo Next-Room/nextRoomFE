@@ -12,7 +12,7 @@ import Loader from "@/components/Loader/Loader";
 import LoginView from "./LoginView";
 
 interface FormValues {
-  adminCode: string;
+  email: string;
   password: string;
 }
 
@@ -31,7 +31,7 @@ function Login() {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      adminCode: process.env.NEXT_PUBLIC_ADMIN_CODE || "",
+      email: process.env.NEXT_PUBLIC_ADMIN_CODE || "",
       password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "",
     },
   });
@@ -52,12 +52,12 @@ function Login() {
   const adminCodeProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: errors?.adminCode && errors?.adminCode.message,
-    error: Boolean(errors?.adminCode) || isError,
+    helperText: errors?.email && errors?.email.message,
+    error: Boolean(errors?.email) || isError,
     variant: "filled",
     label: ADMIN_CODE,
     placeholder: ADMIN_CODE,
-    ...register("adminCode", { required: "관리자 번호를 입력해 주세요." }),
+    ...register("email", { required: "관리자 번호를 입력해 주세요." }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
