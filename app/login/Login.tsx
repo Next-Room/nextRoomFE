@@ -3,7 +3,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { ADMIN_CODE, ADMIN_PASSWORD } from "@/consts/components/login";
+import { ADMIN_EMAIL, ADMIN_PASSWORD } from "@/consts/components/login";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import { usePostLogin } from "@/mutations/postLogin";
@@ -31,7 +31,7 @@ function Login() {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: process.env.NEXT_PUBLIC_ADMIN_CODE || "",
+      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
       password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "",
     },
   });
@@ -55,9 +55,9 @@ function Login() {
     helperText: errors?.email && errors?.email.message,
     error: Boolean(errors?.email) || isError,
     variant: "filled",
-    label: ADMIN_CODE,
-    placeholder: ADMIN_CODE,
-    ...register("email", { required: "관리자 번호를 입력해 주세요." }),
+    label: ADMIN_EMAIL,
+    placeholder: ADMIN_EMAIL,
+    ...register("email", { required: "이메일을 입력해 주세요." }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
