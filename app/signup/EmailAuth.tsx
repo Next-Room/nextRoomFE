@@ -8,25 +8,30 @@ import {
   SIGN_UP_PLACEHOLDER,
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
+import { useSignUpValue } from "@/components/atoms/signup.atom";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
+import { usePostVerification } from "@/mutations/postVerification";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
-import SignUpView from "./SignUpView";
+import EmailAuthView from "./EmailAuthView";
 
 interface FormValues {
-  email: string;
+  code: string;
 }
 
-function SignUp() {
+function EmailAuth() {
   const isLoggedIn = useIsLoggedInValue();
+  const signUpState = useSignUpValue();
+
   const {
-    mutateAsync: postSendMessage,
+    mutateAsync: postVerification,
     isLoading = false,
     isError = false,
     error,
-  } = usePostSendMessage();
+  } = usePostVerification();
+
+  const { mutateAsync: postSendMessage } = usePostSendMessage();
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -45,15 +50,14 @@ function SignUp() {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
+      code: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
     },
   });
 
-  useCheckSignIn();
-
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    postSendMessage(data);
+    postVerification({ code: data.code, email: signUpState.email });
   };
+
   const formProps = {
     component: "form",
     noValidate: true,
@@ -67,11 +71,11 @@ function SignUp() {
     type: "text",
     helperText: SIGN_UP_SUBTEXT,
     // errors?.email && errors?.email.message,
-    error: Boolean(errors?.email) || isError,
+    error: Boolean(errors?.code) || isError,
     variant: "filled",
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("email", { required: "이메일을 입력해 주세요." }),
+    ...register("code", { required: "인증번호를 입력해 주세요." }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
@@ -92,21 +96,59 @@ function SignUp() {
 
   const errorMessage = isError && error?.response?.data?.message;
 
+  const MINUTES_IN_MS = 5 * 60 * 1000;
+  const INTERVAL = 1000;
+  const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
+  const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(
+    2,
+    "0"
+  );
+  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, "0");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - INTERVAL);
+    }, INTERVAL);
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      console.log("타이머가 종료되었습니다.");
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timeLeft]);
+
+  const reRequest = () => {
+    postSendMessage({ email: signUpState.email });
+    setTimeLeft(MINUTES_IN_MS);
+  };
+
+  const ReRequestButtonProps = {
+    
+    onClick: reRequest,
+  };
+
   const LoginViewProps = {
+    minutes,
+    second,
     ImageProps,
     formProps,
     adminCodeProps,
     buttonProps,
+    ReRequestButtonProps,
     isLoading,
     isMobile,
     errorMessage,
+    signUpState,
   };
 
   if (isLoggedIn) {
     return <Loader />;
   }
 
-  return <SignUpView {...LoginViewProps} />;
+  return <EmailAuthView {...LoginViewProps} />;
 }
 
-export default SignUp;
+export default EmailAuth;

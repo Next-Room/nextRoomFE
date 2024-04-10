@@ -8,27 +8,31 @@ import {
   SIGN_UP_PLACEHOLDER,
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
+import { useSignUpValue } from "@/components/atoms/signup.atom";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
-import { usePostSendMessage } from "@/mutations/postSendMessage";
-import SignUpView from "./SignUpView";
+import { usePostVerification } from "@/mutations/postVerification";
+import StoreInfoView from "./StoreInfoView";
+import { usePostSignUp } from "@/mutations/postSignUp";
 
 interface FormValues {
-  email: string;
+  name: string;
+  isNotOpened: boolean;
 }
 
-function SignUp() {
+function StoreInfo() {
   const isLoggedIn = useIsLoggedInValue();
+  const signUpState = useSignUpValue();
+
   const {
-    mutateAsync: postSendMessage,
+    mutateAsync: postSignUp,
     isLoading = false,
     isError = false,
     error,
-  } = usePostSendMessage();
-
+  } = usePostSignUp();
   const [isMobile, setIsMobile] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -43,16 +47,16 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
-    },
-  });
-
-  useCheckSignIn();
+  } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    postSendMessage(data);
+    const name = isChecked ? "오픈 예정 매장" : data.name;
+    postSignUp({
+      email: signUpState.email,
+      password: signUpState.password,
+      name,
+      isNotOpened: isChecked,
+    });
   };
   const formProps = {
     component: "form",
@@ -67,15 +71,36 @@ function SignUp() {
     type: "text",
     helperText: SIGN_UP_SUBTEXT,
     // errors?.email && errors?.email.message,
-    error: Boolean(errors?.email) || isError,
+    error: Boolean(errors?.name) || isError,
     variant: "filled",
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("email", { required: "이메일을 입력해 주세요." }),
+    ...register("name", { required: "인증번호를 입력해 주세요." }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
     },
+  };
+
+  const reasonProps = {
+    id: "filled-adminCode",
+    type: "text",
+    helperText: SIGN_UP_SUBTEXT,
+    // errors?.email && errors?.email.message,
+    error: Boolean(errors?.name) || isError,
+    variant: "filled",
+    label: SIGN_UP_EMAIL,
+    placeholder: SIGN_UP_PLACEHOLDER,
+    ...register("name", { required: "인증번호를 입력해 주세요." }),
+    sx: {
+      marginBottom: "40px",
+      backgroundColor: "#FFFFFF10",
+    },
+  };
+  const checkBoxProps = {
+    label: "contained",
+    checked: isChecked,
+    onChange: () => setIsChecked(!isChecked),
   };
 
   const buttonProps = {
@@ -96,17 +121,20 @@ function SignUp() {
     ImageProps,
     formProps,
     adminCodeProps,
+    checkBoxProps,
+    reasonProps,
     buttonProps,
     isLoading,
     isMobile,
     errorMessage,
+    signUpState,
   };
 
   if (isLoggedIn) {
     return <Loader />;
   }
 
-  return <SignUpView {...LoginViewProps} />;
+  return <StoreInfoView {...LoginViewProps} />;
 }
 
-export default SignUp;
+export default StoreInfo;

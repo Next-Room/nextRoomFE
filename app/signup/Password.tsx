@@ -4,31 +4,26 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
-  SIGN_UP_EMAIL,
-  SIGN_UP_PLACEHOLDER,
+  SIGN_UP_PASSWORD,
+  SIGN_UP_PASSWORD_CONFIRM,
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
-import { usePostSendMessage } from "@/mutations/postSendMessage";
-import SignUpView from "./SignUpView";
+import { useSignUpState } from "@/components/atoms/signup.atom";
+import PasswordView from "./PasswordView";
 
 interface FormValues {
-  email: string;
+  password: string;
+  passwordConfirm: string;
 }
 
-function SignUp() {
+function Password() {
   const isLoggedIn = useIsLoggedInValue();
-  const {
-    mutateAsync: postSendMessage,
-    isLoading = false,
-    isError = false,
-    error,
-  } = usePostSendMessage();
-
   const [isMobile, setIsMobile] = useState(false);
+  const [signUpState, setSignUpState] = useSignUpState();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -43,16 +38,12 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
-    },
-  });
+  } = useForm<FormValues>();
 
   useCheckSignIn();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    postSendMessage(data);
+    setSignUpState({ ...signUpState, password: data.password, level: 4 });
   };
   const formProps = {
     component: "form",
@@ -62,16 +53,38 @@ function SignUp() {
     flexDirection: "column",
   };
 
-  const adminCodeProps = {
+  const passwordProps = {
     id: "filled-adminCode",
-    type: "text",
+    type: "password",
+    helperText: errors?.password && errors?.password.message,
+    error: Boolean(errors?.password),
+    variant: "filled",
+    label: SIGN_UP_PASSWORD,
+    placeholder: SIGN_UP_PASSWORD,
+    ...register("password", {
+      required: "비밀번호를 입력해 주세요.",
+      pattern: {
+        value:
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        message: "비밀번호 형식에 맞지 않습니다.",
+      },
+    }),
+    sx: {
+      marginBottom: "40px",
+      backgroundColor: "#FFFFFF10",
+    },
+  };
+
+  const passwordConfirmProps = {
+    id: "filled-adminCode",
+    type: "password",
     helperText: SIGN_UP_SUBTEXT,
     // errors?.email && errors?.email.message,
-    error: Boolean(errors?.email) || isError,
+    error: Boolean(errors?.password),
     variant: "filled",
-    label: SIGN_UP_EMAIL,
-    placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("email", { required: "이메일을 입력해 주세요." }),
+    label: SIGN_UP_PASSWORD_CONFIRM,
+    placeholder: SIGN_UP_PASSWORD_CONFIRM,
+    ...register("passwordConfirm", { required: "이메일을 입력해 주세요." }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
@@ -90,23 +103,21 @@ function SignUp() {
     height: 28,
   };
 
-  const errorMessage = isError && error?.response?.data?.message;
 
   const LoginViewProps = {
     ImageProps,
     formProps,
-    adminCodeProps,
+    passwordProps,
+    passwordConfirmProps,
     buttonProps,
-    isLoading,
     isMobile,
-    errorMessage,
   };
 
   if (isLoggedIn) {
     return <Loader />;
   }
 
-  return <SignUpView {...LoginViewProps} />;
+  return <PasswordView {...LoginViewProps} />;
 }
 
-export default SignUp;
+export default Password;

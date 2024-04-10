@@ -57,7 +57,13 @@ function Login() {
     variant: "filled",
     label: ADMIN_EMAIL,
     placeholder: ADMIN_EMAIL,
-    ...register("email", { required: "이메일을 입력해 주세요." }),
+    ...register("email", {
+      required: "이메일을 입력해 주세요.",
+      pattern: {
+        value: /\S+@\S+\.\S+/,
+        message: "이메일 형식에 맞지 않습니다.",
+      },
+    }),
     sx: {
       marginBottom: "40px",
       backgroundColor: "#FFFFFF10",

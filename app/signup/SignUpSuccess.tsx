@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Image from "next/image";
 
 import {
   SIGN_UP_EMAIL,
@@ -13,13 +14,13 @@ import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
-import SignUpView from "./SignUpView";
+import * as S from "./SignUpView.styled";
 
 interface FormValues {
   email: string;
 }
 
-function SignUp() {
+function SignUpSuccess() {
   const isLoggedIn = useIsLoggedInValue();
   const {
     mutateAsync: postSendMessage,
@@ -29,13 +30,20 @@ function SignUp() {
   } = usePostSendMessage();
 
   const [isMobile, setIsMobile] = useState(false);
+  // const [isWebView, setIsWebView] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
       const mobileRegex =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
       setIsMobile(mobileRegex.test(userAgent));
+      // setIsWebView()
     }
+    // const uagent = userAgent.toLocaleLowerCase();
+    // return !!(
+    //   uagent.indexOf("afreeca webview") > -1 ||
+    //   uagent.indexOf("afreeca up webview") > -1
+    // );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -106,7 +114,22 @@ function SignUp() {
     return <Loader />;
   }
 
-  return <SignUpView {...LoginViewProps} />;
+  return (
+    <>
+      <S.Wrapper>
+        {isLoading && <Loader />}
+        {!isMobile && (
+          <S.Header>
+            <Image {...ImageProps} />
+          </S.Header>
+        )}
+      </S.Wrapper>
+
+      <S.Cont>
+        <S.Title>가입 완료</S.Title>
+      </S.Cont>
+    </>
+  );
 }
 
-export default SignUp;
+export default SignUpSuccess;
