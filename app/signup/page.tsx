@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useSignUpValue } from "@/components/atoms/signup.atom";
 import SignUp from "./SignUp";
 import EmailAuth from "./EmailAuth";
@@ -12,7 +12,7 @@ function HomePage() {
   const signUpstate = useSignUpValue();
 
   switch (signUpstate.level) {
-    case 6:
+    case 1:
       return <SignUp />;
     case 2:
       return <EmailAuth />;
@@ -21,8 +21,6 @@ function HomePage() {
     case 4:
       return <StoreInfo />;
     case 5:
-      return <Password />;
-    case 1:
       return <SignUpSuccess />;
     default:
       return <SignUp />;

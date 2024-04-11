@@ -21,18 +21,15 @@ function EmailAuthView(props: Props) {
     buttonProps,
     ReRequestButtonProps,
     isLoading,
-    isMobile,
     errorMessage,
   } = props;
   return (
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        {!isMobile && (
-          <S.Header>
-            <Image {...ImageProps} />
-          </S.Header>
-        )}
+        <S.Header>
+          <Image {...ImageProps} />
+        </S.Header>
       </S.Wrapper>
 
       <S.Cont>
@@ -47,14 +44,14 @@ function EmailAuthView(props: Props) {
 
         <S.StyledBox {...formProps}>
           <TextField {...adminCodeProps} />
-          <S.SubTitle>이메일이 오지 않았다면?</S.SubTitle>
-          <button type="button" {...ReRequestButtonProps}>
-            재인증 요청
-          </button>
-          <S.LoginButtonWrapper>
-            <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
-            <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
-          </S.LoginButtonWrapper>
+          <S.ReRequest>
+            <p>이메일이 오지 않았다면? </p>
+            <button type="button" {...ReRequestButtonProps}>
+              재인증 요청
+            </button>
+          </S.ReRequest>
+          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
+          <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
         </S.StyledBox>
       </S.Cont>
     </>

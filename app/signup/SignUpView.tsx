@@ -17,7 +17,6 @@ function SignUpView(props: Props) {
     adminCodeProps,
     buttonProps,
     isLoading,
-    isMobile,
     errorMessage,
   } = props;
 
@@ -25,11 +24,9 @@ function SignUpView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        {!isMobile && (
           <S.Header>
-            <Image {...ImageProps}/>
+            <Image {...ImageProps} />
           </S.Header>
-        )}
       </S.Wrapper>
 
       <S.Cont>
@@ -42,11 +39,8 @@ function SignUpView(props: Props) {
         </S.SubTitle>
         <S.StyledBox {...formProps}>
           <TextField {...adminCodeProps} />
-
-          <S.LoginButtonWrapper>
-            <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
-            <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
-          </S.LoginButtonWrapper>
+          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
+          <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
         </S.StyledBox>
       </S.Cont>
     </>

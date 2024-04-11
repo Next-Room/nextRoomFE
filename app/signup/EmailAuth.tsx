@@ -2,12 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-import {
-  SIGN_UP_EMAIL,
-  SIGN_UP_PLACEHOLDER,
-  SIGN_UP_SUBTEXT,
-} from "@/consts/components/signUp";
 import { useSignUpValue } from "@/components/atoms/signup.atom";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
@@ -47,6 +41,7 @@ function EmailAuth() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -54,6 +49,7 @@ function EmailAuth() {
     },
   });
 
+  const formValue = watch();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postVerification({ code: data.code, email: signUpState.email });
   };
@@ -69,22 +65,25 @@ function EmailAuth() {
   const adminCodeProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: SIGN_UP_SUBTEXT,
-    // errors?.email && errors?.email.message,
+    helperText: errors?.code && errors?.code.message,
     error: Boolean(errors?.code) || isError,
     variant: "filled",
-    label: SIGN_UP_EMAIL,
-    placeholder: SIGN_UP_PLACEHOLDER,
+    label: "인증번호",
+    placeholder: "인증번호",
     ...register("code", { required: "인증번호를 입력해 주세요." }),
     sx: {
-      marginBottom: "40px",
+      marginBottom: "18px",
       backgroundColor: "#FFFFFF10",
+      ".MuiFilledInput-root": {
+        height: "82px",
+      },
     },
   };
 
   const buttonProps = {
     type: "submit",
     variant: "contained",
+    disabled: !(formValue.code.length > 0),
   };
 
   const ImageProps = {
@@ -112,7 +111,6 @@ function EmailAuth() {
 
     if (timeLeft <= 0) {
       clearInterval(timer);
-      console.log("타이머가 종료되었습니다.");
     }
 
     return () => {
@@ -126,7 +124,6 @@ function EmailAuth() {
   };
 
   const ReRequestButtonProps = {
-    
     onClick: reRequest,
   };
 

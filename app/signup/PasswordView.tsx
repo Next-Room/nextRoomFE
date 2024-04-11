@@ -15,17 +15,14 @@ function PasswordView(props: Props) {
     passwordProps,
     passwordConfirmProps,
     buttonProps,
-    isMobile,
   } = props;
 
   return (
     <>
       <S.Wrapper>
-        {!isMobile && (
-          <S.Header>
-            <Image {...ImageProps} />
-          </S.Header>
-        )}
+        <S.Header>
+          <Image {...ImageProps} />
+        </S.Header>
       </S.Wrapper>
 
       <S.Cont>
@@ -37,10 +34,7 @@ function PasswordView(props: Props) {
         <S.StyledBox {...formProps}>
           <TextField {...passwordProps} />
           <TextField {...passwordConfirmProps} />
-
-          <S.LoginButtonWrapper>
-            <S.LoginButton {...buttonProps}>{NEXT}</S.LoginButton>
-          </S.LoginButtonWrapper>
+          <S.LoginButton {...buttonProps}>{NEXT}</S.LoginButton>
         </S.StyledBox>
       </S.Cont>
     </>

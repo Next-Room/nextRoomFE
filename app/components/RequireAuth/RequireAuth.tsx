@@ -24,7 +24,7 @@ function RequireAuth({
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
   const router = useRouter();
   const pathname = usePathname();
-  const allowUnauthPaths = useMemo(() => ["/", "/trial", "/login"], []);
+  const allowUnauthPaths = useMemo(() => ["/", "/trial", "/signup"], []);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();

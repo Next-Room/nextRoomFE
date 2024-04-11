@@ -2,23 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-import {
-  SIGN_UP_EMAIL,
-  SIGN_UP_PLACEHOLDER,
-  SIGN_UP_SUBTEXT,
-} from "@/consts/components/signUp";
 import { useSignUpValue } from "@/components/atoms/signup.atom";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import Loader from "@/components/Loader/Loader";
-import { usePostVerification } from "@/mutations/postVerification";
-import StoreInfoView from "./StoreInfoView";
 import { usePostSignUp } from "@/mutations/postSignUp";
+import StoreInfoView from "./StoreInfoView";
 
 interface FormValues {
   name: string;
   isNotOpened: boolean;
+  reason: string;
 }
 
 function StoreInfo() {
@@ -46,8 +40,10 @@ function StoreInfo() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormValues>();
+  const formValue = watch();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const name = isChecked ? "오픈 예정 매장" : data.name;
@@ -69,36 +65,37 @@ function StoreInfo() {
   const adminCodeProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: SIGN_UP_SUBTEXT,
-    // errors?.email && errors?.email.message,
+    helperText: errors?.name && errors?.name.message,
+
     error: Boolean(errors?.name) || isError,
     variant: "filled",
-    label: SIGN_UP_EMAIL,
-    placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("name", { required: "인증번호를 입력해 주세요." }),
+    label: "매장명",
+    placeholder: "매장명",
+    ...register("name"),
     sx: {
-      marginBottom: "40px",
+      margin: "40px 0 20px",
       backgroundColor: "#FFFFFF10",
+      ".MuiFilledInput-root": {
+        height: "82px",
+      },
     },
   };
 
   const reasonProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: SIGN_UP_SUBTEXT,
-    // errors?.email && errors?.email.message,
     error: Boolean(errors?.name) || isError,
     variant: "filled",
-    label: SIGN_UP_EMAIL,
-    placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("name", { required: "인증번호를 입력해 주세요." }),
+    label: "방문사유",
+    placeholder: "방문사유",
+    ...register("reason"),
     sx: {
-      marginBottom: "40px",
+      margin: "40px 0 20px",
       backgroundColor: "#FFFFFF10",
     },
   };
   const checkBoxProps = {
-    label: "contained",
+    label: "매장명이 없습니다.",
     checked: isChecked,
     onChange: () => setIsChecked(!isChecked),
   };
@@ -106,6 +103,7 @@ function StoreInfo() {
   const buttonProps = {
     type: "submit",
     variant: "contained",
+    disabled: !(formValue.name?.length > 0 || isChecked),
   };
 
   const ImageProps = {

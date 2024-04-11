@@ -1,9 +1,10 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, FormControlLabel } from "@mui/material";
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
   max-width: 520px;
+  height: 60px;
 
   align-items: center;
   flex-direction: column;
@@ -11,7 +12,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.div`
-  height: 60px;
   width: 100%;
   ${"img"} {
     float: right;
@@ -30,6 +30,7 @@ export const Title = styled.p`
   font-size: 20px;
   font-weight: 600;
   line-height: 28px;
+  margin: 0;
 `;
 
 export const SubTitle = styled.p`
@@ -37,6 +38,15 @@ export const SubTitle = styled.p`
   font-weight: 400;
   line-height: 20px;
   margin: 8px 0 40px;
+  color: #9e9ea1;
+`;
+
+export const Label = styled(FormControlLabel)`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+
   color: #9e9ea1;
 `;
 
@@ -55,16 +65,38 @@ export const CodeInput = styled.input`
   color: white;
 `;
 
-export const LoginButtonWrapper = styled.div`
-  margin-top: 20px;
-`;
-
 export const ServerErrorMessage = styled.div`
   color: #f2b8b5;
   font-weight: 400;
   font-size: 12px;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+`;
+
+export const ReRequest = styled.div`
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 20px;
+  ${"p"} {
+    color: #9e9ea1;
+    margin-right: 2px;
+  }
+  ${"button"} {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const LoginButton = styled(Button)`
@@ -74,8 +106,6 @@ export const LoginButton = styled(Button)`
 
 export const StyledBox = styled(Box)`
   display: flex;
-  min-width: 360px;
-  margin: 62px auto;
 `;
 
 export const Contect = styled.div`

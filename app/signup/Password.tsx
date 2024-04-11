@@ -6,7 +6,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import {
   SIGN_UP_PASSWORD,
   SIGN_UP_PASSWORD_CONFIRM,
-  SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
@@ -24,6 +23,7 @@ function Password() {
   const isLoggedIn = useIsLoggedInValue();
   const [isMobile, setIsMobile] = useState(false);
   const [signUpState, setSignUpState] = useSignUpState();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -37,8 +37,10 @@ function Password() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormValues>();
+  const formValue = watch();
 
   useCheckSignIn();
 
@@ -78,22 +80,30 @@ function Password() {
   const passwordConfirmProps = {
     id: "filled-adminCode",
     type: "password",
-    helperText: SIGN_UP_SUBTEXT,
-    // errors?.email && errors?.email.message,
-    error: Boolean(errors?.password),
+    helperText: errors?.passwordConfirm && "비밀번호가 일치하지 않습니다.", // 비밀번호 확인 에러 메시지
+    error: Boolean(errors?.passwordConfirm), // 비밀번호 확인 에러 발생 시 에러 표시
     variant: "filled",
     label: SIGN_UP_PASSWORD_CONFIRM,
     placeholder: SIGN_UP_PASSWORD_CONFIRM,
-    ...register("passwordConfirm", { required: "이메일을 입력해 주세요." }),
+    ...register("passwordConfirm", {
+      required: "비밀번호를 다시 입력해 주세요.",
+      validate: (value) =>
+        value === formValue.password || "비밀번호가 일치하지 않습니다.", // 패스워드와 비밀번호 확인 값이 같은지 확인
+    }),
     sx: {
-      marginBottom: "40px",
-      backgroundColor: "#FFFFFF10",
+      marginBottom: "20px",
+      ".MuiFilledInput-root": {
+        height: "82px",
+      },
     },
   };
 
   const buttonProps = {
     type: "submit",
     variant: "contained",
+    disabled: !(
+      formValue.password?.length > 0 && formValue.passwordConfirm?.length > 0
+    ),
   };
 
   const ImageProps = {
@@ -102,7 +112,6 @@ function Password() {
     width: 28,
     height: 28,
   };
-
 
   const LoginViewProps = {
     ImageProps,

@@ -1,11 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {
-  TextField,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-} from "@mui/material";
+import { TextField, Checkbox, FormGroup } from "@mui/material";
 
 import { START } from "@/consts/components/signUp";
 
@@ -24,7 +19,6 @@ function StoreInfoView(props: Props) {
     reasonProps,
     buttonProps,
     isLoading,
-    isMobile,
     errorMessage,
   } = props;
 
@@ -34,11 +28,10 @@ function StoreInfoView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        {!isMobile && (
-          <S.Header>
-            <Image {...ImageProps} />
-          </S.Header>
-        )}
+
+        <S.Header>
+          <Image {...ImageProps} />
+        </S.Header>
       </S.Wrapper>
 
       <S.Cont>
@@ -50,16 +43,14 @@ function StoreInfoView(props: Props) {
         <S.StyledBox {...formProps}>
           <TextField {...adminCodeProps} />
           <FormGroup>
-            <FormControlLabel
+            <S.Label
               control={<Checkbox checked={checked} onChange={onChange} />}
               {...checkBoxProps}
             />
           </FormGroup>
           {checked && <TextField {...reasonProps} />}
-          <S.LoginButtonWrapper>
-            <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
-            <S.LoginButton {...buttonProps}>{START}</S.LoginButton>
-          </S.LoginButtonWrapper>
+          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
+          <S.LoginButton {...buttonProps}>{START}</S.LoginButton>
         </S.StyledBox>
       </S.Cont>
     </>

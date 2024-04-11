@@ -43,12 +43,14 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormValues>({
     defaultValues: {
       email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
     },
   });
 
+  const formValue = watch();
   useCheckSignIn();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -73,14 +75,17 @@ function SignUp() {
     placeholder: SIGN_UP_PLACEHOLDER,
     ...register("email", { required: "이메일을 입력해 주세요." }),
     sx: {
-      marginBottom: "40px",
       backgroundColor: "#FFFFFF10",
+      ".MuiFilledInput-root": {
+        height: "82px",
+      },
     },
   };
 
   const buttonProps = {
     type: "submit",
     variant: "contained",
+    disabled: !(formValue.email.length > 0),
   };
 
   const ImageProps = {
