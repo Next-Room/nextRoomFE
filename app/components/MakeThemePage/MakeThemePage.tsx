@@ -31,8 +31,8 @@ function MakeThemePage() {
     setValue,
     watch,
     reset,
-
     formState: { errors },
+    trigger,
   } = useForm<FormValues>();
 
   const formValue = watch();
@@ -61,6 +61,12 @@ function MakeThemePage() {
       setValue("hintLimit", selectedTheme.hintLimit);
     }
   }, [selectedTheme, setValue, modalState.type, reset]);
+
+  useEffect(() => {
+    if (formValue.title && formValue.timeLimit && formValue.hintLimit) {
+      trigger();
+    }
+  }, [formValue.hintLimit, formValue.timeLimit, formValue.title, trigger]);
 
   const { mutateAsync: postTheme } = usePostTheme();
   const { mutateAsync: putTheme } = usePutTheme();
