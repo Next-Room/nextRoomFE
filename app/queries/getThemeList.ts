@@ -19,6 +19,7 @@ type Response = ApiResponse<Themes>;
 
 const URL_PATH = `/v1/theme`;
 export const QUERY_KEY = [URL_PATH];
+// TODO - 유저 id를 키에 추가해야 함
 
 export const getThemeList = async (config?: AxiosRequestConfig) => {
   const res = await apiClient.get<Request, AxiosResponse<Response>>(URL_PATH, {

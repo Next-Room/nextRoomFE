@@ -7,6 +7,7 @@ import { usePutTheme } from "@/mutations/putTheme";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useModalState } from "@/components/atoms/modals.atom";
 import { useRouter } from "next/navigation";
+import { useGetThemeList } from "@/queries/getThemeList";
 import MakeThemeModalView from "./MakeThemePageView";
 import Dialog from "../common/Dialog/Dialog";
 
@@ -19,6 +20,7 @@ interface FormValues {
 
 function MakeThemePage() {
   const [modalState, setModalState] = useModalState();
+  const { data: categories = [] } = useGetThemeList();
   const [open, setOpen] = useState<boolean>(false);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,21 +39,15 @@ function MakeThemePage() {
 
   const formValue = watch();
   const handleClose = () => {
-    if (
-      selectedTheme.title === formValue.title &&
-      selectedTheme.timeLimit === formValue.timeLimit &&
-      selectedTheme.hintLimit === formValue.hintLimit
-    ) {
-      setModalState({ ...modalState, isOpen: false });
-    }
+    setSelectedTheme(categories[categories.length - 1]);
     if (
       modalState.type === "post" &&
       !(formValue.title || formValue.timeLimit || formValue.hintLimit)
     ) {
       setModalState({ ...modalState, isOpen: false });
+    } else {
+      setOpen(!open);
     }
-
-    setOpen(!open);
   };
   useEffect(() => {
     reset();
