@@ -24,35 +24,37 @@ type Props = {
   categories: Themes;
 };
 
+const logoProps = {
+  src: "/images/svg/logo.svg",
+  alt: "NEXT ROOM",
+  width: 184,
+  height: 26,
+};
+
 function MainDrawer(props: Props) {
   const { categories } = props;
   const router = useRouter();
 
   const setSelectedTheme = useSelectedThemeWrite();
-  // const { mutateAsync: deleteTheme } = useDeleteTheme();
   const shopName = getShopName();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [modalState, setModalState] = useModalState();
+  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null); // 현재 선택된 테마를 저장할 상태 추가
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
+
   const toggleOnModalState = () => {
     router.push("/theme");
+    setSelectedIndex(null);
 
     setModalState({ type: "post", isOpen: true });
   };
-  const logoProps = {
-    src: "/images/svg/logo.svg",
-    alt: "NEXT ROOM",
-    width: 184,
-    height: 26,
-  };
-  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null); // 현재 선택된 테마를 저장할 상태 추가
-
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [open, setOpen] = useState<boolean>(false);
 
   const handleDialog = () => {
     setOpen(!open);
   };
+
   useEffect(() => {
     if (categories.length > 0) {
       setSelectedIndex(categories[categories.length - 1].id);
@@ -89,7 +91,7 @@ function MainDrawer(props: Props) {
         </S.ShopNameListItem>
 
         {[...categories].reverse().map((theme) => (
-          <ListItem>
+          <ListItem key={theme.id}>
             <ListItemButton
               selected={selectedIndex === theme.id}
               onClick={() => {
@@ -99,7 +101,6 @@ function MainDrawer(props: Props) {
               <ListItemText>{theme.title}</ListItemText>
             </ListItemButton>
           </ListItem>
-          // </Link>
         ))}
         <ListItem
           style={{
