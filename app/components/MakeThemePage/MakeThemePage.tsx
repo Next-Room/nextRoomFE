@@ -31,6 +31,7 @@ function MakeThemePage() {
     setValue,
     watch,
     reset,
+
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -118,13 +119,14 @@ function MakeThemePage() {
       },
     }),
   };
+
   const hintLimitProps = {
     id: "hintLimit",
     label: "힌트 개수",
     type: "number",
     message: "이 테마에서 사용할 수 있는 힌트 수를 입력해 주세요.",
     ...register("hintLimit", {
-      required: "힌트 수를 입력해 주세요..",
+      required: "힌트 수를 입력해 주세요.",
       pattern: {
         value: /^[1-9]\d*$/,
         message: "1개 이상으로 입력해 주세요.",

@@ -21,7 +21,9 @@ type Props = {
   formProps: Record<string, any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeLimitProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   themeNameProps: Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   hintLimitProps: Record<string, any>;
   titleError: FieldError | undefined;
   timeLimitError: FieldError | undefined;
