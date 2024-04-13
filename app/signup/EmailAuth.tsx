@@ -144,7 +144,7 @@ function EmailAuth() {
   if (isLoggedIn) {
     return <Loader />;
   }
-
+  
   return <EmailAuthView {...LoginViewProps} />;
 }
 

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
-import { TextField } from "@mui/material";
 
 import { SIGN_UP } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
+import SnackBar from "@/components/SnackBar/SnackBar";
+import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
+import CodeInput from "./CodeInput";
 import * as S from "./SignUpView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,12 +19,22 @@ function EmailAuthView(props: Props) {
     ImageProps,
     formProps,
     signUpState,
-    adminCodeProps,
     buttonProps,
     ReRequestButtonProps,
     isLoading,
     errorMessage,
   } = props;
+
+  const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
+
+  useEffect(() => {
+    if (snackInfo.isOpen) {
+      setTimeout(() => {
+        setSnackBarInfo({ ...snackInfo, isOpen: false });
+      }, 3000);
+    }
+  }, [setSnackBarInfo, snackInfo]);
+
   return (
     <>
       <S.Wrapper>
@@ -43,7 +55,8 @@ function EmailAuthView(props: Props) {
         </S.SubTitle>
 
         <S.StyledBox {...formProps}>
-          <TextField {...adminCodeProps} />
+          {/* <TextField {...adminCodeProps} /> */}
+          <CodeInput {...formProps} {...buttonProps} />
           <S.ReRequest>
             <p>이메일이 오지 않았다면? </p>
             <button type="button" {...ReRequestButtonProps}>
@@ -53,6 +66,13 @@ function EmailAuthView(props: Props) {
           <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
           <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
         </S.StyledBox>
+        <SnackBar
+          open={snackInfo.isOpen}
+          ment={snackInfo.message}
+          vertical= "top"
+          horizontal=  "center" 
+          handleClose={() => setSnackBarInfo({ ...snackInfo, isOpen: false })}
+        />
       </S.Cont>
     </>
   );
