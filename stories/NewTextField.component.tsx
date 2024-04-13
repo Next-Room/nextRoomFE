@@ -16,11 +16,13 @@ export interface TextFieldProps {
 
 const Label = styled.label`
   position: absolute;
+  color: #89888a;
+
   top: 20px;
   left: 20px;
   font-size: 12px;
   line-height: 16px;
-`;
+  `;
 
 const LabelOnly = styled.label`
   position: absolute;
@@ -30,27 +32,22 @@ const LabelOnly = styled.label`
 `;
 
 const Input = styled.input`
-  height: 18px;
-  margin: 40px 20px 20px 20px;
+  height: 22px;
+  padding: 50px 20px 32px 20px;
   font-size: 16px;
   color: white;
   line-height: 22px;
   background-color: transparent;
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Div = styled.div<SupportingTextProps>`
   display: flex;
-  /* border: 1px solid #474547; */
+  width: 100%;
+  height: px;
   border: 1px solid ${({ error }) => (error ? "#f2b8b5" : "#89888a")};
-
-  width: 368px;
   position: relative;
   background: #121212;
   border-radius: 8px;
-  gap: 4px;
   flex-direction: column;
   &:focus-within {
     border: 1px solid ${({ error }) => (error ? "#f2b8b5" : "white")};
@@ -63,8 +60,17 @@ const Div = styled.div<SupportingTextProps>`
   &:disabled {
     border: #474547;
   }
-  label {
+  label: {
     color: ${({ error }) => (error ? "#f2b8b5" : "#89888a")};
+  }
+
+  input:focus {
+    outline: none;
+    &::placeholder {
+      /* Placeholder의 CSS 설정 */
+      color: black; /* Placeholder의 텍스트 색상 지정 */
+      font-size: 14px; /* Placeholder의 글꼴 크기 지정 */
+    }
   }
 `;
 const SupportingText = styled.p<SupportingTextProps>`
