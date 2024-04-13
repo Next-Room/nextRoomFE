@@ -48,7 +48,7 @@ function RequireAuth({
 
   useEffect(() => {
     if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
-      router.push("/signup");
+      router.push("/login");
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
         const lastTitle = encodeURIComponent(
