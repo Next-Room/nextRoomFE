@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { TextField } from "@mui/material";
 import { NEXT } from "@/consts/components/signUp";
+import { NewTextField } from "./NewTextField.component";
 
 import * as S from "./SignUpView.styled";
 
@@ -31,11 +31,11 @@ function PasswordView(props: Props) {
           대문자, 소문자, 숫자, 기호를 조합하여 8자리 이상의 안전한 비밀번호를
           만드세요
         </S.SubTitle>
-        <S.StyledBox {...formProps}>
-          <TextField {...passwordProps} />
-          <TextField {...passwordConfirmProps} />
+        <form {...formProps}>
+          <NewTextField {...passwordProps} />
+          <NewTextField {...passwordConfirmProps} />
           <S.LoginButton {...buttonProps}>{NEXT}</S.LoginButton>
-        </S.StyledBox>
+        </form>
       </S.Cont>
     </>
   );

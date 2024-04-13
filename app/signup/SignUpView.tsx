@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { TextField } from "@mui/material";
-
 import { SIGN_UP } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
 import * as S from "./SignUpView.styled";
+import { NewTextField } from "./NewTextField.component";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
@@ -24,9 +23,9 @@ function SignUpView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-          <S.Header>
-            <Image {...ImageProps} />
-          </S.Header>
+        <S.Header>
+          <Image {...ImageProps} />
+        </S.Header>
       </S.Wrapper>
 
       <S.Cont>
@@ -37,11 +36,11 @@ function SignUpView(props: Props) {
         <S.SubTitle>
           회원가입이 필요한 서비스이며, 개인정보처리방침이 적용됩니다.
         </S.SubTitle>
-        <S.StyledBox {...formProps}>
-          <TextField {...adminCodeProps} />
-          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
+        <form {...formProps}>
+          <NewTextField {...adminCodeProps} />
           <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
-        </S.StyledBox>
+        </form>
+        <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
       </S.Cont>
     </>
   );

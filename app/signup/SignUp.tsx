@@ -63,6 +63,11 @@ function SignUp() {
     onSubmit: handleSubmit(onSubmit),
     flexDirection: "column",
   };
+  useEffect(() => {
+    console.log(formValue);
+  }, [formValue]);
+  const { ref } = register("email");
+  console.log(ref);
 
   const adminCodeProps = {
     id: "filled-adminCode",
@@ -73,12 +78,8 @@ function SignUp() {
     variant: "filled",
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
-    ...register("email", { required: "이메일을 입력해 주세요." }),
-    sx: {
-      backgroundColor: "#FFFFFF10",
-      ".MuiFilledInput-root": {
-        height: "82px",
-      },
+    inputProps: {
+      ...register("email", { required: "이메일을 입력해 주세요." }),
     },
   };
 
@@ -86,6 +87,7 @@ function SignUp() {
     type: "submit",
     variant: "contained",
     disabled: !(formValue.email.length > 0),
+    sx: { marginTop: "20px" },
   };
 
   const ImageProps = {

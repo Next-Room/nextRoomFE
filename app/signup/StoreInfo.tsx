@@ -27,6 +27,7 @@ function StoreInfo() {
   } = usePostSignUp();
   const [isMobile, setIsMobile] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -41,9 +42,19 @@ function StoreInfo() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormValues>();
   const formValue = watch();
+
+  useEffect(() => {
+    if (isChecked) {
+      reset({
+        name: "", // name 필드 초기화
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isChecked]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const name = isChecked ? "오픈 예정 매장" : data.name;
@@ -71,14 +82,9 @@ function StoreInfo() {
     variant: "filled",
     label: "매장명",
     placeholder: "매장명",
-    ...register("name"),
-    sx: {
-      margin: "40px 0 20px",
-      backgroundColor: "#FFFFFF10",
-      ".MuiFilledInput-root": {
-        height: "82px",
-      },
-    },
+    disabled: isChecked,
+    inputProps: { ...register("name") },
+    style: { margin: "40px 0 6px" },
   };
 
   const reasonProps = {
@@ -88,11 +94,8 @@ function StoreInfo() {
     variant: "filled",
     label: "방문사유",
     placeholder: "방문사유",
-    ...register("reason"),
-    sx: {
-      margin: "40px 0 20px",
-      backgroundColor: "#FFFFFF10",
-    },
+    inputProps: { ...register("reason") },
+    style: { margin: "26px 0 20px" },
   };
   const checkBoxProps = {
     label: "매장명이 없습니다.",
@@ -103,7 +106,10 @@ function StoreInfo() {
   const buttonProps = {
     type: "submit",
     variant: "contained",
-    disabled: !(formValue.name?.length > 0 || isChecked),
+    disabled: !(
+      formValue.name?.length > 0 ||
+      (isChecked && formValue.reason?.length > 0)
+    ),
   };
 
   const ImageProps = {

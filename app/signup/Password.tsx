@@ -63,18 +63,17 @@ function Password() {
     variant: "filled",
     label: SIGN_UP_PASSWORD,
     placeholder: SIGN_UP_PASSWORD,
-    ...register("password", {
-      required: "비밀번호를 입력해 주세요.",
-      pattern: {
-        value:
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        message: "비밀번호 형식에 맞지 않습니다.",
-      },
-    }),
-    sx: {
-      marginBottom: "40px",
-      backgroundColor: "#FFFFFF10",
+    inputProps: {
+      ...register("password", {
+        required: "비밀번호를 입력해 주세요.",
+        pattern: {
+          value:
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+          message: "비밀번호 형식에 맞지 않습니다.",
+        },
+      }),
     },
+    style: { marginBottom: "20px" },
   };
 
   const passwordConfirmProps = {
@@ -85,17 +84,14 @@ function Password() {
     variant: "filled",
     label: SIGN_UP_PASSWORD_CONFIRM,
     placeholder: SIGN_UP_PASSWORD_CONFIRM,
-    ...register("passwordConfirm", {
-      required: "비밀번호를 다시 입력해 주세요.",
-      validate: (value) =>
-        value === formValue.password || "비밀번호가 일치하지 않습니다.", // 패스워드와 비밀번호 확인 값이 같은지 확인
-    }),
-    sx: {
-      marginBottom: "20px",
-      ".MuiFilledInput-root": {
-        height: "82px",
-      },
+    inputProps: {
+      ...register("passwordConfirm", {
+        required: "비밀번호를 다시 입력해 주세요.",
+        validate: (value) =>
+          value === formValue.password || "비밀번호가 일치하지 않습니다.", // 패스워드와 비밀번호 확인 값이 같은지 확인
+      }),
     },
+    style: { marginBottom: "20px" },
   };
 
   const buttonProps = {

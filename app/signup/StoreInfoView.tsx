@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { TextField, Checkbox, FormGroup } from "@mui/material";
+import { Checkbox, FormGroup } from "@mui/material";
 
 import { START } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
 import * as S from "./SignUpView.styled";
+import { NewTextField } from "./NewTextField.component";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
@@ -19,7 +20,6 @@ function StoreInfoView(props: Props) {
     reasonProps,
     buttonProps,
     isLoading,
-    errorMessage,
   } = props;
 
   const { checked, onChange } = checkBoxProps;
@@ -40,18 +40,17 @@ function StoreInfoView(props: Props) {
           어느 매장에서 사용하시나요?
         </S.Title>
 
-        <S.StyledBox {...formProps}>
-          <TextField {...adminCodeProps} />
+        <form {...formProps}>
+          <NewTextField {...adminCodeProps} />
           <FormGroup>
             <S.Label
               control={<Checkbox checked={checked} onChange={onChange} />}
               {...checkBoxProps}
             />
           </FormGroup>
-          {checked && <TextField {...reasonProps} />}
-          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
+          {checked && <NewTextField {...reasonProps} />}
           <S.LoginButton {...buttonProps}>{START}</S.LoginButton>
-        </S.StyledBox>
+        </form>
       </S.Cont>
     </>
   );

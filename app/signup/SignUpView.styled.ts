@@ -1,6 +1,10 @@
 import { Box, Button, FormControlLabel } from "@mui/material";
 import { styled } from "styled-components";
 
+interface CodeInputProps {
+  error?: boolean;
+}
+
 export const Wrapper = styled.div`
   display: flex;
   max-width: 520px;
@@ -26,6 +30,11 @@ export const Cont = styled.div`
   padding: 0 24px;
 `;
 
+export const Form = styled.form`
+  display: flex;
+  gap: 20px;
+`;
+
 export const Title = styled.p`
   font-size: 20px;
   font-weight: 600;
@@ -48,14 +57,19 @@ export const Label = styled(FormControlLabel)`
   text-align: left;
 
   color: #9e9ea1;
+ `;
+
+export const CodeWrap = styled.div`
+  display: grid;
+  max-width: 100%;
+  grid-gap: 8px;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 18px;
 `;
-
-export const CodeInput = styled.input`
-  width: 54px;
-  height: 66px;
-  padding: 23px 19px 23px 18px;
+export const CodeInput = styled.input<CodeInputProps>`
+  aspect-ratio: 53 / 65; /* 너비:높이 비율 설정 */
   border-radius: 6px;
-
+  width: calc(100% - 8px); /* 그리드 간격을 고려하여 요소의 너비를 설정 */
   background-color: #1f2225;
   border: 1px solid #474547;
   font-size: 26px;
@@ -63,6 +77,7 @@ export const CodeInput = styled.input`
   line-height: 20px;
   text-align: center;
   color: white;
+  border: 2px solid ${(props) => (props.error ? "#F2B8B5" : "transparent")};
 `;
 
 export const ServerErrorMessage = styled.div`
