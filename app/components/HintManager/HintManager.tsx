@@ -236,6 +236,7 @@ function HintManager(props: Props) {
         setErrorMsg("");
       }
     },
+    endAdornment: <>%</>,
   };
 
   const hintCodeInputProps = {
