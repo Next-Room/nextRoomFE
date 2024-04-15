@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -127,7 +128,7 @@ function HintManager(props: Props) {
 
   const key = `${type}-${id}`;
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = _.debounce((data) => {
     const { progress, hintCode, contents, answer } = data;
 
     if (!(progress && hintCode && contents && answer)) {
@@ -156,7 +157,7 @@ function HintManager(props: Props) {
     }
     reset();
     close();
-  };
+  }, 300);
 
   const isCurrentHintActive = isActiveHintItemState === id;
 
