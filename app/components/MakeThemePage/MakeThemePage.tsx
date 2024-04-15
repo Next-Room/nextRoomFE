@@ -102,7 +102,7 @@ function MakeThemePage() {
     ...register("title", {
       required: "테마 이름은 필수값입니다",
       pattern: {
-        value: /^\S+$/,
+        value: /^.+$/,
         message: "테마 이름은 필수값입니다",
       },
     }),
