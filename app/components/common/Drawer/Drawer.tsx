@@ -90,14 +90,22 @@ function MainDrawer(props: Props) {
         </S.ShopNameListItem>
 
         {[...categories].reverse().map((theme) => (
-          <ListItem key={theme.id}>
+          <ListItem key={theme.id} title={theme.title}>
             <ListItemButton
               selected={selectedTheme.id === theme.id}
               onClick={() => {
                 handleListItemClick(theme);
               }}
             >
-              <ListItemText>{theme.title}</ListItemText>
+              <ListItemText
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {theme.title}
+              </ListItemText>
             </ListItemButton>
           </ListItem>
         ))}
