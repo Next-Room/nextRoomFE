@@ -27,17 +27,6 @@ function EmailAuth() {
 
   const { mutateAsync: postSendMessage } = usePostSendMessage();
 
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const {
     register,
     handleSubmit,
@@ -127,7 +116,7 @@ function EmailAuth() {
     onClick: reRequest,
   };
 
-  const LoginViewProps = {
+  const EmailAuthViewProps = {
     minutes,
     second,
     ImageProps,
@@ -136,7 +125,6 @@ function EmailAuth() {
     buttonProps,
     ReRequestButtonProps,
     isLoading,
-    isMobile,
     errorMessage,
     signUpState,
   };
@@ -144,8 +132,8 @@ function EmailAuth() {
   if (isLoggedIn) {
     return <Loader />;
   }
-  
-  return <EmailAuthView {...LoginViewProps} />;
+
+  return <EmailAuthView {...EmailAuthViewProps} />;
 }
 
 export default EmailAuth;

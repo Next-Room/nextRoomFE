@@ -25,27 +25,23 @@ function StoreInfo() {
     isError = false,
     error,
   } = usePostSignUp();
-  const [isMobile, setIsMobile] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const {
     register,
     handleSubmit,
     watch,
+    setFocus,
     reset,
     formState: { errors },
   } = useForm<FormValues>();
   const formValue = watch();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFocus("name");
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isChecked) {
@@ -121,7 +117,7 @@ function StoreInfo() {
 
   const errorMessage = isError && error?.response?.data?.message;
 
-  const LoginViewProps = {
+  const StoreInfoViewProps = {
     ImageProps,
     formProps,
     adminCodeProps,
@@ -129,7 +125,6 @@ function StoreInfo() {
     reasonProps,
     buttonProps,
     isLoading,
-    isMobile,
     errorMessage,
     signUpState,
   };
@@ -138,7 +133,7 @@ function StoreInfo() {
     return <Loader />;
   }
 
-  return <StoreInfoView {...LoginViewProps} />;
+  return <StoreInfoView {...StoreInfoViewProps} />;
 }
 
 export default StoreInfo;

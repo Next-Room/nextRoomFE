@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
@@ -28,27 +28,13 @@ function SignUp() {
     error,
   } = usePostSendMessage();
 
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const {
     register,
+    setFocus,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<FormValues>({
-    defaultValues: {
-      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
-    },
-  });
+  } = useForm<FormValues>();
 
   const formValue = watch();
   useCheckSignIn();
@@ -63,11 +49,13 @@ function SignUp() {
     onSubmit: handleSubmit(onSubmit),
     flexDirection: "column",
   };
+
   useEffect(() => {
-    console.log(formValue);
-  }, [formValue]);
-  const { ref } = register("email");
-  console.log(ref);
+    setTimeout(() => {
+      setFocus("email");
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const adminCodeProps = {
     id: "filled-adminCode",
@@ -86,7 +74,7 @@ function SignUp() {
   const buttonProps = {
     type: "submit",
     variant: "contained",
-    disabled: !(formValue.email.length > 0),
+    disabled: !(formValue.email?.length > 0),
     sx: { marginTop: "20px" },
   };
 
@@ -99,13 +87,12 @@ function SignUp() {
 
   const errorMessage = isError && error?.response?.data?.message;
 
-  const LoginViewProps = {
+  const SignUpViewProps = {
     ImageProps,
     formProps,
     adminCodeProps,
     buttonProps,
     isLoading,
-    isMobile,
     errorMessage,
   };
 
@@ -113,7 +100,7 @@ function SignUp() {
     return <Loader />;
   }
 
-  return <SignUpView {...LoginViewProps} />;
+  return <SignUpView {...SignUpViewProps} />;
 }
 
 export default SignUp;

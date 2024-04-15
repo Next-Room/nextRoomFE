@@ -40,7 +40,6 @@ const Input = styled.input`
 const Div = styled.div<SupportingTextProps>`
   display: flex;
   width: 100%;
-  height: px;
   border: 1px solid ${({ error }) => (error ? "#f2b8b5" : "#89888a")};
   position: relative;
   background: #121212;

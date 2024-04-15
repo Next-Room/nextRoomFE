@@ -49,7 +49,7 @@ function StoreInfoView(props: Props) {
             />
           </FormGroup>
           {checked && <NewTextField {...reasonProps} />}
-          <S.LoginButton {...buttonProps}>{START}</S.LoginButton>
+          <S.SignUpButton {...buttonProps}>{START}</S.SignUpButton>
         </form>
       </S.Cont>
     </>

@@ -38,7 +38,7 @@ function SignUpView(props: Props) {
         </S.SubTitle>
         <form {...formProps}>
           <NewTextField {...adminCodeProps} />
-          <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
+          <S.SignUpButton {...buttonProps}>{SIGN_UP}</S.SignUpButton>
         </form>
         <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
       </S.Cont>

@@ -55,16 +55,14 @@ export const Label = styled(FormControlLabel)`
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-
   color: #9e9ea1;
- `;
+`;
 
 export const CodeWrap = styled.div`
   display: grid;
   max-width: 100%;
   grid-gap: 8px;
   grid-template-columns: repeat(6, 1fr);
-  margin-bottom: 18px;
 `;
 export const CodeInput = styled.input<CodeInputProps>`
   aspect-ratio: 53 / 65; /* 너비:높이 비율 설정 */
@@ -89,14 +87,14 @@ export const ServerErrorMessage = styled.div`
 `;
 
 export const ReRequest = styled.div`
-  display: flex;
   font-size: 14px;
   font-weight: 400;
-  margin: 0;
+  margin: 18px auto 0;
   line-height: 20px;
   ${"p"} {
     color: #9e9ea1;
     margin-right: 2px;
+    float: left;
   }
   ${"button"} {
     text-decoration: underline;
@@ -114,7 +112,7 @@ export const ReRequest = styled.div`
   }
 `;
 
-export const LoginButton = styled(Button)`
+export const SignUpButton = styled(Button)`
   width: 100%;
   height: 58px;
 `;

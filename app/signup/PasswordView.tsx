@@ -34,7 +34,7 @@ function PasswordView(props: Props) {
         <form {...formProps}>
           <NewTextField {...passwordProps} />
           <NewTextField {...passwordConfirmProps} />
-          <S.LoginButton {...buttonProps}>{NEXT}</S.LoginButton>
+          <S.SignUpButton {...buttonProps}>{NEXT}</S.SignUpButton>
         </form>
       </S.Cont>
     </>

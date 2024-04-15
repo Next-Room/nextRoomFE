@@ -10,7 +10,7 @@ export default function CodeInput() {
   const { mutateAsync: postVerification, isError = false } =
     usePostVerification();
   const signUpState = useSignUpValue();
-  // 입력된 숫자를 저장하는 함수
+
   const handleInputChange = (index: number, value: string) => {
     // 입력값이 숫자가 아니거나 길이가 1을 넘어가면 입력을 막음
     if (!/^\d$/.test(value)) return;
@@ -25,12 +25,21 @@ export default function CodeInput() {
     }
   };
 
-  // 입력이 완료되었는지 확인하는 useEffect
+  useEffect(() => {
+    setTimeout(() => {
+      inputRefs.current[0].focus();
+    }, 1000);
+  }, []);
+
   useEffect(() => {
     const isInputComplete = numbers.every((number) => number !== "");
     if (isInputComplete) {
-      const code = numbers.join(""); // 배열의 모든 요소를 이어붙임
+      const code = numbers.join("");
       postVerification({ code, email: signUpState.email });
+      setTimeout(() => {
+        setNumbers(Array(6).fill(""));
+        inputRefs.current[0].focus();
+      }, 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numbers]);

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 
-import { SIGN_UP } from "@/consts/components/signUp";
-
 import Loader from "@/components/Loader/Loader";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
@@ -64,13 +62,12 @@ function EmailAuthView(props: Props) {
             </button>
           </S.ReRequest>
           <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
-          <S.LoginButton {...buttonProps}>{SIGN_UP}</S.LoginButton>
         </S.StyledBox>
         <SnackBar
           open={snackInfo.isOpen}
           ment={snackInfo.message}
-          vertical= "top"
-          horizontal=  "center" 
+          vertical="top"
+          horizontal="center"
           handleClose={() => setSnackBarInfo({ ...snackInfo, isOpen: false })}
         />
       </S.Cont>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
@@ -21,21 +21,10 @@ interface FormValues {
 
 function Password() {
   const isLoggedIn = useIsLoggedInValue();
-  const [isMobile, setIsMobile] = useState(false);
   const [signUpState, setSignUpState] = useSignUpState();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const {
     register,
+    setFocus,
     handleSubmit,
     watch,
     formState: { errors },
@@ -43,6 +32,13 @@ function Password() {
   const formValue = watch();
 
   useCheckSignIn();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFocus("password");
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setSignUpState({ ...signUpState, password: data.password, level: 4 });
@@ -109,20 +105,19 @@ function Password() {
     height: 28,
   };
 
-  const LoginViewProps = {
+  const PasswordViewProps = {
     ImageProps,
     formProps,
     passwordProps,
     passwordConfirmProps,
     buttonProps,
-    isMobile,
   };
 
   if (isLoggedIn) {
     return <Loader />;
   }
 
-  return <PasswordView {...LoginViewProps} />;
+  return <PasswordView {...PasswordViewProps} />;
 }
 
 export default Password;
