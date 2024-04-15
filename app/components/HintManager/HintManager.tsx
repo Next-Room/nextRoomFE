@@ -111,8 +111,8 @@ function HintManager(props: Props) {
     if (
       !formValue.progress ||
       !(formValue.hintCode.length === 4) ||
-      !formValue.contents ||
-      !formValue.answer
+      !formValue.contents.trim() ||
+      !formValue.answer.trim()
     ) {
       setSubmitDisable(true);
     } else {
