@@ -86,14 +86,13 @@ export function NewTextField(props: Props) {
     helperText,
     style,
     placeholder,
+    onKeyDown,
   } = props;
   const inputRef = useRef<HTMLLabelElement>(null);
 
-  const handleClick = () => {};
-
   return (
-    <>
-      <Div error={error} style={style} onClick={handleClick}>
+    <div>
+      <Div error={error} style={style}>
         <Label htmlFor="textField" ref={inputRef}>
           {label}
         </Label>
@@ -103,9 +102,10 @@ export function NewTextField(props: Props) {
           placeholder={placeholder}
           disabled={disabled}
           {...inputProps}
+          onKeyDown={onKeyDown}
         />
       </Div>
       <SupportingText error={error}>{helperText}</SupportingText>
-    </>
+    </div>
   );
 }

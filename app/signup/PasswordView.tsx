@@ -32,8 +32,14 @@ function PasswordView(props: Props) {
           만드세요
         </S.SubTitle>
         <form {...formProps}>
-          <NewTextField {...passwordProps} />
-          <NewTextField {...passwordConfirmProps} />
+          <S.Grid>
+            <NewTextField
+              {...passwordProps}
+            />
+          </S.Grid>
+          <S.Grid>
+            <NewTextField {...passwordConfirmProps} />
+          </S.Grid>
           <S.SignUpButton {...buttonProps}>{NEXT}</S.SignUpButton>
         </form>
       </S.Cont>
