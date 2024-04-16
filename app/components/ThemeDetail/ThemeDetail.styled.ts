@@ -8,8 +8,11 @@ export const Wrapper = styled(Box)`
 `;
 
 export const Title = styled.div`
+  width: 100%;
   font-size: ${(props) => props.theme.fontSize.lg};
   font-weight: ${(props) => props.theme.fontWeight.bold};
+  white-space: pre-wrap;
+  word-break: break-word;
 `;
 
 export const MiddleTitle = styled.div`
