@@ -1,5 +1,6 @@
 import { Box, Button, FormControlLabel } from "@mui/material";
 import { styled } from "styled-components";
+
 interface CodeInputProps {
   error?: boolean;
 }
@@ -18,8 +19,7 @@ export const Header = styled.div`
   width: 100%;
   ${"img"} {
     float: right;
-
-    padding: 16px 14px;
+    margin: 16px 14px;
   }
 `;
 
@@ -32,6 +32,11 @@ export const Cont = styled.div`
 export const Form = styled.form`
   display: flex;
   gap: 20px;
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  margin-bottom: 20px;
 `;
 
 export const Title = styled.p`
@@ -96,7 +101,7 @@ export const ServerErrorMessage = styled.div`
   font-weight: 400;
   font-size: 12px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-top: 16px;
 `;
 
 export const ReRequest = styled.div`

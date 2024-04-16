@@ -27,7 +27,7 @@ function SignUp() {
     isError = false,
     error,
   } = usePostSendMessage();
-  const [errorMsg, setErrorMsg] = useState(SIGN_UP_SUBTEXT);
+  const [errorMsg, setErrorMsg] = useState<string | undefined>(SIGN_UP_SUBTEXT);
 
   const {
     register,
@@ -58,8 +58,10 @@ function SignUp() {
   }, []);
 
   useEffect(() => {
-    errors?.email && setErrorMsg(errors?.email.message);
-  }, [isError]);
+    if (errors.email) {
+      setErrorMsg(errors.email.message);
+    }
+  }, [errors.email, isError]);
 
   const adminCodeProps = {
     id: "filled-adminCode",
@@ -71,7 +73,13 @@ function SignUp() {
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
     inputProps: {
-      ...register("email", { required: "이메일을 입력해 주세요." }),
+      ...register("email", {
+        required: "이메일을 입력해 주세요.",
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "이메일 주소를 정확히 입력해 주세요.",
+        },
+      }),
     },
   };
 
@@ -92,8 +100,8 @@ function SignUp() {
   const errorMessage = isError && error?.response?.data?.message;
 
   const SignUpViewProps = {
-    ImageProps,
     formProps,
+    ImageProps,
     adminCodeProps,
     buttonProps,
     isLoading,
