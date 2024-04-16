@@ -65,7 +65,7 @@ export default function CodeInput() {
     <S.CodeWrap>
       {numbers.map((number, index) => (
         <S.CodeInput
-          type="text" // type을 text로 변경
+          type="number"
           value={number}
           error={isError}
           onChange={(e) => handleInputChange(index, e.target.value)}

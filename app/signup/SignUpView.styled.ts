@@ -1,6 +1,5 @@
 import { Box, Button, FormControlLabel } from "@mui/material";
 import { styled } from "styled-components";
-
 interface CodeInputProps {
   error?: boolean;
 }
@@ -48,6 +47,20 @@ export const SubTitle = styled.p`
   line-height: 20px;
   margin: 8px 0 40px;
   color: #9e9ea1;
+
+  a {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const Label = styled(FormControlLabel)`
