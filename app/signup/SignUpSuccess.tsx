@@ -10,14 +10,21 @@ import loaderJson from "../../public/lottie/signup.json";
 import * as S from "./SignUpSuccess.styled";
 
 function SignUpSuccess() {
+  const [isMobile, setIsMobile] = useState(false);
   const [isWebView, setIsWebView] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
+  const linkHref = isMobile
+    ? "https://play.google.com/store/search?q=%EB%84%A5%EC%8A%A4%ED%8A%B8%EB%A3%B8&c=apps&hl=ko-KR"
+    : "/login";
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
       const uagent = userAgent.toLocaleLowerCase();
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
+      setIsMobile(mobileRegex.test(userAgent));
       setIsWebView(!!(uagent.indexOf("APP_NEXTROOM_ANDROID") > -1));
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }
@@ -34,7 +41,6 @@ function SignUpSuccess() {
   const handleWebViewButton = () => {
     if (typeof window !== "undefined") {
       window.close();
-      // 여기에 클라이언트-사이드 로직 추가
     }
   };
 
@@ -64,7 +70,7 @@ function SignUpSuccess() {
               </S.SuccessButton>
             ) : (
               <S.SuccessButton>
-                <Link href="/">힌트 등록하기</Link>
+                <Link href={linkHref}>힌트 등록하기</Link>
               </S.SuccessButton>
             )}
           </>
