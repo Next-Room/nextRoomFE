@@ -79,11 +79,13 @@ function MakeThemePage() {
     if (modalState.type === "put") {
       putTheme(submitData);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`);
+      router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`);
     } else {
       postTheme(data);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/admin?title=${encodeURIComponent(data.title)}`);
+      if (data.id) {
+        router.push(`/admin?themeId=${encodeURIComponent(data.id)}`);
+      }
     }
   };
 
@@ -155,7 +157,7 @@ function MakeThemePage() {
       <MakeThemeModalView {...MakeThemeModalViewProps} />
       <Dialog
         handleBtn={() =>
-          router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`)
+          router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`)
         }
         open={open}
         handleDialogClose={() => setOpen(false)}

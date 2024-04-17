@@ -30,8 +30,8 @@ function DeleteDialog(props: Props) {
     const url =
       filteredArray.length === 0
         ? "/admin"
-        : `/admin?title=${encodeURIComponent(
-            filteredArray[filteredArray.length - 1].title
+        : `/admin?themeId=${encodeURIComponent(
+            filteredArray[filteredArray.length - 1].id
           )}`;
     router.push(url);
   };
