@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SIGN_UP } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
+import Link from "next/link";
 import * as S from "./SignUpView.styled";
 import { NewTextField } from "./NewTextField.component";
 
@@ -34,7 +35,14 @@ function SignUpView(props: Props) {
           넥스트룸을 무료로 사용해 보세요.
         </S.Title>
         <S.SubTitle>
-          회원가입이 필요한 서비스이며, 개인정보처리방침이 적용됩니다.
+          회원가입이 필요한 서비스이며,
+          <Link
+            href="https://held-notebook-420.notion.site/d7bea4318d754b61999e9cb6179a2f70?pvs=4"
+            target="_blank"
+          >
+            개인정보처리방침
+          </Link>
+          이 적용됩니다.
         </S.SubTitle>
         <form {...formProps}>
           <NewTextField {...adminCodeProps} />

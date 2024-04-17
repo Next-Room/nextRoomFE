@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
@@ -27,6 +27,7 @@ function SignUp() {
     isError = false,
     error,
   } = usePostSendMessage();
+  const [errorMsg, setErrorMsg] = useState<string | undefined>(SIGN_UP_SUBTEXT);
 
   const {
     register,
@@ -35,7 +36,6 @@ function SignUp() {
     formState: { errors },
     watch,
   } = useForm<FormValues>();
-
   const formValue = watch();
   useCheckSignIn();
 
@@ -57,17 +57,29 @@ function SignUp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (errors.email) {
+      setErrorMsg(errors.email.message);
+    }
+  }, [errors.email, isError]);
+
   const adminCodeProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: SIGN_UP_SUBTEXT,
+    helperText: errorMsg,
     // errors?.email && errors?.email.message,
     error: Boolean(errors?.email) || isError,
     variant: "filled",
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
     inputProps: {
-      ...register("email", { required: "이메일을 입력해 주세요." }),
+      ...register("email", {
+        required: "이메일을 입력해 주세요.",
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "이메일 주소를 정확히 입력해 주세요.",
+        },
+      }),
     },
   };
 
@@ -88,8 +100,8 @@ function SignUp() {
   const errorMessage = isError && error?.response?.data?.message;
 
   const SignUpViewProps = {
-    ImageProps,
     formProps,
+    ImageProps,
     adminCodeProps,
     buttonProps,
     isLoading,

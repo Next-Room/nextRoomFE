@@ -40,6 +40,14 @@ function Password() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      // 다음 인풋으로 포커스 이동
+      setFocus("passwordConfirm");
+    }
+  };
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setSignUpState({ ...signUpState, password: data.password, level: 4 });
   };
@@ -65,11 +73,11 @@ function Password() {
         pattern: {
           value:
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          message: "비밀번호 형식에 맞지 않습니다.",
+          message: "비밀번호 조건이 맞지 않습니다.",
         },
       }),
     },
-    style: { marginBottom: "20px" },
+    onKeyDown: handleKeyDown,
   };
 
   const passwordConfirmProps = {
@@ -87,7 +95,6 @@ function Password() {
           value === formValue.password || "비밀번호가 일치하지 않습니다.", // 패스워드와 비밀번호 확인 값이 같은지 확인
       }),
     },
-    style: { marginBottom: "20px" },
   };
 
   const buttonProps = {

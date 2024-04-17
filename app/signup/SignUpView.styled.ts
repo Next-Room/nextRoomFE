@@ -19,8 +19,7 @@ export const Header = styled.div`
   width: 100%;
   ${"img"} {
     float: right;
-
-    padding: 16px 14px;
+    margin: 16px 14px;
   }
 `;
 
@@ -33,6 +32,11 @@ export const Cont = styled.div`
 export const Form = styled.form`
   display: flex;
   gap: 20px;
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  margin-bottom: 20px;
 `;
 
 export const Title = styled.p`
@@ -48,6 +52,20 @@ export const SubTitle = styled.p`
   line-height: 20px;
   margin: 8px 0 40px;
   color: #9e9ea1;
+
+  a {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const Label = styled(FormControlLabel)`
@@ -83,7 +101,7 @@ export const ServerErrorMessage = styled.div`
   font-weight: 400;
   font-size: 12px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-top: 16px;
 `;
 
 export const ReRequest = styled.div`
