@@ -51,10 +51,10 @@ function RequireAuth({
       router.push("/login");
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
-        const lastTitle = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].title
+        const lastThemeId = encodeURIComponent(
+          currentTheme[currentTheme.length - 1].id
         );
-        router.push(`/admin?title=${lastTitle}`);
+        router.push(`/admin?themeId=${lastThemeId}`);
       } else {
         router.push("/admin");
       }

@@ -69,7 +69,7 @@ function MainDrawer(props: Props) {
       handleDialog();
     } else {
       setSelectedTheme({ ...theme });
-      router.push(`/admin?title=${encodeURIComponent(theme.title)}`);
+      router.push(`/admin?themeId=${encodeURIComponent(theme.id)}`);
     }
   };
 
@@ -131,7 +131,7 @@ function MainDrawer(props: Props) {
             setModalState({ ...modalState, isOpen: false });
             setSelectedTheme({ ...focusedTheme });
             router.push(
-              `/admin?title=${encodeURIComponent(focusedTheme.title)}`
+              `/admin?themeId=${encodeURIComponent(focusedTheme.id)}`
             );
           }
         }}
