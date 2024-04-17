@@ -14,7 +14,7 @@ import ChannelTalk from "./apis/ChannelTalk";
 import Clarity from "./apis/Clarity";
 
 export const metadata: Metadata = {
-  title: "NEXT ROOM",
+  title: "넥스트룸 (NEXT ROOM) | 방탈출 힌트폰 서비스",
   description:
     "방탈출 운영이 편리해지고 테마 만족도가 올라가는 힌트폰 서비스 넥스트룸",
   openGraph: {
