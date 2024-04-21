@@ -5,26 +5,27 @@ import Lottie from "react-lottie-player";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
 import Link from "next/link";
+import Image from "next/image";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import loaderJson from "../../public/lottie/signup.json";
-
+import "@/apis/firebase";
 import * as S from "./SignUpSuccess.styled";
 
 function SignUpSuccess() {
-  const [isMobile, setIsMobile] = useState(false);
   const [isWebView, setIsWebView] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
-  const linkHref = isMobile
-    ? "https://play.google.com/store/search?q=%EB%84%A5%EC%8A%A4%ED%8A%B8%EB%A3%B8&c=apps&hl=ko-KR"
-    : "/login";
+
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "sign_up_success",
+    firebase_screen_class: "sign_up_success",
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
       const uagent = userAgent.toLocaleLowerCase();
-      const mobileRegex =
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i;
-      setIsMobile(mobileRegex.test(userAgent));
       setIsWebView(!!(uagent.indexOf("APP_NEXTROOM_ANDROID") > -1));
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }
@@ -41,11 +42,29 @@ function SignUpSuccess() {
   const handleWebViewButton = () => {
     if (typeof window !== "undefined") {
       window.close();
+      // 여기에 클라이언트-사이드 로직 추가
     }
   };
 
+  const rightImageProps = {
+    src: "/images/svg/icon_right.svg",
+    alt: "allow",
+    width: 24,
+    height: 24,
+  };
+
+  const ImageProps = {
+    src: "/images/svg/icon_X.svg",
+    alt: "allow",
+    width: 28,
+    height: 28,
+  };
   return (
-    <>
+    <S.Wrapper>
+      <S.Header href="/">
+        <Image {...ImageProps} />
+      </S.Header>
+
       <S.LottieWrapper>
         <Lottie
           loop={false}
@@ -70,12 +89,21 @@ function SignUpSuccess() {
               </S.SuccessButton>
             ) : (
               <S.SuccessButton>
-                <Link href={linkHref}>힌트 등록하기</Link>
+                <Link href="/login">힌트 등록하기</Link>
               </S.SuccessButton>
             )}
           </>
         )}
       </S.Cont>
+      {isFinished && (
+        <S.PlayCont href="https://play.google.com/store/search?q=%EB%84%A5%EC%8A%A4%ED%8A%B8%EB%A3%B8&c=apps&hl=ko-KR">
+          <div>
+            <S.PlayTitle>Google Play 스토어에서</S.PlayTitle>
+            <S.SubTitle>힌트폰 앱 먼저 설치해보기</S.SubTitle>
+          </div>
+          <Image {...rightImageProps} />
+        </S.PlayCont>
+      )}
       {isWebView && (
         <SnackBar
           open={snackInfo.isOpen}
@@ -85,7 +113,7 @@ function SignUpSuccess() {
           handleClose={() => setSnackBarInfo({ ...snackInfo, isOpen: false })}
         />
       )}
-    </>
+    </S.Wrapper>
   );
 }
 

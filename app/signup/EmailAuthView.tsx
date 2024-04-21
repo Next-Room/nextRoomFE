@@ -4,7 +4,9 @@ import Image from "next/image";
 import Loader from "@/components/Loader/Loader";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import CodeInput from "./CodeInput";
+import "@/apis/firebase";
 import * as S from "./SignUpView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,6 +16,7 @@ function EmailAuthView(props: Props) {
   const {
     minutes,
     second,
+    timeLeft,
     ImageProps,
     formProps,
     signUpState,
@@ -24,7 +27,11 @@ function EmailAuthView(props: Props) {
   } = props;
 
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
-
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "sign_up_2",
+    firebase_screen_class: "sign_up_2",
+  });
   useEffect(() => {
     if (snackInfo.isOpen) {
       setTimeout(() => {
@@ -37,7 +44,7 @@ function EmailAuthView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        <S.Header>
+        <S.Header href="/">
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>
@@ -54,7 +61,7 @@ function EmailAuthView(props: Props) {
 
         <S.StyledBox {...formProps}>
           {/* <TextField {...adminCodeProps} /> */}
-          <CodeInput {...formProps} {...buttonProps} />
+          <CodeInput {...formProps} {...buttonProps} disabled={timeLeft} />
           <S.ReRequest>
             <p>이메일이 오지 않았다면? </p>
             <button type="button" {...ReRequestButtonProps}>

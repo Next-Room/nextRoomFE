@@ -9,7 +9,6 @@ import {
 } from "@/consts/components/signUp";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 import PasswordView from "./PasswordView";
@@ -31,7 +30,25 @@ function Password() {
   } = useForm<FormValues>();
   const formValue = watch();
 
-  useCheckSignIn();
+  const browserPreventEvent = () => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    setSignUpState({ ...signUpState, level: 2 });
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", () => {
+      browserPreventEvent();
+    });
+    return () => {
+      window.removeEventListener("popstate", () => {
+        browserPreventEvent();
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
