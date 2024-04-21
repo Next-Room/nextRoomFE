@@ -96,13 +96,13 @@ function SignUpSuccess() {
         )}
       </S.Cont>
       {isFinished && (
-        <S.PlayCont href="https://play.google.com/store/search?q=%EB%84%A5%EC%8A%A4%ED%8A%B8%EB%A3%B8&c=apps&hl=ko-KR">
+        <S.PlayBtn href="https://play.google.com/store/search?q=%EB%84%A5%EC%8A%A4%ED%8A%B8%EB%A3%B8&c=apps&hl=ko-KR">
           <div>
             <S.PlayTitle>Google Play 스토어에서</S.PlayTitle>
             <S.SubTitle>힌트폰 앱 먼저 설치해보기</S.SubTitle>
           </div>
           <Image {...rightImageProps} />
-        </S.PlayCont>
+        </S.PlayBtn>
       )}
       {isWebView && (
         <SnackBar

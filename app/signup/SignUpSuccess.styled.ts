@@ -52,18 +52,18 @@ export const Title = styled.p`
   margin: 0;
 `;
 
-export const PlayCont = styled(Link)`
-  max-width: 520px;
-  width: 100%;
+export const PlayBtn = styled(Link)`
+  max-width: 476px;
+  width: calc(100% - 48px);
   height: 97px;
   border-radius: 18px;
   background: #141414;
   text-align: left;
   padding: 24px 20px 29px;
-  margin: 0 24px;
   position: fixed;
   bottom: 40px;
-
+  left: 50%;
+  transform: translateX(-50%);
   ${"img"} {
     position: absolute;
     top: 37px;
