@@ -6,11 +6,16 @@ interface SupportingTextProps {
   error: boolean;
 }
 
+interface SupportingTextProps {
+  error: boolean;
+}
+
 export interface TextFieldProps {
   label: string;
   disabled: boolean;
   error: boolean;
-  placeholder: string;
+  // eslint-disable-next-line react/no-unused-prop-types, react/require-default-props
+  placeholder?: string;
   helperText: string;
 }
 
@@ -22,13 +27,17 @@ const Label = styled.label`
   left: 20px;
   font-size: 12px;
   line-height: 16px;
-  `;
+  margin-bottom: 20px;
+`;
 
-const LabelOnly = styled.label`
+const LabelOnly = styled.label<{ error: boolean }>`
   position: absolute;
   margin: 30px 22px;
   font-size: 16px;
   line-height: 22px;
+  color: ${({ error }) => (error ? "#f2b8b5" : "#89888a")};
+
+  font-weight: 400;
 `;
 
 const Input = styled.input`
@@ -43,7 +52,6 @@ const Input = styled.input`
 const Div = styled.div<SupportingTextProps>`
   display: flex;
   width: 100%;
-  height: px;
   border: 1px solid ${({ error }) => (error ? "#f2b8b5" : "#89888a")};
   position: relative;
   background: #121212;
@@ -81,10 +89,10 @@ const SupportingText = styled.p<SupportingTextProps>`
 `;
 
 export function NewTextField({
-  label = "제목",
+  label = "Label text",
   disabled = false,
   error = false,
-  placeholder = "미리보기",
+  placeholder = "Input text",
   helperText = "Supporting text",
 }: TextFieldProps) {
   return (
@@ -99,17 +107,18 @@ export function NewTextField({
 }
 
 export function NewTextFieldLabel({
-  label = "제목",
+  label = "Label text",
   disabled = false,
   error = false,
-  placeholder = "",
   helperText = "Supporting text",
 }: TextFieldProps) {
   return (
     <div>
       <Div error={error}>
-        <LabelOnly htmlFor="textField">{label}</LabelOnly>
-        <Input id="textField" disabled={disabled} placeholder={placeholder} />
+        <LabelOnly htmlFor="textField" error={error}>
+          {label}
+        </LabelOnly>
+        <Input id="textField" disabled={disabled} />
       </Div>
       <SupportingText error={error}>{helperText}</SupportingText>
     </div>

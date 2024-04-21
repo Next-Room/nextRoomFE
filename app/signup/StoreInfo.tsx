@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useSignUpValue } from "@/components/atoms/signup.atom";
+import { useSignUpState } from "@/components/atoms/signup.atom";
 
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import Loader from "@/components/Loader/Loader";
@@ -17,7 +17,7 @@ interface FormValues {
 
 function StoreInfo() {
   const isLoggedIn = useIsLoggedInValue();
-  const signUpState = useSignUpValue();
+  const [signUpState, setSignUpState] = useSignUpState();
 
   const {
     mutateAsync: postSignUp,
@@ -52,12 +52,32 @@ function StoreInfo() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
+  const browserPreventEvent = () => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    setSignUpState({ ...signUpState, level: 3 });
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", () => {
+      browserPreventEvent();
+    });
+    return () => {
+      window.removeEventListener("popstate", () => {
+        browserPreventEvent();
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const name = isChecked ? "오픈 예정 매장" : data.name;
+
     postSignUp({
       email: signUpState.email,
       password: signUpState.password,
-      name,
+      name: isChecked? data.name : data.reason,
       isNotOpened: isChecked,
     });
   };

@@ -1,9 +1,6 @@
 import { Box, Button, FormControlLabel } from "@mui/material";
+import Link from "next/link";
 import { styled } from "styled-components";
-
-interface CodeInputProps {
-  error?: boolean;
-}
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,11 +12,14 @@ export const Wrapper = styled.div`
   margin: auto;
 `;
 
-export const Header = styled.div`
+export const Header = styled(Link)`
   width: 100%;
+  display: block;
+
   ${"img"} {
     float: right;
     margin: 16px 14px;
+    cursor: pointer;
   }
 `;
 
@@ -82,7 +82,7 @@ export const CodeWrap = styled.div`
   grid-gap: 8px;
   grid-template-columns: repeat(6, 1fr);
 `;
-export const CodeInput = styled.input<CodeInputProps>`
+export const CodeInput = styled.input<{ error?: boolean }>`
   aspect-ratio: 53 / 65; /* 너비:높이 비율 설정 */
   border-radius: 6px;
   width: calc(100% - 8px); /* 그리드 간격을 고려하여 요소의 너비를 설정 */
@@ -94,6 +94,16 @@ export const CodeInput = styled.input<CodeInputProps>`
   text-align: center;
   color: white;
   border: 2px solid ${(props) => (props.error ? "#F2B8B5" : "transparent")};
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox  */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 export const ServerErrorMessage = styled.div`

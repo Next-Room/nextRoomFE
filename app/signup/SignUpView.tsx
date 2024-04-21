@@ -4,13 +4,21 @@ import { SIGN_UP } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
-import * as S from "./SignUpView.styled";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { NewTextField } from "./NewTextField.component";
+import "@/apis/firebase";
+import * as S from "./SignUpView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props = Record<string, any>;
 
 function SignUpView(props: Props) {
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "sign_up_1",
+    firebase_screen_class: "sign_up_1",
+  });
+  
   const {
     ImageProps,
     formProps,
@@ -24,7 +32,7 @@ function SignUpView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        <S.Header>
+        <S.Header href="/">
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>

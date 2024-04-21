@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { NEXT } from "@/consts/components/signUp";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { NewTextField } from "./NewTextField.component";
-
+import "@/apis/firebase";
 import * as S from "./SignUpView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,11 +17,16 @@ function PasswordView(props: Props) {
     passwordConfirmProps,
     buttonProps,
   } = props;
-
+  const analytics = getAnalytics();
+  logEvent(analytics, "screen_view", {
+    firebase_screen: "sign_up_1",
+    firebase_screen_class: "sign_up_1",
+  });
+  
   return (
     <>
       <S.Wrapper>
-        <S.Header>
+        <S.Header href="/">
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>

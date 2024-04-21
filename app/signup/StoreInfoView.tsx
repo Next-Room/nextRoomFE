@@ -29,7 +29,7 @@ function StoreInfoView(props: Props) {
       <S.Wrapper>
         {isLoading && <Loader />}
 
-        <S.Header>
+        <S.Header href="/">
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>

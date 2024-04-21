@@ -57,17 +57,14 @@ function Login() {
     variant: "filled",
     label: ADMIN_EMAIL,
     placeholder: ADMIN_EMAIL,
-    ...register("email", {
+    inputProps: {...register("email", {
       required: "이메일을 입력해 주세요.",
       pattern: {
         value: /\S+@\S+\.\S+/,
         message: "이메일 형식에 맞지 않습니다.",
       },
-    }),
-    sx: {
-      marginBottom: "40px",
-      backgroundColor: "#FFFFFF10",
-    },
+    })},
+
   };
 
   const passwordProps = {
@@ -76,10 +73,9 @@ function Login() {
     variant: "filled",
     label: ADMIN_PASSWORD,
     placeholder: ADMIN_PASSWORD,
-    ...register("password", { required: "비밀번호를 입력해 주세요." }),
+    inputProps: {...register("password", { required: "비밀번호를 입력해 주세요." })},
     helperText: errors?.password && errors.password.message,
     error: Boolean(errors?.password) || isError,
-    sx: { backgroundColor: "#ffffff10" },
   };
 
   const buttonProps = {
