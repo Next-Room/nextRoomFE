@@ -30,7 +30,7 @@ function LandingView(props: Props) {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { buttonProps } = props;
+  const { buttonProps, LoginLinkProps, SignUpLinkProps } = props;
 
   const [showBtn, setShowBtn] = useState(false); // Btn 컴포넌트의 가시성 상태
   const component1Ref = useRef<HTMLElement | null>(null);
@@ -73,6 +73,14 @@ function LandingView(props: Props) {
           <S.Wrapper>
             <S.LogoWrapper>
               <S.Logo />
+              {!isMobile && (
+                <S.BtnWrap>
+                  <S.LoginButton {...LoginLinkProps}>로그인</S.LoginButton>
+                  <S.FreeButton {...SignUpLinkProps}>
+                    {SignUpLinkProps.title}
+                  </S.FreeButton>
+                </S.BtnWrap>
+              )}
             </S.LogoWrapper>
             {/* 조건부 렌더링을 통해 Btn 컴포넌트를 표시 */}
             {/* buttonProps를 전달하고 ref를 설정하여 DOM 요소를 참조합니다. */}
