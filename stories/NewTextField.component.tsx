@@ -14,7 +14,8 @@ export interface TextFieldProps {
   label: string;
   disabled: boolean;
   error: boolean;
-  placeholder: string;
+  // eslint-disable-next-line react/no-unused-prop-types, react/require-default-props
+  placeholder?: string;
   helperText: string;
 }
 
@@ -29,7 +30,7 @@ const Label = styled.label`
   margin-bottom: 20px;
 `;
 
-const LabelOnly = styled.label<{ error: string }>`
+const LabelOnly = styled.label<{ error: boolean }>`
   position: absolute;
   margin: 30px 22px;
   font-size: 16px;
