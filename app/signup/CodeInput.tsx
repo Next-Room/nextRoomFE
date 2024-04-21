@@ -47,7 +47,7 @@ export default function CodeInput(props: Props) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [numbers]);
+  }, [numbers, isError]);
 
   // 입력값을 삭제하는 함수
   const handleInputDelete = (
@@ -72,7 +72,7 @@ export default function CodeInput(props: Props) {
         <S.CodeInput
           type="number"
           value={number}
-          error={isError}
+          error={isError && numbers.join("").length === 0}
           onChange={(e) => handleInputChange(index, e.target.value)}
           onKeyDown={(e) => handleInputDelete(index, e)} // 삭제 이벤트 처리
           maxLength={1} // 한 글자만 입력할 수 있도록 설정

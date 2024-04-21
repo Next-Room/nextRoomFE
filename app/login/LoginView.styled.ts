@@ -17,7 +17,7 @@ export const Title = styled.div`
 `;
 
 export const LoginButtonWrapper = styled.div`
-  margin-top: 32px;
+  margin-top: -8px;
 `;
 
 export const ServerErrorMessage = styled.div`
@@ -34,21 +34,21 @@ export const LoginButton = styled(Button)`
 `;
 
 export const StyledBox = styled(Box)`
-  display: flex;
+  display: grid;
   min-width: 360px;
   margin: 62px auto;
+  gap: 20px 0;
 `;
 
 export const Contect = styled.div`
-  color: #ffffff70;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: normal;
+  line-height: 16px;
   text-align: center;
-
-  a:not(selector) {
-    color: #ffffff70;
-    text-decoration: none;
-    outline: none;
+  margin: 9px 0;
+  color:rgba(255, 255, 255, 0.7) ;
+  ${"a"} {
+    font-weight: 600;
+    color: white;
   }
 `;
