@@ -15,7 +15,7 @@ import { useModalState } from "@/components/atoms/modals.atom";
 import { useSelectedThemeWrite } from "@/components/atoms/selectedTheme.atom";
 import { Theme, Themes } from "@/queries/getThemeList";
 import Image from "next/image";
-import { getShopName } from "@/utils/localStorage";
+import { getAdminCode, getShopName } from "@/utils/localStorage";
 import Dialog from "@/components/common/Dialog/Dialog";
 
 import * as S from "./DrawerView.styled";
@@ -31,6 +31,7 @@ function MainDrawer(props: Props) {
   const setSelectedTheme = useSelectedThemeWrite();
   // const { mutateAsync: deleteTheme } = useDeleteTheme();
   const shopName = getShopName();
+  const adminCode = getAdminCode();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [modalState, setModalState] = useModalState();
@@ -49,6 +50,7 @@ function MainDrawer(props: Props) {
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [open, setOpen] = useState<boolean>(false);
+  console.log(adminCode);
 
   const handleDialog = () => {
     setOpen(!open);
@@ -87,7 +89,6 @@ function MainDrawer(props: Props) {
             {shopName?.replaceAll(`"`, "")}
           </S.ShopName>
         </S.ShopNameListItem>
-
         {[...categories].reverse().map((theme) => (
           <ListItem>
             <ListItemButton
@@ -115,6 +116,13 @@ function MainDrawer(props: Props) {
             <ListItemText>새로운 테마 추가하기</ListItemText>
           </Button>
         </ListItem>
+        <S.CodeWrap>
+          관리자 코드
+          <br />
+          <span>🔑 {" "}{ adminCode?.replaceAll(`"`, "")}</span>
+          힌트를 추가 및 수정했다면 힌트폰 앱에서 반드시 업데이트 버튼을
+          눌러주세요.
+        </S.CodeWrap>
       </Box>
       <Dialog
         open={open}
