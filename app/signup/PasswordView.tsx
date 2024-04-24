@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { NEXT } from "@/consts/components/signUp";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { useRouter } from "next/navigation";
 import { NewTextField } from "./NewTextField.component";
 import "@/apis/firebase";
 import * as S from "./SignUpView.styled";
@@ -22,11 +23,17 @@ function PasswordView(props: Props) {
     firebase_screen: "sign_up_1",
     firebase_screen_class: "sign_up_1",
   });
-  
+  const router = useRouter();
+
   return (
     <>
       <S.Wrapper>
-        <S.Header href="/">
+        <S.Header
+          onClick={() => {
+            router.back();
+            window.close();
+          }}
+        >
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>
@@ -39,9 +46,7 @@ function PasswordView(props: Props) {
         </S.SubTitle>
         <form {...formProps}>
           <S.Grid>
-            <NewTextField
-              {...passwordProps}
-            />
+            <NewTextField {...passwordProps} />
           </S.Grid>
           <S.Grid>
             <NewTextField {...passwordConfirmProps} />

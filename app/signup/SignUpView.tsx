@@ -5,6 +5,7 @@ import { SIGN_UP } from "@/consts/components/signUp";
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { useRouter } from "next/navigation";
 import { NewTextField } from "./NewTextField.component";
 import "@/apis/firebase";
 import * as S from "./SignUpView.styled";
@@ -18,7 +19,8 @@ function SignUpView(props: Props) {
     firebase_screen: "sign_up_1",
     firebase_screen_class: "sign_up_1",
   });
-  
+  const router = useRouter();
+
   const {
     ImageProps,
     formProps,
@@ -32,7 +34,12 @@ function SignUpView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        <S.Header href="/">
+        <S.Header
+          onClick={() => {
+            router.back();
+            window.close();
+          }}
+        >
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>

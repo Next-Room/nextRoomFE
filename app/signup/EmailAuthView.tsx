@@ -4,6 +4,7 @@ import Image from "next/image";
 import Loader from "@/components/Loader/Loader";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
+import { useRouter } from "next/navigation";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import CodeInput from "./CodeInput";
 import "@/apis/firebase";
@@ -28,6 +29,8 @@ function EmailAuthView(props: Props) {
 
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
   const analytics = getAnalytics();
+  const router = useRouter();
+
   logEvent(analytics, "screen_view", {
     firebase_screen: "sign_up_2",
     firebase_screen_class: "sign_up_2",
@@ -44,7 +47,12 @@ function EmailAuthView(props: Props) {
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
-        <S.Header href="/">
+        <S.Header
+          onClick={() => {
+            router.back();
+            window.close();
+          }}
+        >
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>

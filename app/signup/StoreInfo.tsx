@@ -73,11 +73,10 @@ function StoreInfo() {
   }, []);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-
     postSignUp({
       email: signUpState.email,
       password: signUpState.password,
-      name: isChecked? data.name : data.reason,
+      name: isChecked ? data.reason : data.name,
       isNotOpened: isChecked,
     });
   };

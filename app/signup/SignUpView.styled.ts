@@ -1,5 +1,4 @@
 import { Box, Button, FormControlLabel } from "@mui/material";
-import Link from "next/link";
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
@@ -12,10 +11,9 @@ export const Wrapper = styled.div`
   margin: auto;
 `;
 
-export const Header = styled(Link)`
+export const Header = styled.button`
   width: 100%;
   display: block;
-
   ${"img"} {
     float: right;
     margin: 16px 14px;

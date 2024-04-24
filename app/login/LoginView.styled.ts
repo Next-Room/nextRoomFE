@@ -47,7 +47,7 @@ export const Contect = styled.div`
   text-align: center;
   margin: 9px 0;
   color:rgba(255, 255, 255, 0.7) ;
-  ${"a"} {
+  ${"button"} {
     font-weight: 600;
     color: white;
   }
