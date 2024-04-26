@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -100,13 +101,19 @@ function HintManager(props: Props) {
     return () => subscription.unsubscribe();
   }, [hintData, watch]);
 
+  useEffect(() => {
+    if (!open) {
+      setErrorMsg("");
+    }
+  }, [open, reset]);
+
   const formValue = watch();
   useEffect(() => {
     if (
       !formValue.progress ||
       !(formValue.hintCode.length === 4) ||
-      !formValue.contents ||
-      !formValue.answer
+      !formValue.contents.trim() ||
+      !formValue.answer.trim()
     ) {
       setSubmitDisable(true);
     } else {
@@ -121,7 +128,7 @@ function HintManager(props: Props) {
 
   const key = `${type}-${id}`;
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = _.debounce((data) => {
     const { progress, hintCode, contents, answer } = data;
 
     if (!(progress && hintCode && contents && answer)) {
@@ -150,7 +157,7 @@ function HintManager(props: Props) {
     }
     reset();
     close();
-  };
+  }, 300);
 
   const isCurrentHintActive = isActiveHintItemState === id;
 
@@ -223,6 +230,14 @@ function HintManager(props: Props) {
         message: "1부터 100까지의 정수만 입력 가능합니다.",
       },
     }),
+    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+      if (!/^(100|[1-9][0-9]?|0)$/.test(e.target.value)) {
+        setErrorMsg("1부터 100까지의 정수만 입력 가능합니다.");
+      } else {
+        setErrorMsg("");
+      }
+    },
+    endAdornment: <>%</>,
   };
 
   const hintCodeInputProps = {
@@ -237,7 +252,7 @@ function HintManager(props: Props) {
         message: "4자리 숫자만 입력 가능합니다.",
       },
       onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
-        if (e.target.value.length !== 4) {
+        if (!/^\d{4}$/.test(e.target.value)) {
           setErrorMsg("힌트 코드는 4자리 숫자만 입력 가능합니다.");
         } else {
           setErrorMsg("");

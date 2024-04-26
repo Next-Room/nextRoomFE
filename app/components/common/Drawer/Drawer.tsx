@@ -12,7 +12,10 @@ import { useRouter } from "next/navigation";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AddIcon from "@mui/icons-material/Add";
 import { useModalState } from "@/components/atoms/modals.atom";
-import { useSelectedThemeWrite } from "@/components/atoms/selectedTheme.atom";
+import {
+  InitialSelectedTheme,
+  useSelectedTheme,
+} from "@/components/atoms/selectedTheme.atom";
 import { Theme, Themes } from "@/queries/getThemeList";
 import Image from "next/image";
 import { getAdminCode, getShopName } from "@/utils/localStorage";
@@ -24,53 +27,51 @@ type Props = {
   categories: Themes;
 };
 
+const logoProps = {
+  src: "/images/svg/logo.svg",
+  alt: "NEXT ROOM",
+  width: 184,
+  height: 26,
+};
+
 function MainDrawer(props: Props) {
   const { categories } = props;
   const router = useRouter();
 
-  const setSelectedTheme = useSelectedThemeWrite();
-  // const { mutateAsync: deleteTheme } = useDeleteTheme();
+  const [selectedTheme, setSelectedTheme] = useSelectedTheme();
   const shopName = getShopName();
   const adminCode = getAdminCode();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [modalState, setModalState] = useModalState();
+  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null); // 현재 선택된 테마를 저장할 상태 추가
+  const [open, setOpen] = useState<boolean>(false);
+
   const toggleOnModalState = () => {
     router.push("/theme");
+    setSelectedTheme(InitialSelectedTheme);
 
     setModalState({ type: "post", isOpen: true });
   };
-  const logoProps = {
-    src: "/images/svg/logo.svg",
-    alt: "NEXT ROOM",
-    width: 184,
-    height: 26,
-  };
-  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null); // 현재 선택된 테마를 저장할 상태 추가
 
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [open, setOpen] = useState<boolean>(false);
-  console.log(adminCode);
 
   const handleDialog = () => {
     setOpen(!open);
   };
+
   useEffect(() => {
     if (categories.length > 0) {
-      setSelectedIndex(categories[categories.length - 1].id);
       setSelectedTheme(categories[categories.length - 1]);
     }
   }, [categories, setSelectedTheme]);
 
   const handleListItemClick = (theme: Theme) => {
     setFocusedTheme(theme);
-    // setSelectedTheme({ ...theme });
     if (modalState.isOpen) {
       handleDialog();
     } else {
-      setSelectedIndex(theme.id);
       setSelectedTheme({ ...theme });
-      router.push(`/admin?title=${encodeURIComponent(theme.title)}`);
+      router.push(`/admin?themeId=${encodeURIComponent(theme.id)}`);
     }
   };
 
@@ -90,17 +91,24 @@ function MainDrawer(props: Props) {
           </S.ShopName>
         </S.ShopNameListItem>
         {[...categories].reverse().map((theme) => (
-          <ListItem>
+          <ListItem key={theme.id} title={theme.title}>
             <ListItemButton
-              selected={selectedIndex === theme.id}
+              selected={selectedTheme.id === theme.id}
               onClick={() => {
                 handleListItemClick(theme);
               }}
             >
-              <ListItemText>{theme.title}</ListItemText>
+              <ListItemText
+                style={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {theme.title}
+              </ListItemText>
             </ListItemButton>
           </ListItem>
-          // </Link>
         ))}
         <ListItem
           style={{
@@ -129,10 +137,9 @@ function MainDrawer(props: Props) {
         handleBtn={() => {
           if (focusedTheme) {
             setModalState({ ...modalState, isOpen: false });
-            setSelectedIndex(focusedTheme.id);
             setSelectedTheme({ ...focusedTheme });
             router.push(
-              `/admin?title=${encodeURIComponent(focusedTheme.title)}`
+              `/admin?themeId=${encodeURIComponent(focusedTheme.id)}`
             );
           }
         }}
