@@ -90,18 +90,10 @@ function SignUp() {
     sx: { marginTop: "20px" },
   };
 
-  const ImageProps = {
-    src: "/images/svg/icon_X.svg",
-    alt: "NEXT ROOM",
-    width: 28,
-    height: 28,
-  };
-
   const errorMessage = isError && error?.response?.data?.message;
 
   const SignUpViewProps = {
     formProps,
-    ImageProps,
     adminCodeProps,
     buttonProps,
     isLoading,

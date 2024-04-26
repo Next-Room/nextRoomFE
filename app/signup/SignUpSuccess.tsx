@@ -53,18 +53,8 @@ function SignUpSuccess() {
     height: 24,
   };
 
-  const ImageProps = {
-    src: "/images/svg/icon_X.svg",
-    alt: "allow",
-    width: 28,
-    height: 28,
-  };
   return (
     <S.Wrapper>
-      <S.Header href="/">
-        <Image {...ImageProps} />
-      </S.Header>
-
       <S.LottieWrapper>
         <Lottie
           loop={false}

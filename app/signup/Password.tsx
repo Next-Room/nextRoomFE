@@ -122,15 +122,7 @@ function Password() {
     ),
   };
 
-  const ImageProps = {
-    src: "/images/svg/icon_X.svg",
-    alt: "NEXT ROOM",
-    width: 28,
-    height: 28,
-  };
-
   const PasswordViewProps = {
-    ImageProps,
     formProps,
     passwordProps,
     passwordConfirmProps,
