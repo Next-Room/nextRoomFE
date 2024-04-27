@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-import { LOGIN} from "@/consts/components/login";
-
-import Link from "next/link";
+import { LOGIN } from "@/consts/components/login";
 import Loader from "@/components/Loader/Loader";
 import { NewTextField } from "@/signup/NewTextField.component";
+import { useRouter } from "next/navigation";
+
 import * as S from "./LoginView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +21,7 @@ function LoginView(props: Props) {
     isLoading,
     errorMessage,
   } = props;
-
+  const router = useRouter();
   return (
     <S.Wrapper>
       {isLoading && <Loader />}
@@ -35,7 +35,15 @@ function LoginView(props: Props) {
           <S.LoginButton {...buttonProps}>{LOGIN}</S.LoginButton>
         </S.LoginButtonWrapper>
         <S.Contect>
-          관리자 계정이 필요하신가요? <Link href="/signup">회원가입</Link>
+          관리자 계정이 필요하신가요?
+          <button
+          type="button"
+            onClick={() => {
+              router.push("/signup");
+            }}
+          >
+            회원가입
+          </button>
         </S.Contect>
       </S.StyledBox>
     </S.Wrapper>

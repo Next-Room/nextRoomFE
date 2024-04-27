@@ -9,9 +9,9 @@ import StoreInfo from "./StoreInfo";
 import SignUpSuccess from "./SignUpSuccess";
 
 function HomePage() {
-  const signUpstate = useSignUpValue();
+  const useSignUpState = useSignUpValue();
 
-  switch (signUpstate.level) {
+  switch (useSignUpState.level) {
     case 1:
       return <SignUp />;
     case 2:
@@ -26,4 +26,5 @@ function HomePage() {
       return <SignUp />;
   }
 }
+
 export default HomePage;

@@ -4,14 +4,11 @@ import "@/style/reset.css";
 import { useRouter } from "next/navigation";
 import { useIsLoggedIn } from "@/components/atoms/account.atom";
 import { removeAccessToken } from "@/utils/localStorage";
-import useCheckSignIn from "@/hooks/useCheckSignIn";
 import LandingView from "./LandingView";
 
 function Landing() {
   const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn();
   const router = useRouter();
-  const isSignIn = useCheckSignIn();
-  console.log(isSignIn);
 
   const handleLogout = () => {
     removeAccessToken();
@@ -20,9 +17,7 @@ function Landing() {
 
   const handleSignUpBtn = () => {
     router.push(
-      isLoggedIn
-        ? "/admin"
-        : "https://dev.nextroom.co.kr/signup/?utm_source=landing&utm_medium=banner&utm_campaign=landing_pc"
+      "/signup/?utm_source=landing&utm_medium=banner&utm_campaign=landing_pc"
     );
   };
 

@@ -5,6 +5,7 @@ import { Checkbox, FormGroup } from "@mui/material";
 import { START } from "@/consts/components/signUp";
 
 import Loader from "@/components/Loader/Loader";
+import { useRouter } from "next/navigation";
 import * as S from "./SignUpView.styled";
 import { NewTextField } from "./NewTextField.component";
 
@@ -20,16 +21,23 @@ function StoreInfoView(props: Props) {
     reasonProps,
     buttonProps,
     isLoading,
+    errorMessage,
   } = props;
 
   const { checked, onChange } = checkBoxProps;
+  const router = useRouter();
 
   return (
     <>
       <S.Wrapper>
         {isLoading && <Loader />}
 
-        <S.Header href="/">
+        <S.Header
+          onClick={() => {
+            router.back();
+            window.close();
+          }}
+        >
           <Image {...ImageProps} />
         </S.Header>
       </S.Wrapper>
@@ -50,6 +58,7 @@ function StoreInfoView(props: Props) {
           </FormGroup>
           {checked && <NewTextField {...reasonProps} />}
           <S.SignUpButton {...buttonProps}>{START}</S.SignUpButton>
+          <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
         </form>
       </S.Cont>
     </>
