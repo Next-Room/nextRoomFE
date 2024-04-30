@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-import Loader from "@/components/Loader/Loader";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
 import { getAnalytics, logEvent } from "firebase/analytics";
@@ -20,7 +19,6 @@ function EmailAuthView(props: Props) {
     signUpState,
     buttonProps,
     ReRequestButtonProps,
-    isLoading,
     errorMessage,
   } = props;
 
@@ -41,7 +39,6 @@ function EmailAuthView(props: Props) {
 
   return (
     <S.Cont>
-      {isLoading && <Loader />}
       <S.Title>
         {signUpState.email}으로
         <br />

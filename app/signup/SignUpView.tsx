@@ -1,6 +1,5 @@
 import React from "react";
 import { SIGN_UP } from "@/consts/components/signUp";
-import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { NewTextField } from "./NewTextField.component";
@@ -17,12 +16,11 @@ function SignUpView(props: Props) {
     firebase_screen_class: "sign_up_1",
   });
 
-  const { formProps, adminCodeProps, buttonProps, isLoading, errorMessage } =
+  const { formProps, adminCodeProps, buttonProps, errorMessage } =
     props;
 
   return (
     <S.Cont>
-      {isLoading && <Loader />}
       <S.Title>
         방탈출 힌트폰 서비스 <br />
         넥스트룸을 무료로 사용해 보세요.
