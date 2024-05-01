@@ -36,7 +36,7 @@ const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
   }, [controls, inView]);
 
   const navigateToTrial = () => {
-    window.open("/trial", "_blank");
+    window.open("/signup/?utm_source=landin_mo&utm_medium=top_btn", "_blank");
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "top",

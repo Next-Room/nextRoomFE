@@ -18,8 +18,7 @@ const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   });
 
   const navigateToTrial = () => {
-    // router.push("/trial");
-    window.open("/trial", "_blank");
+    window.open("/signup/?utm_source=landing_pc&utm_medium=bottom_btn", "_blank");
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "bottom",

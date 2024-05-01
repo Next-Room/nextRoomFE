@@ -9,7 +9,6 @@ import {
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
 
-import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
@@ -20,7 +19,6 @@ interface FormValues {
 }
 
 function SignUp() {
-  const isLoggedIn = useIsLoggedInValue();
   const {
     mutateAsync: postSendMessage,
     isLoading = false,
@@ -100,7 +98,7 @@ function SignUp() {
     errorMessage,
   };
 
-  if (isLoggedIn) {
+  if (isLoading) {
     return <Loader />;
   }
 

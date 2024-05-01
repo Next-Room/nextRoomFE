@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 
-import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import Loader from "@/components/Loader/Loader";
 import { usePostVerification } from "@/mutations/postVerification";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
@@ -16,7 +15,6 @@ interface FormValues {
 }
 
 function EmailAuth() {
-  const isLoggedIn = useIsLoggedInValue();
   const [signUpState, setSignUpState] = useSignUpState();
 
   const {
@@ -143,7 +141,7 @@ function EmailAuth() {
     signUpState,
   };
 
-  if (isLoggedIn) {
+  if (isLoading) {
     return <Loader />;
   }
 

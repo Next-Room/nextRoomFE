@@ -8,8 +8,6 @@ import {
   SIGN_UP_PASSWORD_CONFIRM,
 } from "@/consts/components/signUp";
 
-import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-import Loader from "@/components/Loader/Loader";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 import PasswordView from "./PasswordView";
 
@@ -19,7 +17,6 @@ interface FormValues {
 }
 
 function Password() {
-  const isLoggedIn = useIsLoggedInValue();
   const [signUpState, setSignUpState] = useSignUpState();
   const {
     register,
@@ -88,8 +85,7 @@ function Password() {
       ...register("password", {
         required: "비밀번호를 입력해 주세요.",
         pattern: {
-          value:
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+          value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
           message: "비밀번호 조건이 맞지 않습니다.",
         },
       }),
@@ -128,10 +124,6 @@ function Password() {
     passwordConfirmProps,
     buttonProps,
   };
-
-  if (isLoggedIn) {
-    return <Loader />;
-  }
 
   return <PasswordView {...PasswordViewProps} />;
 }

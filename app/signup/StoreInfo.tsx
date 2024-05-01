@@ -115,7 +115,10 @@ function StoreInfo() {
   const checkBoxProps = {
     label: "매장명이 없습니다.",
     checked: isChecked,
-    onChange: () => setIsChecked(!isChecked),
+    onChange: () => {
+      setIsChecked(!isChecked);
+      window.scrollTo(0, document.body.scrollHeight);
+    },
   };
 
   const buttonProps = {

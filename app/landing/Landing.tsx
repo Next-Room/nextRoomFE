@@ -17,7 +17,7 @@ function Landing() {
 
   const handleSignUpBtn = () => {
     router.push(
-      "/signup/?utm_source=landing&utm_medium=banner&utm_campaign=landing_pc"
+      "/signup/?utm_source=landing_pc&utm_medium=header_btn"
     );
   };
 
