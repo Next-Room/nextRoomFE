@@ -9,7 +9,7 @@ export default function Inputbar(): JSX.Element | null {
   const analytics = getAnalytics();
 
   const navigateToTrial = () => {
-    window.open("/trial", "_blank");
+    window.open("/signup/?utm_source=landin_pc&utm_medium=floating_btn", "_blank");
     logEvent(analytics, "btn_click", {
       firebase_screen: "homepage_input_contact",
       firebase_screen_class: "homepage_input_contact",
