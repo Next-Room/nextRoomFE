@@ -11,6 +11,7 @@ interface Request {
   password: string;
   name: string;
   isNotOpened: boolean;
+  type: number;
 }
 interface SignUpResponse {
   code: number;

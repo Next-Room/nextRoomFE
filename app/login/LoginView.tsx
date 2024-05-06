@@ -6,6 +6,7 @@ import Loader from "@/components/Loader/Loader";
 import { NewTextField } from "@/signup/NewTextField.component";
 import { useRouter } from "next/navigation";
 
+import Link from "next/link";
 import * as S from "./LoginView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +26,9 @@ function LoginView(props: Props) {
   return (
     <S.Wrapper>
       {isLoading && <Loader />}
-      <Image {...logoProps} />
+      <Link href="/">
+        <Image {...logoProps} />
+      </Link>
 
       <S.StyledBox {...formProps}>
         <NewTextField {...adminCodeProps} />
@@ -37,7 +40,7 @@ function LoginView(props: Props) {
         <S.Contect>
           관리자 계정이 필요하신가요?
           <button
-          type="button"
+            type="button"
             onClick={() => {
               router.push("/signup");
             }}

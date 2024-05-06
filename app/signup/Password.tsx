@@ -23,8 +23,8 @@ function Password() {
     setFocus,
     handleSubmit,
     watch,
-    formState: { errors },
-  } = useForm<FormValues>();
+    formState: { errors, isValid },
+  } = useForm<FormValues>({ mode: "onChange" });
   const formValue = watch();
 
   const browserPreventEvent = () => {
@@ -85,7 +85,8 @@ function Password() {
       ...register("password", {
         required: "비밀번호를 입력해 주세요.",
         pattern: {
-          value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/,
+          value:
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^*+=-?&])[A-Za-z\d!@#$%^*+=-?&]{8,}$/,
           message: "비밀번호 조건이 맞지 않습니다.",
         },
       }),
@@ -113,9 +114,7 @@ function Password() {
   const buttonProps = {
     type: "submit",
     variant: "contained",
-    disabled: !(
-      formValue.password?.length > 0 && formValue.passwordConfirm?.length > 0
-    ),
+    disabled: !isValid,
   };
 
   const PasswordViewProps = {

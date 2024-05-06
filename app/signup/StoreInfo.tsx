@@ -13,11 +13,20 @@ interface FormValues {
   name: string;
   isNotOpened: boolean;
   reason: string;
+  type: number;
 }
 
 function StoreInfo() {
   const isLoggedIn = useIsLoggedInValue();
   const [signUpState, setSignUpState] = useSignUpState();
+  const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(
+      navigator.userAgent
+    );
+
+  // eslint-disable-next-line no-nested-ternary
+  const type = isWebView ? 3 : isMobile ? 2 : 1;
 
   const {
     mutateAsync: postSignUp,
@@ -49,6 +58,9 @@ function StoreInfo() {
         name: "", // name 필드 초기화
       });
     }
+    setTimeout(() => {
+      setFocus("reason");
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
@@ -78,6 +90,7 @@ function StoreInfo() {
       password: signUpState.password,
       name: isChecked ? data.reason : data.name,
       isNotOpened: isChecked,
+      type,
     });
   };
   const formProps = {

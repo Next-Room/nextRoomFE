@@ -230,6 +230,7 @@ export const MainBtn = styled.button`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  color: black;
   z-index: 999;
 `;
 

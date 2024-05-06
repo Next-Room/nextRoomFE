@@ -1,13 +1,16 @@
 import { useSignUpValue } from "@/components/atoms/signup.atom";
 import { usePostVerification } from "@/mutations/postVerification";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import * as S from "./SignUpView.styled";
 
-type Props = Record<string, any>;
+interface Props {
+  disabled: boolean;
+  numbers: string[];
+  setNumbers: (newNumbers: string[]) => void;
+}
 
 export default function CodeInput(props: Props) {
-  const { timeLeft } = props;
-  const [numbers, setNumbers] = useState(Array(6).fill("")); // 6개의 빈 문자열로 초기화된 배열
+  const { disabled, numbers, setNumbers } = props;
   const inputRefs = useRef(Array(6).fill(null)); // 6개의 ref를 저장할 배열
 
   const { mutateAsync: postVerification, isError = false } =
@@ -35,7 +38,7 @@ export default function CodeInput(props: Props) {
   }, []);
 
   useEffect(() => {
-    const isInputComplete = numbers.every((number) => number !== "");
+    const isInputComplete = numbers.every((number: string) => number !== "");
     if (isInputComplete) {
       const code = numbers.join("");
       postVerification({ code, email: signUpState.email });
@@ -78,7 +81,7 @@ export default function CodeInput(props: Props) {
           maxLength={1} // 한 글자만 입력할 수 있도록 설정
           // eslint-disable-next-line no-return-assign
           ref={(input) => (inputRefs.current[index] = input)} // ref를 배열에 저장
-          disabled={timeLeft}
+          disabled={disabled}
           inputMode="numeric"
         />
       ))}

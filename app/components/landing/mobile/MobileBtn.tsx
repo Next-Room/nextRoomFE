@@ -9,8 +9,10 @@ export default function Inputbar(): JSX.Element | null {
   const analytics = getAnalytics();
 
   const navigateToTrial = () => {
-    window.open("/signup/?utm_source=landin_mo&utm_medium=floating_btn"
-        , "_blank");
+    window.open(
+      "/signup/?utm_source=landin_mo&utm_medium=floating_btn",
+      "_blank"
+    );
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "floating",

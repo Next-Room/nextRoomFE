@@ -21,7 +21,7 @@ export const LogoWrapper = styled.div`
     padding: 23px 26px;
   }
   left: 50%;
-transform: translateX(-50%);
+  transform: translateX(-50%);
 `;
 
 export const Logo = styled.div`
@@ -50,7 +50,7 @@ export const LoginButton = styled.button`
   line-height: 16.71px;
 `;
 export const FreeButton = styled.button`
-  width: 118px;
+  padding: 0 15px;
   height: 36px;
   color: black;
   font-size: 14px;

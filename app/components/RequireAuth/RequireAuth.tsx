@@ -49,6 +49,8 @@ function RequireAuth({
   useEffect(() => {
     if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
       router.push("/login");
+    } else if (isLoggedIn && pathname === "/") {
+      router.push(pathname);
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
         const lastThemeId = encodeURIComponent(
@@ -77,6 +79,8 @@ function RequireAuth({
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  if (isLoggedIn && pathname === "/") return <>{children}</>;
 
   return (
     <S.Wrapper>

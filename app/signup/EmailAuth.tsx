@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 
@@ -28,6 +28,9 @@ function EmailAuth() {
   const MINUTES_IN_MS = 5 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [numbers, setNumbers] = useState(Array(6).fill("")); // 6개의 빈 문자열로 초기화된 배열
+
   const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(
     2,
     "0"
@@ -57,15 +60,9 @@ function EmailAuth() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      code: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
-    },
-  });
+  } = useForm<FormValues>();
 
-  const formValue = watch();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postVerification({ code: data.code, email: signUpState.email });
   };
@@ -97,31 +94,54 @@ function EmailAuth() {
     },
   };
 
-  const buttonProps = {
-    type: "submit",
-    variant: "contained",
-    disabled: !(formValue.code.length > 0),
+  const inputProps = {
+    numbers,
+    setNumbers,
+    disabled,
   };
 
   const errorMessage = isError && error?.response?.data?.message;
+  const timerIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - INTERVAL);
-    }, INTERVAL);
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
+  const startTimer = useCallback(() => {
+    if (timerIdRef.current !== null) {
+      clearInterval(timerIdRef.current); // 이전 타이머 정리
     }
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [timeLeft]);
+    const startTime = Date.now();
+    setTimeLeft(MINUTES_IN_MS); // 타이머 초기화
+    setDisabled(false); // 버튼 활성화
 
+    const timer = setInterval(() => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = MINUTES_IN_MS - elapsedTime;
+      setTimeLeft(remainingTime);
+
+      if (remainingTime <= 0) {
+        clearInterval(timer);
+        setDisabled(true); // 타이머 종료 시 버튼 비활성화
+      }
+    }, INTERVAL);
+
+    timerIdRef.current = timer; // 새 타이머 ID 저장
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    startTimer();
+    // 컴포넌트 언마운트 시 타이머 정리
+    return () => {
+      if (timerIdRef.current !== null) {
+        clearInterval(timerIdRef.current);
+      }
+    };
+  }, [startTimer]);
+
+  // 재요청 함수
   const reRequest = () => {
     postSendMessage({ email: signUpState.email });
-    setTimeLeft(MINUTES_IN_MS);
+    startTimer(); // 재요청 시 타이머 다시 시작
+    setNumbers(Array(6).fill(""));
   };
 
   const ReRequestButtonProps = {
@@ -129,12 +149,11 @@ function EmailAuth() {
   };
 
   const EmailAuthViewProps = {
-    timeLeft,
+    inputProps,
     minutes,
     second,
     formProps,
     adminCodeProps,
-    buttonProps,
     ReRequestButtonProps,
     isLoading,
     errorMessage,

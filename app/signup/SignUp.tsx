@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
@@ -26,15 +26,13 @@ function SignUp() {
     error,
   } = usePostSendMessage();
   const [errorMsg, setErrorMsg] = useState<string | undefined>(SIGN_UP_SUBTEXT);
-
+  const ref = useRef(null);
   const {
     register,
     setFocus,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { errors, isValid },
   } = useForm<FormValues>();
-  const formValue = watch();
   useCheckSignIn();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -70,6 +68,7 @@ function SignUp() {
     variant: "filled",
     label: SIGN_UP_EMAIL,
     placeholder: SIGN_UP_PLACEHOLDER,
+    ref,
     inputProps: {
       ...register("email", {
         required: "이메일을 입력해 주세요.",
@@ -84,7 +83,7 @@ function SignUp() {
   const buttonProps = {
     type: "submit",
     variant: "contained",
-    disabled: !(formValue.email?.length > 0),
+    disabled: !isValid,
     sx: { marginTop: "20px" },
   };
 

@@ -75,7 +75,9 @@ function LandingView(props: Props) {
               <S.Logo />
               {!isMobile && (
                 <S.BtnWrap>
-                  <S.LoginButton {...LoginLinkProps}>로그인</S.LoginButton>
+                  <S.LoginButton {...LoginLinkProps}>
+                    {LoginLinkProps.title}
+                  </S.LoginButton>
                   <S.FreeButton {...SignUpLinkProps}>
                     {SignUpLinkProps.title}
                   </S.FreeButton>
