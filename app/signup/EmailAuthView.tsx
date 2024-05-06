@@ -12,12 +12,11 @@ type Props = Record<string, any>;
 
 function EmailAuthView(props: Props) {
   const {
+    inputProps,
     minutes,
     second,
-    timeLeft,
     formProps,
     signUpState,
-    buttonProps,
     ReRequestButtonProps,
     errorMessage,
   } = props;
@@ -50,7 +49,7 @@ function EmailAuthView(props: Props) {
 
       <S.StyledBox {...formProps}>
         {/* <TextField {...adminCodeProps} /> */}
-        <CodeInput {...formProps} {...buttonProps} disabled={timeLeft} />
+        <CodeInput {...inputProps} />
         <S.ReRequest>
           <p>이메일이 오지 않았다면? </p>
           <button type="button" {...ReRequestButtonProps}>

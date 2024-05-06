@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+/* use client */
+import React, { forwardRef, useEffect, useRef } from "react";
 import "../style/reset.css";
 import { styled } from "styled-components";
 
@@ -76,7 +77,7 @@ const SupportingText = styled.p<SupportingTextProps>`
   margin: 4px 16px;
 `;
 
-export function NewTextField(props: Props) {
+export const NewTextField = forwardRef((props: Props) => {
   const {
     error,
     label,
@@ -90,6 +91,20 @@ export function NewTextField(props: Props) {
   } = props;
   const inputRef = useRef<HTMLLabelElement>(null);
 
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("log");
+      console.log("log", inputRef);
+
+      if (inputRef.current) {
+        console.log(inputRef);
+
+        // inputRef.current.focus();
+        inputRef.current.click();
+      }
+    }, 1000);
+  }, []);
+
   return (
     <div>
       <Div error={error} style={style}>
@@ -98,6 +113,7 @@ export function NewTextField(props: Props) {
         </Label>
         <Input
           id="textField"
+          ref={inputRef}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
@@ -108,4 +124,4 @@ export function NewTextField(props: Props) {
       <SupportingText error={error}>{helperText}</SupportingText>
     </div>
   );
-}
+});

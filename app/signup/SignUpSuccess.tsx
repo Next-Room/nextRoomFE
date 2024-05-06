@@ -12,7 +12,7 @@ import "@/apis/firebase";
 import * as S from "./SignUpSuccess.styled";
 
 function SignUpSuccess() {
-  const [isWebView, setIsWebView] = useState(false);
+  const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
 
@@ -21,15 +21,6 @@ function SignUpSuccess() {
     firebase_screen: "sign_up_success",
     firebase_screen_class: "sign_up_success",
   });
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { userAgent } = window.navigator;
-      const uagent = userAgent.toLocaleLowerCase();
-      setIsWebView(!!(uagent.indexOf("APP_NEXTROOM_ANDROID") > -1));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }
-  }, []);
 
   useEffect(() => {
     if (isFinished) {
@@ -45,6 +36,27 @@ function SignUpSuccess() {
       // 여기에 클라이언트-사이드 로직 추가
     }
   };
+
+
+  const browserPreventEvent = () => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", () => {
+      browserPreventEvent();
+    });
+    return () => {
+      window.removeEventListener("popstate", () => {
+        browserPreventEvent();
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const rightImageProps = {
     src: "/images/svg/icon_right.svg",
