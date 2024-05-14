@@ -25,11 +25,17 @@ function SignUp() {
     isError = false,
     error,
   } = usePostSendMessage();
+  // eslint-disable-next-line no-restricted-globals
+  const { scrollRestoration } = history;
+  if (scrollRestoration === "manual") {
+    console.log(
+      "옵션을 manual로 설정하면 스크롤 위치가 복원되지 않고 사용자가 직접 수동으로 옮겨야 해요."
+    );
+  }
   const [errorMsg, setErrorMsg] = useState<string | undefined>(SIGN_UP_SUBTEXT);
   const ref = useRef(null);
   const {
     register,
-    setFocus,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<FormValues>();
@@ -48,7 +54,7 @@ function SignUp() {
 
   useEffect(() => {
     setTimeout(() => {
-      setFocus("email");
+      // setFocus("email");
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

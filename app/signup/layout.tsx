@@ -34,7 +34,6 @@ export default function RootLayout({
         <S.Header
           onClick={() => {
             router.back();
-            window.close();
           }}
         >
           <Image {...ImageProps} />

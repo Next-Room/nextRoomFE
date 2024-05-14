@@ -209,6 +209,7 @@ export const BoxWrapper = styled.div`
 
 export const Btn = styled.button`
   background: #fff;
+  color: black;
   width: 302px;
   height: 52px;
   height: 50px;
