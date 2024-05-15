@@ -52,7 +52,14 @@ function RequireAuth({
     } else if (isLoggedIn && pathname === "/") {
       router.push(pathname);
     } else if (isLoggedIn && !modalState.isOpen) {
-      router.push(`/admin`);
+      if (currentTheme.length > 0) {
+        const lastThemeId = encodeURIComponent(
+          currentTheme[currentTheme.length - 1].id
+        );
+        router.push(`/admin?themeId=${lastThemeId}`);
+      } else {
+        router.push("/admin");
+      }
     }
   }, [
     isLoggedIn,

@@ -104,18 +104,16 @@ export const NewTextField = forwardRef((props: Props) => {
       }
     }, 1000);
   }, []);
-  const checkFocus = () => {
 
-    
-  };
   return (
     <div>
       <Div error={error} style={style}>
-        <Label htmlFor="textField" ref={inputRef} onFocus={checkFocus}>
+        <Label htmlFor="textField" ref={inputRef}>
           {label}
         </Label>
         <Input
           id="textField"
+          ref={inputRef}
           type={type}
           placeholder={placeholder}
           disabled={disabled}

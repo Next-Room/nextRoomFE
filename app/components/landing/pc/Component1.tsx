@@ -21,7 +21,6 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const controls = useAnimation();
   const [inViewRef, inView] = useInView();
 
-  
   React.useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -47,7 +46,7 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const navigateToTrial = () => {
     // router.push("/trial");
-    router.push("/signup/?utm_source=landin_pc&utm_medium=top_btn", "_blank");
+    window.open("/signup/?utm_source=landin_pc&utm_medium=top_btn", "_blank");
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "top",
