@@ -3,6 +3,9 @@ import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import useCheckSignIn from "@/hooks/useCheckSignIn";
+import { useRouter } from "next/navigation";
+
 import "@/apis/firebase";
 
 import * as S from "./Component.styled";
@@ -12,13 +15,18 @@ type Props = Record<string, any>;
 const Component9 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { buttonProps } = props;
   const analytics = getAnalytics();
+  const isSignIn = useCheckSignIn();
+  const router = useRouter();
   logEvent(analytics, "screen_view", {
     firebase_screen: "homepage_bottom",
     firebase_screen_class: "homepage_bottom",
   });
 
   const navigateToTrial = () => {
-    window.open("/signup/?utm_source=landing_pc&utm_medium=bottom_btn", "_blank");
+    const url = isSignIn
+      ? "/admin"
+      : "/signup/?utm_source=landing_pc&utm_medium=bottom_btn";
+    router.push(url);
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "bottom",

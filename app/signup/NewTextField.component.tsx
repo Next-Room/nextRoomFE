@@ -65,7 +65,7 @@ const Div = styled.div<SupportingTextProps>`
     outline: none;
     &::placeholder {
       /* Placeholder의 CSS 설정 */
-      color: black; /* Placeholder의 텍스트 색상 지정 */
+      color: #121212; /* Placeholder의 텍스트 색상 지정 */
       font-size: 14px; /* Placeholder의 글꼴 크기 지정 */
     }
   }
@@ -93,13 +93,7 @@ export const NewTextField = forwardRef((props: Props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("log");
-      console.log("log", inputRef);
-
       if (inputRef.current) {
-        console.log(inputRef);
-
-        // inputRef.current.focus();
         inputRef.current.click();
       }
     }, 1000);

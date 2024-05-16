@@ -19,3 +19,12 @@ const signUpState = atom<SignUp>({
 export const useSignUpState = () => useRecoilState(signUpState);
 export const useSignUpValue = () => useRecoilValue(signUpState);
 export const useSignUpWrite = () => useSetRecoilState(signUpState);
+
+const asPathState = atom<string>({
+  key: "asPathState",
+  default: "",
+});
+
+export const useAsPathState = () => useRecoilState(asPathState);
+export const useAsPathStateValue = () => useRecoilValue(asPathState);
+export const useAsPathStateWrite = () => useSetRecoilState(asPathState);
