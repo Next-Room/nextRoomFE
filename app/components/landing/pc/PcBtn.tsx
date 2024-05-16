@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
+import { useRouter } from "next/navigation";
+import useCheckSignIn from "@/hooks/useCheckSignIn";
 
 import * as S from "./Component.styled";
 
 export default function Inputbar(): JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
   const analytics = getAnalytics();
+  const router = useRouter();
+  const isSignIn = useCheckSignIn();
 
   const navigateToTrial = () => {
-    window.open("/signup/?utm_source=landin_pc&utm_medium=floating_btn", "_blank");
+    const url = isSignIn
+      ? "/admin"
+      : "/signup/?utm_source=landing_pc&utm_medium=floating_btn";
+    router.push(url);
     logEvent(analytics, "btn_click", {
       firebase_screen: "homepage_input_contact",
       firebase_screen_class: "homepage_input_contact",

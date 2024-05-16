@@ -25,7 +25,7 @@ function EmailAuth() {
   } = usePostVerification();
 
   const { mutateAsync: postSendMessage } = usePostSendMessage();
-  const MINUTES_IN_MS = 5 * 60 * 1000;
+  const MINUTES_IN_MS = 5 * 6 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -118,13 +118,14 @@ function EmailAuth() {
       setTimeLeft(remainingTime);
 
       if (remainingTime <= 0) {
+        setTimeLeft(0);
         clearInterval(timer);
         setDisabled(true); // 타이머 종료 시 버튼 비활성화
       }
     }, INTERVAL);
 
     timerIdRef.current = timer; // 새 타이머 ID 저장
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

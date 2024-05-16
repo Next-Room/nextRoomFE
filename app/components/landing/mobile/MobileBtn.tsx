@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
+import { useRouter } from "next/navigation";
+import useCheckSignIn from "@/hooks/useCheckSignIn";
 
 import * as S from "./ComponentMobile.styled";
 
 export default function Inputbar(): JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
   const analytics = getAnalytics();
+  const router = useRouter();
+  const isSignIn = useCheckSignIn();
 
   const navigateToTrial = () => {
-    window.open(
-      "/signup/?utm_source=landin_mo&utm_medium=floating_btn",
-      "_blank"
-    );
+    const url = isSignIn
+      ? "/admin"
+      : "/signup/?utm_source=landin_mo&utm_medium=floating_btn";
+    router.push(url);
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "floating",

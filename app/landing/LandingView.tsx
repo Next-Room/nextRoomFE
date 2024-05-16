@@ -88,7 +88,7 @@ function LandingView(props: Props) {
             {/* buttonProps를 전달하고 ref를 설정하여 DOM 요소를 참조합니다. */}
             {isMobile ? (
               <S.MobileWrapper>
-                <Component1Mobile ref={component1Ref} {...buttonProps} />
+                <Component1Mobile ref={component1Ref} buttonProps />
                 <Component2Mobile />
                 <Component3Mobile />
                 <Component4Mobile />
@@ -97,12 +97,12 @@ function LandingView(props: Props) {
                 <Component7Mobile ref={component7Ref} />
 
                 {/* <Component8Mobile /> */}
-                <Component9Mobile ref={component9Ref} {...buttonProps} />
+                <Component9Mobile ref={component9Ref} buttonProps />
                 {showBtn && <MobileBtn />}
               </S.MobileWrapper>
             ) : (
               <>
-                <Component1 ref={component1Ref} {...buttonProps} />
+                <Component1 ref={component1Ref} buttonProps />
                 <Component2 />
                 <Component3 />
                 <Component4 />
@@ -110,7 +110,7 @@ function LandingView(props: Props) {
                 <Component6 />
                 <Component7 ref={component7Ref} />
                 {/* <Component8 /> */}
-                <Component9 ref={component9Ref} {...buttonProps} />
+                <Component9 ref={component9Ref} buttonProps={buttonProps} />
                 {showBtn && <PcBtn />}
               </>
             )}

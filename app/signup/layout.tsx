@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSignUpValue } from "@/components/atoms/signup.atom";
 import * as S from "./SignUpView.styled";
 
 export default function RootLayout({
@@ -12,12 +13,14 @@ export default function RootLayout({
 }) {
   const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
   const router = useRouter();
+
   const ImageProps = {
     src: "/images/svg/icon_X.svg",
     alt: "NEXT ROOM",
     width: 28,
     height: 28,
   };
+  const useSignUpState = useSignUpValue();
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (isWebView) {
@@ -33,8 +36,10 @@ export default function RootLayout({
       <S.Wrapper>
         <S.Header
           onClick={() => {
+            if (useSignUpState.level === 1) {
+              router.push("/");
+            }
             router.back();
-            window.close();
           }}
         >
           <Image {...ImageProps} />
