@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignUpState } from "@/components/atoms/signup.atom";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import Loader from "@/components/Loader/Loader";
 import { usePostSignUp } from "@/mutations/postSignUp";
@@ -43,6 +43,7 @@ function StoreInfo() {
     reset,
     formState: { errors },
   } = useForm<FormValues>();
+  const analytics = getAnalytics();
   const formValue = watch();
 
   useEffect(() => {
@@ -131,6 +132,10 @@ function StoreInfo() {
     onChange: () => {
       setIsChecked(!isChecked);
       window.scrollTo(0, document.body.scrollHeight);
+      logEvent(analytics, "btn_click", {
+        btn_name: "shopName_check",
+        btn_position: "top",
+      });
     },
   };
 
