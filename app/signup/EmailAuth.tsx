@@ -25,7 +25,7 @@ function EmailAuth() {
   } = usePostVerification();
 
   const { mutateAsync: postSendMessage } = usePostSendMessage();
-  const MINUTES_IN_MS = 5 * 6 * 1000;
+  const MINUTES_IN_MS = 5 * 60 * 1000;
   const INTERVAL = 1000;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
   const [disabled, setDisabled] = useState<boolean>(false);

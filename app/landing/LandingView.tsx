@@ -33,9 +33,9 @@ function LandingView(props: Props) {
   const { buttonProps, LoginLinkProps, SignUpLinkProps } = props;
 
   const [showBtn, setShowBtn] = useState(false); // Btn 컴포넌트의 가시성 상태
-  const component1Ref = useRef<HTMLElement | null>(null);
+  const component1Ref = useRef<HTMLDivElement | null>(null);
   const component7Ref = useRef<HTMLDivElement | null>(null);
-  const component9Ref = useRef<HTMLElement | null>(null); // Component9의 참조 추가
+  const component9Ref = useRef<HTMLDivElement | null>(null); // Component9의 참조 추가
 
   const handleScroll = () => {
     if (component1Ref.current) {
