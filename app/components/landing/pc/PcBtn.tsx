@@ -3,7 +3,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 import { useRouter } from "next/navigation";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
-
+import { setCookie } from "@/utils/cookie";
 import * as S from "./Component.styled";
 
 export default function Inputbar(): JSX.Element | null {
@@ -16,6 +16,7 @@ export default function Inputbar(): JSX.Element | null {
     const url = isSignIn
       ? "/admin"
       : "/signup/?utm_source=landing_pc&utm_medium=floating_btn";
+    setCookie("/");
     router.push(url);
     logEvent(analytics, "btn_click", {
       firebase_screen: "homepage_input_contact",

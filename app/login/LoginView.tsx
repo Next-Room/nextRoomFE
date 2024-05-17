@@ -5,7 +5,7 @@ import { LOGIN } from "@/consts/components/login";
 import Loader from "@/components/Loader/Loader";
 import { NewTextField } from "@/signup/NewTextField.component";
 import { useRouter } from "next/navigation";
-
+import { setCookie } from "@/utils/cookie";
 import Link from "next/link";
 import * as S from "./LoginView.styled";
 
@@ -42,6 +42,7 @@ function LoginView(props: Props) {
           <button
             type="button"
             onClick={() => {
+              setCookie("/login");
               router.push("/signup");
             }}
           >

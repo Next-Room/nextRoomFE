@@ -4,9 +4,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from "@/consts/components/login";
-import { usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-import { useAsPathStateWrite } from "@/components/atoms/signup.atom";
 import { usePostLogin } from "@/mutations/postLogin";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
@@ -19,7 +17,6 @@ interface FormValues {
 
 function Login() {
   const isLoggedIn = useIsLoggedInValue();
-  const pathName = usePathname();
   const {
     mutateAsync: postLogin,
     isLoading = false,
@@ -36,10 +33,6 @@ function Login() {
       password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "",
     },
   });
-  const setAsPathState = useAsPathStateWrite();
-
-  setAsPathState(pathName);
-
   useCheckSignIn();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {

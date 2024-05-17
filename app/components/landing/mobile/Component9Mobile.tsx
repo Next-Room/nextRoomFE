@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import "@/apis/firebase";
+import { setCookie } from "@/utils/cookie";
 
 import * as S from "./ComponentMobile.styled";
 
@@ -26,6 +27,7 @@ const Component9Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
     const url = isSignIn
       ? "/admin"
       : "/signup/?utm_source=landing_pc&utm_medium=header_btn";
+    setCookie("/");
     router.push(url);
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
