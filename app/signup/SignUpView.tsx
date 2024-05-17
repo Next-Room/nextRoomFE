@@ -16,8 +16,7 @@ function SignUpView(props: Props) {
     firebase_screen_class: "sign_up_1",
   });
 
-  const { formProps, adminCodeProps, buttonProps, errorMessage } =
-    props;
+  const { formProps, adminCodeProps, buttonProps } = props;
 
   return (
     <S.Cont>
@@ -39,7 +38,6 @@ function SignUpView(props: Props) {
         <NewTextField {...adminCodeProps} />
         <S.SignUpButton {...buttonProps}>{SIGN_UP}</S.SignUpButton>
       </form>
-      <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
     </S.Cont>
   );
 }

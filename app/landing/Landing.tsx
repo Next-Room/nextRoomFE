@@ -20,6 +20,7 @@ function Landing() {
   };
   setAsPathState(pathName);
   // document.cookie = `pathName =${pathName}`;
+
   const handleSignUpBtn = () => {
     const url = isSignIn
       ? "/admin"
@@ -35,7 +36,6 @@ function Landing() {
   const buttonProps = {
     type: "button",
     variant: "contained",
-    onClick: handleSignUpBtn,
   };
   const LoginLinkProps = {
     title: isSignIn ? "로그아웃" : "로그인",

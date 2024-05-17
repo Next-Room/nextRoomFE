@@ -5,7 +5,7 @@ import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
-
+import { setCookie } from "@/utils/cookie";
 import "@/apis/firebase";
 
 import * as S from "./Component.styled";
@@ -52,6 +52,7 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
       ? "/admin"
       : "/signup/?utm_source=landin_pc&utm_medium=top_btn";
     router.push(url);
+    setCookie("/");
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "top",
