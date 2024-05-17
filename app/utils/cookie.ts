@@ -10,21 +10,32 @@ export const setCookie = (
   const cookieValue =
     encodeURIComponent(value) +
     (typeof days === "undefined" ? "" : `; expires=${exdate.toUTCString()}`);
-  document.cookie = `${cookie_name}=${cookieValue}`;
+  document.cookie = `pathName=${cookieValue}`;
 };
 
-export const getCookie = (cookie_name: string): string | null => {
-  let x: string;
-  let y: string;
-  const val = document.cookie.split(";");
+export const getCookie = (): string => {
+  const nameOfCookie = `pathName=`;
+  let x = 0;
 
-  for (let i = 0; i < val.length; i + 1) {
-    x = val[i].substr(0, val[i].indexOf("="));
-    y = val[i].substr(val[i].indexOf("=") + 1);
-    x = x.replace(/^\s+|\s+$/g, ""); // 앞과 뒤의 공백 제거하기
-    if (x === cookie_name) {
-      return decodeURIComponent(y); // decodeURIComponent로 디코딩 후 값 리턴
+  while (x <= document.cookie.length) {
+    const y = x + nameOfCookie.length;
+
+    if (document.cookie.substring(x, y) === nameOfCookie) {
+      let endOfCookie = document.cookie.indexOf(";", y);
+
+      if (endOfCookie === -1) {
+        endOfCookie = document.cookie.length;
+      }
+
+      return decodeURIComponent(document.cookie.substring(y, endOfCookie));
+    }
+
+    x = document.cookie.indexOf(" ", x) + 1;
+
+    if (x === 0) {
+      break;
     }
   }
-  return null; // 찾지 못했을 때 null 리턴
+
+  return "";
 };

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { LOGIN } from "@/consts/components/login";
 import Loader from "@/components/Loader/Loader";
 import { NewTextField } from "@/signup/NewTextField.component";
-import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 import * as S from "./LoginView.styled";
@@ -19,10 +18,10 @@ function LoginView(props: Props) {
     passwordProps,
     buttonProps,
     logoProps,
+    signButtonProps,
     isLoading,
     errorMessage,
   } = props;
-  const router = useRouter();
   return (
     <S.Wrapper>
       {isLoading && <Loader />}
@@ -39,12 +38,7 @@ function LoginView(props: Props) {
         </S.LoginButtonWrapper>
         <S.Contect>
           관리자 계정이 필요하신가요?
-          <button
-            type="button"
-            onClick={() => {
-              router.push("/signup");
-            }}
-          >
+          <button type="button" {...signButtonProps}>
             회원가입
           </button>
         </S.Contect>

@@ -4,12 +4,14 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from "@/consts/components/login";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import { useAsPathStateWrite } from "@/components/atoms/signup.atom";
 import { usePostLogin } from "@/mutations/postLogin";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
+import { setCookie } from "@/utils/cookie";
+
 import LoginView from "./LoginView";
 
 interface FormValues {
@@ -20,6 +22,7 @@ interface FormValues {
 function Login() {
   const isLoggedIn = useIsLoggedInValue();
   const pathName = usePathname();
+  const router = useRouter();
   const {
     mutateAsync: postLogin,
     isLoading = false,
@@ -90,6 +93,15 @@ function Login() {
     variant: "contained",
   };
 
+  const signButtonProps = {
+    onClick: () => {
+      console.log(pathName);
+
+      setCookie("/login");
+      router.push("/signup");
+    },
+  };
+
   const logoProps = {
     src: "/images/svg/logo.svg",
     alt: "NEXT ROOM",
@@ -104,6 +116,7 @@ function Login() {
     adminCodeProps,
     passwordProps,
     buttonProps,
+    signButtonProps,
     logoProps,
     isLoading,
     errorMessage,
