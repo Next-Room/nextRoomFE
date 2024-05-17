@@ -56,7 +56,13 @@ function SignUp() {
   useEffect(() => {
     if (errors.email) {
       setErrorMsg(errors.email.message);
+      return;
     }
+    if (isError) {
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      setErrorMsg(error?.response?.data?.message);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors.email, isError]);
 
   const adminCodeProps = {
@@ -87,14 +93,11 @@ function SignUp() {
     sx: { marginTop: "20px" },
   };
 
-  const errorMessage = isError && error?.response?.data?.message;
-
   const SignUpViewProps = {
     formProps,
     adminCodeProps,
     buttonProps,
     isLoading,
-    errorMessage,
   };
 
   if (isLoading) {
