@@ -46,9 +46,10 @@ export const Contect = styled.div`
   line-height: 16px;
   text-align: center;
   margin: 9px 0;
-  color:rgba(255, 255, 255, 0.7) ;
+  color: rgba(255, 255, 255, 0.7);
   ${"button"} {
     font-weight: 600;
     color: white;
+    margin-left: 8px;
   }
 `;

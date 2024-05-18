@@ -72,23 +72,24 @@ export const PlayBtn = styled(Link)`
 `;
 
 export const PlayTitle = styled.p`
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: 0.10000000149011612px;
-  color: white;
-`;
-
-export const SubTitle = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  margin: 8px 0 24px;
+  letter-spacing: 0.10000000149011612px;
   color: #9e9ea1;
+`;
+
+export const SubTitle = styled.p`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 8px 0 24px;
+  color: white;
 `;
 
 export const SuccessButton = styled.button`
   height: 58px;
+  width: 211px;
   padding: 0 56px;
   border-radius: 75px;
   background-color: white;

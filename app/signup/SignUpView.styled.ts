@@ -53,7 +53,7 @@ export const SubTitle = styled.p`
   a {
     text-decoration: underline;
     text-underline-position: under;
-    color: white;
+    color: #9e9ea1;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -62,6 +62,7 @@ export const SubTitle = styled.p`
     cursor: pointer;
     margin: 0;
     padding: 0;
+    margin-left: 4px;
   }
 `;
 
@@ -69,6 +70,7 @@ export const Label = styled(FormControlLabel)`
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
+  margin-left: 0px !important;
   text-align: left;
   color: #9e9ea1;
 `;
@@ -118,7 +120,7 @@ export const ReRequest = styled.div`
   line-height: 20px;
   ${"p"} {
     color: #9e9ea1;
-    margin-right: 2px;
+    margin-right: 4px;
     float: left;
   }
   ${"button"} {
