@@ -60,9 +60,8 @@ export const Theme = styled(ListItemText)`
 `;
 
 export const CodeWrap = styled.div`
-
   width: 316px;
-  height: 96px;
+  height: 124px;
   padding: 14px;
   margin: 8px auto;
   border-radius: 8px;

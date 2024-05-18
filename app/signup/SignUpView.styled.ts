@@ -32,7 +32,6 @@ export const Form = styled.form`
 `;
 
 export const Grid = styled.div`
-  display: grid;
   margin-bottom: 20px;
 `;
 
