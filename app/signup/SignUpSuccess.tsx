@@ -85,17 +85,7 @@ function SignUpSuccess() {
             <S.Title>이제 힌트를 등록할 수 있습니다</S.Title>
             <S.SubTitle>힌트 등록은 PC에서만 진행할 수 있습니다</S.SubTitle>
             {isWebView ? (
-              <S.SuccessButton
-                onClick={() => {
-                  logEvent(analytics, "btn_click", {
-                    btn_name: "sign_up_main_btn",
-                    btn_position: "top",
-                  });
-                  router.push("/");
-                }}
-              >
-                메인으로 돌아가기
-              </S.SuccessButton>
+              ""
             ) : (
               <S.SuccessButton
                 onClick={() => {
