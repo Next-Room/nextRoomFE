@@ -7,6 +7,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import Loader from "@/components/Loader/Loader";
 import { usePostSignUp } from "@/mutations/postSignUp";
+import "@/apis/firebase";
 import StoreInfoView from "./StoreInfoView";
 
 interface FormValues {
@@ -24,9 +25,17 @@ function StoreInfo() {
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(
       navigator.userAgent
     );
+    const analytics = getAnalytics();
 
   // eslint-disable-next-line no-nested-ternary
   const type = isWebView ? 3 : isMobile ? 2 : 1;
+  useEffect(() => {
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "sign_up_store_info",
+      firebase_screen_class: "sign_up_store_info",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const {
     mutateAsync: postSignUp,
@@ -43,7 +52,6 @@ function StoreInfo() {
     reset,
     formState: { errors },
   } = useForm<FormValues>();
-  const analytics = getAnalytics();
   const formValue = watch();
 
   useEffect(() => {
@@ -93,6 +101,10 @@ function StoreInfo() {
       isNotOpened: isChecked,
       type,
     });
+    logEvent(analytics, "btn_click", {
+      btn_name: "sign_up_store_info_btn",
+      btn_position: "top",
+    })
   };
   const formProps = {
     component: "form",
@@ -132,6 +144,8 @@ function StoreInfo() {
     onChange: () => {
       setIsChecked(!isChecked);
       window.scrollTo(0, document.body.scrollHeight);
+    },
+    onClick: () => {
       logEvent(analytics, "btn_click", {
         btn_name: "shopName_check",
         btn_position: "top",

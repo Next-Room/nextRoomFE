@@ -15,7 +15,7 @@ export default function Inputbar(): JSX.Element | null {
   const navigateToTrial = () => {
     const url = isSignIn
       ? "/admin"
-      : "/signup/?utm_source=landin_mo&utm_medium=floating_btn";
+      : "/signup";
     setCookie("/");
     router.push(url);
     logEvent(analytics, "btn_click", {

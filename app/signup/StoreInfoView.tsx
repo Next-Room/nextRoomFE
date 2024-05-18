@@ -23,6 +23,7 @@ function StoreInfoView(props: Props) {
 
   const { checked, onChange } = checkBoxProps;
 
+
   return (
     <S.Cont>
       {isLoading && <Loader />}

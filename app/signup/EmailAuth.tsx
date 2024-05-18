@@ -7,7 +7,8 @@ import { useSignUpState } from "@/components/atoms/signup.atom";
 import Loader from "@/components/Loader/Loader";
 import { usePostVerification } from "@/mutations/postVerification";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 import EmailAuthView from "./EmailAuthView";
 
 interface FormValues {
@@ -16,6 +17,7 @@ interface FormValues {
 
 function EmailAuth() {
   const [signUpState, setSignUpState] = useSignUpState();
+  const analytics = getAnalytics();
 
   const {
     mutateAsync: postVerification,
@@ -63,8 +65,20 @@ function EmailAuth() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  useEffect(() => {
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "sign_up_email_code",
+      firebase_screen_class: "sign_up_email_code",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postVerification({ code: data.code, email: signUpState.email });
+    logEvent(analytics, "btn_click", {
+      btn_name: "sign_up_email_code_btn",
+      btn_position: "top",
+    });
   };
 
   const formProps = {
