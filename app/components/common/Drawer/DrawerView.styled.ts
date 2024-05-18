@@ -58,3 +58,26 @@ export const Theme = styled(ListItemText)`
   font-weight: 400;
   margin-bottom: 18px;
 `;
+
+export const CodeWrap = styled.div`
+  width: 316px;
+  height: 124px;
+  padding: 14px;
+  margin: 8px auto;
+  border-radius: 8px;
+  background-color: #030303;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #9e9ea1;
+
+  ${"span"} {
+    display: block;
+    margin: 4px 0 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+`;

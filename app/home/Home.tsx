@@ -18,7 +18,7 @@ function Home() {
   };
 
   const isSignIn = useCheckSignIn();
-
+  
 
   useEffect(() => {
     if (snackInfo.isOpen) {
@@ -41,6 +41,8 @@ function Home() {
       <SnackBar
         open={snackInfo.isOpen}
         ment={snackInfo.message}
+        vertical="bottom"
+        horizontal="left"
         handleClose={() => setSnackBarInfo({ ...snackInfo, isOpen: false })}
       />
     </>

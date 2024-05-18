@@ -3,8 +3,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { ADMIN_CODE, ADMIN_PASSWORD } from "@/consts/components/login";
-
+import { ADMIN_EMAIL, ADMIN_PASSWORD } from "@/consts/components/login";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import { usePostLogin } from "@/mutations/postLogin";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
@@ -12,7 +11,7 @@ import Loader from "@/components/Loader/Loader";
 import LoginView from "./LoginView";
 
 interface FormValues {
-  adminCode: string;
+  email: string;
   password: string;
 }
 
@@ -24,18 +23,16 @@ function Login() {
     isError = false,
     error,
   } = usePostLogin();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      adminCode: process.env.NEXT_PUBLIC_ADMIN_CODE || "",
+      email: process.env.NEXT_PUBLIC_ADMIN_EMAIL || "",
       password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "",
     },
   });
-
   useCheckSignIn();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -52,15 +49,19 @@ function Login() {
   const adminCodeProps = {
     id: "filled-adminCode",
     type: "text",
-    helperText: errors?.adminCode && errors?.adminCode.message,
-    error: Boolean(errors?.adminCode) || isError,
+    helperText: errors?.email && errors?.email.message,
+    error: Boolean(errors?.email) || isError,
     variant: "filled",
-    label: ADMIN_CODE,
-    placeholder: ADMIN_CODE,
-    ...register("adminCode", { required: "관리자 번호를 입력해 주세요." }),
-    sx: {
-      marginBottom: "40px",
-      backgroundColor: "#FFFFFF10",
+    label: ADMIN_EMAIL,
+    placeholder: ADMIN_EMAIL,
+    inputProps: {
+      ...register("email", {
+        required: "이메일을 입력해 주세요.",
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "이메일 형식에 맞지 않습니다.",
+        },
+      }),
     },
   };
 
@@ -70,10 +71,11 @@ function Login() {
     variant: "filled",
     label: ADMIN_PASSWORD,
     placeholder: ADMIN_PASSWORD,
-    ...register("password", { required: "비밀번호를 입력해 주세요." }),
+    inputProps: {
+      ...register("password", { required: "비밀번호를 입력해 주세요." }),
+    },
     helperText: errors?.password && errors.password.message,
     error: Boolean(errors?.password) || isError,
-    sx: { backgroundColor: "#ffffff10" },
   };
 
   const buttonProps = {

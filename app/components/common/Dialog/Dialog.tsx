@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import DialogView from "./DialogView";
 
 type ContentType = "hintPut" | "themePut" | "hintPost" | "themePost";
@@ -12,10 +13,24 @@ interface Props {
 function Dialog(props: Props) {
   const { open, handleDialogClose, type, handleBtn } = props;
 
-  const handleQuitDialog = () => {
+  const handleQuitDialog = useCallback(() => {
     handleBtn();
     handleDialogClose();
-  };
+  }, [handleBtn, handleDialogClose]);
+
+  useEffect(() => {
+    const handleEnterKey = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        handleQuitDialog();
+      }
+    };
+
+    document.addEventListener("keydown", handleEnterKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEnterKey);
+    };
+  }, [handleQuitDialog]);
 
   // 힌트 함수 추가
 

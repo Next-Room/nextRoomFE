@@ -1,10 +1,12 @@
 "use client";
 
+import { isDevMode } from "@/consts/env";
 import Script from "next/script";
 import * as gtag from "./gtag";
 
 function Analytics() {
   // You can show in the console the GA_TRACKING_ID to confirm
+  if (isDevMode) return null;
 
   return (
     <>

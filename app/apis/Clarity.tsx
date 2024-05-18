@@ -2,9 +2,12 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
+import { isDevMode } from "@/consts/env";
 
 function Clarity() {
   const pathname = usePathname();
+
+  if (isDevMode) return null;
 
   if (pathname === "/admin") return null;
 

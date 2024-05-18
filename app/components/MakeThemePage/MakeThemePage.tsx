@@ -7,6 +7,7 @@ import { usePutTheme } from "@/mutations/putTheme";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useModalState } from "@/components/atoms/modals.atom";
 import { useRouter } from "next/navigation";
+import { useGetThemeList } from "@/queries/getThemeList";
 import MakeThemeModalView from "./MakeThemePageView";
 import Dialog from "../common/Dialog/Dialog";
 
@@ -19,6 +20,7 @@ interface FormValues {
 
 function MakeThemePage() {
   const [modalState, setModalState] = useModalState();
+  const { data: categories = [] } = useGetThemeList();
   const [open, setOpen] = useState<boolean>(false);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,25 +34,20 @@ function MakeThemePage() {
     watch,
     reset,
     formState: { errors },
+    trigger,
   } = useForm<FormValues>();
 
   const formValue = watch();
   const handleClose = () => {
-    if (
-      selectedTheme.title === formValue.title &&
-      selectedTheme.timeLimit === formValue.timeLimit &&
-      selectedTheme.hintLimit === formValue.hintLimit
-    ) {
-      setModalState({ ...modalState, isOpen: false });
-    }
+    setSelectedTheme(categories[categories.length - 1]);
     if (
       modalState.type === "post" &&
       !(formValue.title || formValue.timeLimit || formValue.hintLimit)
     ) {
       setModalState({ ...modalState, isOpen: false });
+    } else {
+      setOpen(!open);
     }
-
-    setOpen(!open);
   };
   useEffect(() => {
     reset();
@@ -60,6 +57,12 @@ function MakeThemePage() {
       setValue("hintLimit", selectedTheme.hintLimit);
     }
   }, [selectedTheme, setValue, modalState.type, reset]);
+
+  useEffect(() => {
+    if (formValue.title && formValue.timeLimit && formValue.hintLimit) {
+      trigger();
+    }
+  }, [formValue.hintLimit, formValue.timeLimit, formValue.title, trigger]);
 
   const { mutateAsync: postTheme } = usePostTheme();
   const { mutateAsync: putTheme } = usePutTheme();
@@ -76,11 +79,13 @@ function MakeThemePage() {
     if (modalState.type === "put") {
       putTheme(submitData);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`);
+      router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`);
     } else {
       postTheme(data);
       setModalState({ ...modalState, isOpen: false });
-      router.push(`/admin?title=${encodeURIComponent(data.title)}`);
+      if (data.id) {
+        router.push(`/admin?themeId=${encodeURIComponent(data.id)}`);
+      }
     }
   };
 
@@ -96,7 +101,13 @@ function MakeThemePage() {
     label: "테마 이름",
     placeholder: "입력해 주세요.",
     message: "손님에게는 보이지 않아요.",
-    ...register("title", { required: "테마 이름은 필수 값 입니다" }),
+    ...register("title", {
+      required: "테마 이름은 필수값입니다",
+      pattern: {
+        value: /^.+$/,
+        message: "테마 이름은 필수값입니다",
+      },
+    }),
   };
   const timeLimitProps = {
     id: "timeLimit",
@@ -112,13 +123,14 @@ function MakeThemePage() {
       },
     }),
   };
+
   const hintLimitProps = {
     id: "hintLimit",
     label: "힌트 개수",
     type: "number",
     message: "이 테마에서 사용할 수 있는 힌트 수를 입력해 주세요.",
     ...register("hintLimit", {
-      required: "힌트 수를 입력해 주세요..",
+      required: "힌트 수를 입력해 주세요.",
       pattern: {
         value: /^[1-9]\d*$/,
         message: "1개 이상으로 입력해 주세요.",
@@ -145,7 +157,7 @@ function MakeThemePage() {
       <MakeThemeModalView {...MakeThemeModalViewProps} />
       <Dialog
         handleBtn={() =>
-          router.push(`/admin?title=${encodeURIComponent(selectedTheme.title)}`)
+          router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`)
         }
         open={open}
         handleDialogClose={() => setOpen(false)}

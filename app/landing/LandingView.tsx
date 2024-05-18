@@ -30,12 +30,12 @@ function LandingView(props: Props) {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { buttonProps } = props;
+  const { buttonProps, LoginLinkProps, SignUpLinkProps } = props;
 
   const [showBtn, setShowBtn] = useState(false); // Btn 컴포넌트의 가시성 상태
-  const component1Ref = useRef<HTMLElement | null>(null);
+  const component1Ref = useRef<HTMLDivElement | null>(null);
   const component7Ref = useRef<HTMLDivElement | null>(null);
-  const component9Ref = useRef<HTMLElement | null>(null); // Component9의 참조 추가
+  const component9Ref = useRef<HTMLDivElement | null>(null); // Component9의 참조 추가
 
   const handleScroll = () => {
     if (component1Ref.current) {
@@ -73,12 +73,25 @@ function LandingView(props: Props) {
           <S.Wrapper>
             <S.LogoWrapper>
               <S.Logo />
+              {!isMobile && (
+                <S.BtnWrap>
+                  <S.LoginButton {...LoginLinkProps}>
+                    {LoginLinkProps.title}
+                  </S.LoginButton>
+                  <S.FreeButton {...SignUpLinkProps}>
+                    {SignUpLinkProps.title}
+                  </S.FreeButton>
+                </S.BtnWrap>
+              )}
             </S.LogoWrapper>
             {/* 조건부 렌더링을 통해 Btn 컴포넌트를 표시 */}
             {/* buttonProps를 전달하고 ref를 설정하여 DOM 요소를 참조합니다. */}
             {isMobile ? (
               <S.MobileWrapper>
-                <Component1Mobile ref={component1Ref} {...buttonProps} />
+                <Component1Mobile
+                  ref={component1Ref}
+                  buttonProps={buttonProps}
+                />
                 <Component2Mobile />
                 <Component3Mobile />
                 <Component4Mobile />
@@ -87,12 +100,15 @@ function LandingView(props: Props) {
                 <Component7Mobile ref={component7Ref} />
 
                 {/* <Component8Mobile /> */}
-                <Component9Mobile ref={component9Ref} {...buttonProps} />
+                <Component9Mobile
+                  ref={component9Ref}
+                  buttonProps={buttonProps}
+                />
                 {showBtn && <MobileBtn />}
               </S.MobileWrapper>
             ) : (
               <>
-                <Component1 ref={component1Ref} {...buttonProps} />
+                <Component1 ref={component1Ref} buttonProps={buttonProps} />
                 <Component2 />
                 <Component3 />
                 <Component4 />
@@ -100,7 +116,7 @@ function LandingView(props: Props) {
                 <Component6 />
                 <Component7 ref={component7Ref} />
                 {/* <Component8 /> */}
-                <Component9 ref={component9Ref} {...buttonProps} />
+                <Component9 ref={component9Ref} buttonProps={buttonProps} />
                 {showBtn && <PcBtn />}
               </>
             )}

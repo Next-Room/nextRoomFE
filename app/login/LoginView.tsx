@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { TextField } from "@mui/material";
 
-import { LOGIN, CONTECT, EMAIL } from "@/consts/components/login";
-
-import Link from "next/link";
+import { LOGIN } from "@/consts/components/login";
 import Loader from "@/components/Loader/Loader";
+import { NewTextField } from "@/signup/NewTextField.component";
+import { useRouter } from "next/navigation";
+import { setCookie } from "@/utils/cookie";
+import Link from "next/link";
 import * as S from "./LoginView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,25 +22,34 @@ function LoginView(props: Props) {
     isLoading,
     errorMessage,
   } = props;
-
+  const router = useRouter();
   return (
     <S.Wrapper>
       {isLoading && <Loader />}
-      <Image {...logoProps} />
+      <Link href="/">
+        <Image {...logoProps} />
+      </Link>
 
       <S.StyledBox {...formProps}>
-        <TextField {...adminCodeProps} />
-        <TextField {...passwordProps} />
+        <NewTextField {...adminCodeProps} />
+        <NewTextField {...passwordProps} />
         <S.LoginButtonWrapper>
           <S.ServerErrorMessage>{errorMessage}</S.ServerErrorMessage>
           <S.LoginButton {...buttonProps}>{LOGIN}</S.LoginButton>
         </S.LoginButtonWrapper>
+        <S.Contect>
+          관리자 계정이 필요하신가요?
+          <button
+            type="button"
+            onClick={() => {
+              setCookie("/login");
+              router.push("/signup");
+            }}
+          >
+            회원가입
+          </button>
+        </S.Contect>
       </S.StyledBox>
-
-      <S.Contect>
-        {CONTECT}
-        <Link href={`mailto:${EMAIL}`}>{EMAIL}</Link>
-      </S.Contect>
     </S.Wrapper>
   );
 }

@@ -209,6 +209,7 @@ export const BoxWrapper = styled.div`
 
 export const Btn = styled.button`
   background: #fff;
+  color: black;
   width: 302px;
   height: 52px;
   height: 50px;
@@ -230,6 +231,7 @@ export const MainBtn = styled.button`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  color: black;
   z-index: 999;
 `;
 

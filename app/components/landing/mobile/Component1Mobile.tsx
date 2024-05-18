@@ -1,9 +1,12 @@
 import React, { forwardRef } from "react";
 import Image from "next/image";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import useCheckSignIn from "@/hooks/useCheckSignIn";
+import { setCookie } from "@/utils/cookie";
+
 import "@/apis/firebase";
 
 import * as S from "./ComponentMobile.styled";
@@ -12,6 +15,8 @@ type Props = Record<string, any>;
 
 const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const analytics = getAnalytics();
+  const isSignIn = useCheckSignIn();
+
   logEvent(analytics, "screen_view", {
     firebase_screen: "homepage_top",
     firebase_screen_class: "homepage_top",
@@ -23,7 +28,7 @@ const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
     width: 360,
     height: 266,
   };
-  // const router = useRouter();
+  const router = useRouter();
   const controls = useAnimation();
   const [inViewRef, inView] = useInView();
 
@@ -36,7 +41,12 @@ const Component1Mobile = forwardRef<HTMLDivElement, Props>((props, ref) => {
   }, [controls, inView]);
 
   const navigateToTrial = () => {
-    window.open("/trial", "_blank");
+    const url = isSignIn
+      ? "/admin"
+      : "/signup";
+    setCookie("/");
+
+    router.push(url);
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "top",

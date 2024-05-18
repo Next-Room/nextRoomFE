@@ -4,6 +4,7 @@ import { MAIN_GRID_WIDTH } from "@/consts/styles/common";
 
 export const Wrapper = styled(Box)`
   display: flex;
+  min-width: 1280px;
   height: 100vh;
   overflow: hidden;
 `;

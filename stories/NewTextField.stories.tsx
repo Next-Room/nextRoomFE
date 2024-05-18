@@ -22,7 +22,7 @@ export const Playground = {
   },
   render: (args: TextFieldProps) => <NewTextField {...args} />,
 };
-export const LabelAndInput = {
+export const LabelInput = {
   render: (args: TextFieldProps) => (
     <Stack spacing={2} maxWidth={300}>
       <NewTextField {...args} />
@@ -30,6 +30,6 @@ export const LabelAndInput = {
   ),
 };
 
-export const LabelOnly = {
+export const Label = {
   render: (args: TextFieldProps) => <NewTextFieldLabel {...args} />,
 };

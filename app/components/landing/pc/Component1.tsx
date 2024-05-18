@@ -1,9 +1,11 @@
 import React, { forwardRef } from "react";
 import Image from "next/image";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import useCheckSignIn from "@/hooks/useCheckSignIn";
+import { setCookie } from "@/utils/cookie";
 import "@/apis/firebase";
 
 import * as S from "./Component.styled";
@@ -17,7 +19,8 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
     firebase_screen_class: "homepage_top",
   });
   const { buttonProps } = props;
-  // const router = useRouter();
+  const router = useRouter();
+  const isSignIn = useCheckSignIn();
   const controls = useAnimation();
   const [inViewRef, inView] = useInView();
 
@@ -45,8 +48,11 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   };
 
   const navigateToTrial = () => {
-    // router.push("/trial");
-    window.open("/trial", "_blank");
+    const url = isSignIn
+      ? "/admin"
+      : "/signup";
+    router.push(url);
+    setCookie("/");
     logEvent(analytics, "btn_click", {
       btn_name: "homepage_start_free_trial_click",
       btn_position: "top",

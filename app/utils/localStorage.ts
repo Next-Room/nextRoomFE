@@ -1,5 +1,6 @@
 const ACCESS_TOKEN = "accessToken";
 const SHOP_NAME = "shopName";
+const ADMIN_CODE = "adminCode";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setLocalStorage = (key: string, value: any) => {
@@ -54,9 +55,15 @@ export const setShopName = (ShopName: string) => {
   setLocalStorage(SHOP_NAME, ShopName);
 };
 
+export const setAdminCode = (AdminCode: string) => {
+  setLocalStorage(ADMIN_CODE, AdminCode);
+};
 export const getAccessToken = () => getLocalStorage(ACCESS_TOKEN);
 export const getShopName = () => getLocalStorage(SHOP_NAME);
+export const getAdminCode = () => getLocalStorage(ADMIN_CODE);
 
 export const removeAccessToken = () => {
   removeLocalStorageItem(ACCESS_TOKEN);
 };
+
+
