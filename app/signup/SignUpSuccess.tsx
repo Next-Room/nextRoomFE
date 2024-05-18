@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie-player";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
-import Link from "next/link";
 import Image from "next/image";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { useRouter } from "next/navigation";
+import { getCookie } from "@/utils/cookie";
 import loaderJson from "../../public/lottie/signup.json";
 import "@/apis/firebase";
 import * as S from "./SignUpSuccess.styled";
@@ -15,12 +16,17 @@ function SignUpSuccess() {
   const isWebView = /APP_NEXTROOM_ANDROID/.test(navigator.userAgent); // 웹뷰에서 실행 중인지 여부 확인
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
+  const router = useRouter();
 
   const analytics = getAnalytics();
-  logEvent(analytics, "screen_view", {
-    firebase_screen: "sign_up_success",
-    firebase_screen_class: "sign_up_success",
-  });
+
+  useEffect(() => {
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "sign_up_success",
+      firebase_screen_class: "sign_up_success",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isFinished) {
@@ -30,18 +36,11 @@ function SignUpSuccess() {
     }
   }, [setSnackBarInfo, isFinished, snackInfo]);
 
-  const handleWebViewButton = () => {
-    if (typeof window !== "undefined") {
-      window.close();
-      // 여기에 클라이언트-사이드 로직 추가
-    }
-  };
-
-
   const browserPreventEvent = () => {
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, "", location.href);
-    
+    const url = isWebView ? "/" : getCookie();
+    router.push(url);
   };
 
   useEffect(() => {
@@ -86,12 +85,28 @@ function SignUpSuccess() {
             <S.Title>이제 힌트를 등록할 수 있습니다</S.Title>
             <S.SubTitle>힌트 등록은 PC에서만 진행할 수 있습니다</S.SubTitle>
             {isWebView ? (
-              <S.SuccessButton onClick={handleWebViewButton}>
+              <S.SuccessButton
+                onClick={() => {
+                  logEvent(analytics, "btn_click", {
+                    btn_name: "sign_up_main_btn",
+                    btn_position: "top",
+                  });
+                  router.push("/");
+                }}
+              >
                 메인으로 돌아가기
               </S.SuccessButton>
             ) : (
-              <S.SuccessButton>
-                <Link href="/login">힌트 등록하기</Link>
+              <S.SuccessButton
+                onClick={() => {
+                  logEvent(analytics, "btn_click", {
+                    btn_name: "sign_up_hint_btn",
+                    btn_position: "top",
+                  });
+                  router.push("/login");
+                }}
+              >
+                힌트 등록하기
               </S.SuccessButton>
             )}
           </>

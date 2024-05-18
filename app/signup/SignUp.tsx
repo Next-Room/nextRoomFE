@@ -8,7 +8,8 @@ import {
   SIGN_UP_PLACEHOLDER,
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
@@ -34,9 +35,21 @@ function SignUp() {
     formState: { errors, isValid },
   } = useForm<FormValues>();
   useCheckSignIn();
+  const analytics = getAnalytics();
 
+  useEffect(() => {
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "sign_up_start",
+      firebase_screen_class: "sign_up_start",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSendMessage(data);
+    logEvent(analytics, "btn_click", {
+      btn_name: "sign_up_start_btn",
+      btn_position: "top",
+    });
   };
   const formProps = {
     component: "form",

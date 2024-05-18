@@ -24,7 +24,7 @@ function Landing() {
   const handleSignUpBtn = () => {
     const url = isSignIn
       ? "/admin"
-      : "/signup/?utm_source=landing_pc&utm_medium=header_btn";
+      : "/signup";
 
     router.push(url);
   };

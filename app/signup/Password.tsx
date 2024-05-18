@@ -7,7 +7,8 @@ import {
   SIGN_UP_PASSWORD,
   SIGN_UP_PASSWORD_CONFIRM,
 } from "@/consts/components/signUp";
-
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "@/apis/firebase";
 import { useSignUpState } from "@/components/atoms/signup.atom";
 import PasswordView from "./PasswordView";
 
@@ -26,6 +27,7 @@ function Password() {
     formState: { errors, isValid },
   } = useForm<FormValues>({ mode: "onChange" });
   const formValue = watch();
+  const analytics = getAnalytics();
 
   const browserPreventEvent = () => {
     // eslint-disable-next-line no-restricted-globals
@@ -64,7 +66,20 @@ function Password() {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setSignUpState({ ...signUpState, password: data.password, level: 4 });
+    logEvent(analytics, "btn_click", {
+      btn_name: "sign_up_password_btn",
+      btn_position: "top",
+    });
   };
+
+  useEffect(() => {
+    logEvent(analytics, "screen_view", {
+      firebase_screen: "sign_up_password",
+      firebase_screen_class: "sign_up_password",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   const formProps = {
     component: "form",
     noValidate: true,
@@ -97,7 +112,7 @@ function Password() {
   const passwordConfirmProps = {
     id: "filled-adminCode",
     type: "password",
-    helperText: errors?.passwordConfirm && "비밀번호가 일치하지 않습니다.", // 비밀번호 확인 에러 메시지
+    helperText: errors?.passwordConfirm && errors?.passwordConfirm.message, // 비밀번호 확인 에러 메시지
     error: Boolean(errors?.passwordConfirm), // 비밀번호 확인 에러 발생 시 에러 표시
     variant: "filled",
     label: SIGN_UP_PASSWORD_CONFIRM,
@@ -106,7 +121,7 @@ function Password() {
       ...register("passwordConfirm", {
         required: "비밀번호를 다시 입력해 주세요.",
         validate: (value) =>
-          value === formValue.password || "비밀번호가 일치하지 않습니다.", // 패스워드와 비밀번호 확인 값이 같은지 확인
+          value === formValue.password || "비밀번호가 일치하지 않습니다.", // 현재 필드의 값을 password와 직접 비교
       }),
     },
   };

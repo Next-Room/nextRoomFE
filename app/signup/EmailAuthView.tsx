@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import CodeInput from "./CodeInput";
-import "@/apis/firebase";
 import * as S from "./SignUpView.styled";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,12 +20,8 @@ function EmailAuthView(props: Props) {
   } = props;
 
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
-  const analytics = getAnalytics();
 
-  logEvent(analytics, "screen_view", {
-    firebase_screen: "sign_up_2",
-    firebase_screen_class: "sign_up_2",
-  });
+
   useEffect(() => {
     if (snackInfo.isOpen) {
       setTimeout(() => {

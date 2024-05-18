@@ -50,7 +50,7 @@ const Component1 = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const navigateToTrial = () => {
     const url = isSignIn
       ? "/admin"
-      : "/signup/?utm_source=landin_pc&utm_medium=top_btn";
+      : "/signup";
     router.push(url);
     setCookie("/");
     logEvent(analytics, "btn_click", {
