@@ -26,12 +26,14 @@ function SignUp() {
     isError = false,
     error,
   } = usePostSendMessage();
+
   const [errorMsg, setErrorMsg] = useState<string | undefined>(SIGN_UP_SUBTEXT);
   const ref = useRef(null);
   const {
     register,
     setFocus,
     handleSubmit,
+    getValues,
     formState: { errors, isValid },
   } = useForm<FormValues>();
   useCheckSignIn();
@@ -46,9 +48,8 @@ function SignUp() {
   }, []);
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSendMessage(data);
-    logEvent(analytics, "btn_click", {
-      btn_name: "sign_up_start_btn",
-      btn_position: "top",
+    logEvent(analytics, "WEB_join_btnClick_requestPasscode", {
+      email: getValues("email"),
     });
   };
   const formProps = {
