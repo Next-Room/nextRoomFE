@@ -21,6 +21,7 @@ import Image from "next/image";
 import { getAdminCode, getShopName } from "@/utils/localStorage";
 import Dialog from "@/components/common/Dialog/Dialog";
 
+import Link from "next/link";
 import * as S from "./DrawerView.styled";
 
 type Props = {
@@ -53,7 +54,6 @@ function MainDrawer(props: Props) {
 
     setModalState({ type: "post", isOpen: true });
   };
-
 
   const handleDialog = () => {
     setOpen(!open);
@@ -127,10 +127,24 @@ function MainDrawer(props: Props) {
         <S.CodeWrap>
           관리자 코드
           <br />
-          <span>🔑 {" "}{ adminCode?.replaceAll(`"`, "")}</span>
+          <span>🔑 {adminCode?.replaceAll(`"`, "")}</span>
           힌트를 추가 및 수정했다면 힌트폰 앱에서 반드시 업데이트 버튼을
           눌러주세요.
         </S.CodeWrap>
+        <S.GuideList
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Link
+            href="https://held-notebook-420.notion.site/134ed57b9c574733b31feab0ea5c36a5"
+            target="_blank"
+            style={{ textDecoration: "unset", color: "white" }}
+          >
+            넥스트룸 사용자 가이드
+          </Link>
+        </S.GuideList>
       </Box>
       <Dialog
         open={open}

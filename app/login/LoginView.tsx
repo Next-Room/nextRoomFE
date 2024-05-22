@@ -49,20 +49,6 @@ function LoginView(props: Props) {
             회원가입
           </button>
         </S.Contect>
-        <S.Contect>
-          사용 방법이 궁금하신가요?{" "}
-          <button
-            type="button"
-            onClick={() => {
-              window.open(
-                "https://held-notebook-420.notion.site/134ed57b9c574733b31feab0ea5c36a5?pvs=4",
-                "_blank"
-              );
-            }}
-          >
-            사용자 가이드 보기
-          </button>
-        </S.Contect>
       </S.StyledBox>
     </S.Wrapper>
   );
