@@ -80,10 +80,11 @@ export const CodeWrap = styled.div`
   grid-gap: 8px;
   grid-template-columns: repeat(6, 1fr);
 `;
+
 export const CodeInput = styled.input<{ error?: boolean }>`
   aspect-ratio: 53 / 65; /* 너비:높이 비율 설정 */
   border-radius: 6px;
-  width: calc(100% - 8px); /* 그리드 간격을 고려하여 요소의 너비를 설정 */
+  width: 100%; /* 그리드 간격을 고려하여 요소의 너비를 설정 */
   background-color: #1f2225;
   border: 1px solid #474547;
   font-size: 26px;
@@ -91,7 +92,8 @@ export const CodeInput = styled.input<{ error?: boolean }>`
   line-height: 20px;
   text-align: center;
   color: white;
-  border: 2px solid ${(props) => (props.error ? "#F2B8B5" : "transparent")};
+  border: ${(props) =>
+    props.error ? "2px solid #F2B8B5" : "1px solid  #474547"};
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -141,6 +143,9 @@ export const ReRequest = styled.div`
 export const SignUpButton = styled(Button)`
   width: 100%;
   height: 58px;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
 `;
 
 export const StyledBox = styled(Box)`

@@ -36,6 +36,7 @@ const Input = styled.input`
   color: white;
   line-height: 22px;
   background-color: transparent;
+  caret-color: white;
 `;
 
 const Div = styled.div<SupportingTextProps>`
@@ -63,11 +64,6 @@ const Div = styled.div<SupportingTextProps>`
 
   input:focus {
     outline: none;
-    &::placeholder {
-      /* Placeholder의 CSS 설정 */
-      color: #121212; /* Placeholder의 텍스트 색상 지정 */
-      font-size: 14px; /* Placeholder의 글꼴 크기 지정 */
-    }
   }
 `;
 const SupportingText = styled.p<SupportingTextProps>`

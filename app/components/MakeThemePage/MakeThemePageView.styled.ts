@@ -29,7 +29,7 @@ export const Description = styled.p`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 42px;
+  margin-bottom: 20px;
 `;
 
 export const ButtonContainer = styled(Grid)`

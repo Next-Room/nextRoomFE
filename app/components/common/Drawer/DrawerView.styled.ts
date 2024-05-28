@@ -35,7 +35,6 @@ export const ListWrap = styled(List)`
   width: 360px;
   min-width: 360px;
   height: 100%;
-  min-height: 100vh;
   padding: 12px;
   box-sizing: border-box;
   border-right: #ffffff20 solid 1px;
@@ -61,7 +60,7 @@ export const Theme = styled(ListItemText)`
 
 export const CodeWrap = styled.div`
   width: 316px;
-  height: 124px;
+  height: 96px;
   padding: 14px;
   margin: 8px auto;
   border-radius: 8px;
@@ -91,4 +90,24 @@ export const GuideList = styled(ListItem)`
     color: white;
     text-decoration: none;
   }
+`;
+export const BottomFixedWrap = styled.div``;
+export const ListWrap1 = styled.div`
+  overflow-y: scroll;
+  ::-webkit-scrollbar-track {
+    background: transparent; /* 트랙 배경 투명 처리 */
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+    border-radius: 6px;
+    border: 1px solid #6e6b651c;
+    background: transparent; /* 트랙 배경 투명 처리 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #d6d6d6;
+    border-radius: 6px;
+  }
+  height: calc(100vh - 270px);
 `;

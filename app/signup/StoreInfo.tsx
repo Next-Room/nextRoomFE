@@ -25,7 +25,7 @@ function StoreInfo() {
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(
       navigator.userAgent
     );
-    const analytics = getAnalytics();
+  const analytics = getAnalytics();
 
   // eslint-disable-next-line no-nested-ternary
   const type = isWebView ? 3 : isMobile ? 2 : 1;
@@ -104,7 +104,7 @@ function StoreInfo() {
     logEvent(analytics, "btn_click", {
       btn_name: "sign_up_store_info_btn",
       btn_position: "top",
-    })
+    });
   };
   const formProps = {
     component: "form",
@@ -136,7 +136,7 @@ function StoreInfo() {
     label: "방문사유",
     placeholder: "방문사유",
     inputProps: { ...register("reason") },
-    style: { margin: "26px 0 20px" },
+    style: { marginTop: "26px" },
   };
   const checkBoxProps = {
     label: "매장명이 없습니다.",
@@ -160,6 +160,7 @@ function StoreInfo() {
       formValue.name?.length > 0 ||
       (isChecked && formValue.reason?.length > 0)
     ),
+    style: { marginTop: "20px" },
   };
 
   const ImageProps = {
