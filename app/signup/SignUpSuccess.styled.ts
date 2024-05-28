@@ -93,8 +93,10 @@ export const SuccessButton = styled.button`
   padding: 0 56px;
   border-radius: 75px;
   background-color: white;
-
+  color: black;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
   ${"a"} {
-    color: black;
   }
 `;
