@@ -1,10 +1,13 @@
-import { useSignUpState } from "@/components/atoms/signup.atom";
+import { AxiosError, AxiosResponse } from "axios";
+import { getAnalytics, logEvent } from "firebase/analytics";
+
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getHintList";
-import { ApiError, ApiResponse, MutationConfigOptions } from "@/types";
 
+import { useSignUpState } from "@/components/atoms/signup.atom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
+
+import type { ApiError, ApiResponse, MutationConfigOptions } from "@/types";
 
 interface Request {
   email: string;
@@ -22,7 +25,10 @@ type Response = ApiResponse<SignUpResponse>;
 const URL_PATH = `/v1/auth/signup`;
 const MUTATION_KEY = [URL_PATH];
 
+let requests: Request = {} as Request;
+
 export const postSignUp = async (req: Request) => {
+  requests = { ...req };
   const res = await apiClient.post<Request, AxiosResponse<Response>>(
     URL_PATH,
     req
@@ -32,6 +38,7 @@ export const postSignUp = async (req: Request) => {
 };
 
 export const usePostSignUp = (configOptions?: MutationConfigOptions) => {
+  const analytics = getAnalytics();
   const queryClient = useQueryClient();
   const [signUpState, setSignUpState] = useSignUpState();
 
@@ -42,20 +49,13 @@ export const usePostSignUp = (configOptions?: MutationConfigOptions) => {
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEY);
       setSignUpState({ ...signUpState, level: 5 });
-
-      // console.log("성공 시 실행")
+      logEvent(analytics, "WEB_join_join", {
+        email: requests?.email,
+        name: requests?.name,
+      });
+      requests = {} as Request;
     },
-    onSettled: () => {
-      //   console.log("항상 실행");
-    },
-    onError: (error) => {
-      console.log(error);
-
-      // setSnackBar({
-      //   isOpen: true,
-      //   message: `${(error as any)?.response?.data?.message || error}`,
-      // });
-    },
+    onError: console.error,
   });
 
   return info;
