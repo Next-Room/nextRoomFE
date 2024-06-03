@@ -81,3 +81,14 @@ export const CodeWrap = styled.div`
     line-height: 18px;
   }
 `;
+
+export const GuideList = styled(ListItem)`
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+
+  & > a {
+    color: white;
+    text-decoration: none;
+  }
+`;
