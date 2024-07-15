@@ -8,6 +8,7 @@ import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useModalState } from "@/components/atoms/modals.atom";
 import { useRouter } from "next/navigation";
 import { useGetThemeList } from "@/queries/getThemeList";
+import useChannelTalk from "@/hooks/useChannelTalk";
 import MakeThemeModalView from "./MakeThemePageView";
 import Dialog from "../common/Dialog/Dialog";
 
@@ -22,6 +23,7 @@ function MakeThemePage() {
   const [modalState, setModalState] = useModalState();
   const { data: categories = [] } = useGetThemeList();
   const [open, setOpen] = useState<boolean>(false);
+  useChannelTalk();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
