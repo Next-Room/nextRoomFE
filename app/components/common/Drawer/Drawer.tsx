@@ -84,46 +84,64 @@ function MainDrawer(props: Props) {
           </S.LogoWrapper>
         </ListItem>
       </Box>
-      <Box>
-        <S.ShopNameListItem>
-          <S.ShopName color="inherit">
-            {shopName?.replaceAll(`"`, "")}
-          </S.ShopName>
-        </S.ShopNameListItem>
-        {[...categories].reverse().map((theme) => (
-          <ListItem key={theme.id} title={theme.title}>
-            <ListItemButton
-              selected={selectedTheme.id === theme.id}
-              onClick={() => {
-                handleListItemClick(theme);
-              }}
-            >
-              <ListItemText
-                style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
+      <S.ListWrap1>
+        <Box>
+          <S.ShopNameListItem>
+            <S.ShopName color="inherit">
+              {shopName?.replaceAll(`"`, "")}
+            </S.ShopName>
+          </S.ShopNameListItem>
+          {[...categories].reverse().map((theme) => (
+            <ListItem key={theme.id} title={theme.title}>
+              <ListItemButton
+                selected={selectedTheme.id === theme.id}
+                onClick={() => {
+                  handleListItemClick(theme);
                 }}
               >
-                {theme.title}
-              </ListItemText>
-            </ListItemButton>
+                <ListItemText
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {theme.title}
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
+          <ListItem
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "14px",
+            }}
+          >
+            <Button onClick={toggleOnModalState}>
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText>새로운 테마 추가하기</ListItemText>
+            </Button>
           </ListItem>
-        ))}
-        <ListItem
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "14px",
+        </Box>
+        <Dialog
+          open={open}
+          handleBtn={() => {
+            if (focusedTheme) {
+              setModalState({ ...modalState, isOpen: false });
+              setSelectedTheme({ ...focusedTheme });
+              router.push(
+                `/admin?themeId=${encodeURIComponent(focusedTheme.id)}`
+              );
+            }
           }}
-        >
-          <Button onClick={toggleOnModalState}>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText>새로운 테마 추가하기</ListItemText>
-          </Button>
-        </ListItem>
+          handleDialogClose={() => setOpen(false)}
+          type={modalState.type === "post" ? "themePost" : "themePut"}
+        />
+      </S.ListWrap1>
+      <div>
         <S.CodeWrap>
           관리자 코드
           <br />
@@ -145,21 +163,7 @@ function MainDrawer(props: Props) {
             넥스트룸 사용자 가이드
           </Link>
         </S.GuideList>
-      </Box>
-      <Dialog
-        open={open}
-        handleBtn={() => {
-          if (focusedTheme) {
-            setModalState({ ...modalState, isOpen: false });
-            setSelectedTheme({ ...focusedTheme });
-            router.push(
-              `/admin?themeId=${encodeURIComponent(focusedTheme.id)}`
-            );
-          }
-        }}
-        handleDialogClose={() => setOpen(false)}
-        type={modalState.type === "post" ? "themePost" : "themePut"}
-      />
+      </div>
     </S.ListWrap>
   );
 }
