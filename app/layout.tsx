@@ -10,7 +10,6 @@ import ReactQueryProvider from "@/lib/reactQueryProvider";
 import RequireAuth from "@/components/RequireAuth/RequireAuth";
 
 import Analytics from "./apis/Analytics";
-import ChannelTalk from "./apis/ChannelTalk";
 import Clarity from "./apis/Clarity";
 
 export const metadata: Metadata = {
@@ -35,7 +34,6 @@ export default function RootLayout({
       <body>
         <Suspense>
           <Analytics />
-          <ChannelTalk />
           <Clarity />
         </Suspense>
         <Recoil>

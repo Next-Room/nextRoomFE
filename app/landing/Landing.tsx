@@ -6,6 +6,7 @@ import { useIsLoggedInWrite } from "@/components/atoms/account.atom";
 import { useAsPathStateWrite } from "@/components/atoms/signup.atom";
 import { removeAccessToken } from "@/utils/localStorage";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
+import useChannelTalk from "@/hooks/useChannelTalk";
 import LandingView from "./LandingView";
 
 function Landing() {
@@ -21,10 +22,10 @@ function Landing() {
   setAsPathState(pathName);
   // document.cookie = `pathName =${pathName}`;
 
+  useChannelTalk();
+
   const handleSignUpBtn = () => {
-    const url = isSignIn
-      ? "/admin"
-      : "/signup";
+    const url = isSignIn ? "/admin" : "/signup";
 
     router.push(url);
   };

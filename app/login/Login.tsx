@@ -8,6 +8,7 @@ import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import { usePostLogin } from "@/mutations/postLogin";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
+import useChannelTalk from "@/hooks/useChannelTalk";
 import LoginView from "./LoginView";
 
 interface FormValues {
@@ -34,6 +35,7 @@ function Login() {
     },
   });
   useCheckSignIn();
+  useChannelTalk();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postLogin(data);
