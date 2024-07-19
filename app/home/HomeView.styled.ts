@@ -6,7 +6,8 @@ export const Wrapper = styled(Box)`
   display: flex;
   min-width: 1280px;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
 `;
 
 export const Cont = styled(Box)`
