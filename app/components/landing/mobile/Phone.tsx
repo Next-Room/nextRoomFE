@@ -2,14 +2,14 @@ import React, { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 
 import Image from "next/image";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 
 import * as S from "@/components/landing/mobile/ComponentMobile.styled";
+import useAnalytics from "@/hooks/useAnalytics";
 
 export default function Phone() {
-  const analytics = getAnalytics();
-  logEvent(analytics, "screen_view", {
+  const { logEvent } = useAnalytics();
+  logEvent("screen_view", {
     firebase_screen: "homepage_function_1",
     firebase_screen_class: "homepage_function_1",
   });
