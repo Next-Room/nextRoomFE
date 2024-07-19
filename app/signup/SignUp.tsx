@@ -8,11 +8,11 @@ import {
   SIGN_UP_PLACEHOLDER,
   SIGN_UP_SUBTEXT,
 } from "@/consts/components/signUp";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
+import useAnalytics from "@/hooks/useAnalytics";
 import SignUpView from "./SignUpView";
 
 interface FormValues {
@@ -35,10 +35,11 @@ function SignUp() {
     formState: { errors, isValid },
   } = useForm<FormValues>();
   useCheckSignIn();
-  const analytics = getAnalytics();
+
+  const { logEvent } = useAnalytics();
 
   useEffect(() => {
-    logEvent(analytics, "screen_view", {
+    logEvent("screen_view", {
       firebase_screen: "sign_up_start",
       firebase_screen_class: "sign_up_start",
     });
@@ -46,7 +47,7 @@ function SignUp() {
   }, []);
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSendMessage(data);
-    logEvent(analytics, "btn_click", {
+    logEvent("btn_click", {
       btn_name: "sign_up_start_btn",
       btn_position: "top",
     });

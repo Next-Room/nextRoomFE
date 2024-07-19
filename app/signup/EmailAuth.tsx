@@ -7,8 +7,8 @@ import { useSignUpState } from "@/components/atoms/signup.atom";
 import Loader from "@/components/Loader/Loader";
 import { usePostVerification } from "@/mutations/postVerification";
 import { usePostSendMessage } from "@/mutations/postSendMessage";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
+import useAnalytics from "@/hooks/useAnalytics";
 import EmailAuthView from "./EmailAuthView";
 
 interface FormValues {
@@ -17,7 +17,7 @@ interface FormValues {
 
 function EmailAuth() {
   const [signUpState, setSignUpState] = useSignUpState();
-  const analytics = getAnalytics();
+  const { logEvent } = useAnalytics();
 
   const {
     mutateAsync: postVerification,
@@ -66,7 +66,7 @@ function EmailAuth() {
   } = useForm<FormValues>();
 
   useEffect(() => {
-    logEvent(analytics, "screen_view", {
+    logEvent("screen_view", {
       firebase_screen: "sign_up_email_code",
       firebase_screen_class: "sign_up_email_code",
     });
@@ -75,7 +75,7 @@ function EmailAuth() {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postVerification({ code: data.code, email: signUpState.email });
-    logEvent(analytics, "btn_click", {
+    logEvent("btn_click", {
       btn_name: "sign_up_email_code_btn",
       btn_position: "top",
     });

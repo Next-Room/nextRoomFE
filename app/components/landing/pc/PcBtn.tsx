@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 import { useRouter } from "next/navigation";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import { setCookie } from "@/utils/cookie";
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./Component.styled";
 
 export default function Inputbar(): JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
-  const analytics = getAnalytics();
+  const { logEvent } = useAnalytics();
   const router = useRouter();
   const isSignIn = useCheckSignIn();
 
   const navigateToTrial = () => {
-    const url = isSignIn
-      ? "/admin"
-      : "/signup";
+    const url = isSignIn ? "/admin" : "/signup";
     setCookie("/");
     router.push(url);
-    logEvent(analytics, "btn_click", {
+    logEvent("btn_click", {
       firebase_screen: "homepage_input_contact",
       firebase_screen_class: "homepage_input_contact",
     });

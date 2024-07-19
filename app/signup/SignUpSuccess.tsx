@@ -5,9 +5,9 @@ import Lottie from "react-lottie-player";
 import SnackBar from "@/components/SnackBar/SnackBar";
 import { useSnackBarInfo } from "@/components/atoms/snackBar.atom";
 import Image from "next/image";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import { useRouter } from "next/navigation";
 import { getCookie } from "@/utils/cookie";
+import useAnalytics from "@/hooks/useAnalytics";
 import loaderJson from "../../public/lottie/signup.json";
 import "@/apis/firebase";
 import * as S from "./SignUpSuccess.styled";
@@ -18,10 +18,10 @@ function SignUpSuccess() {
   const [snackInfo, setSnackBarInfo] = useSnackBarInfo();
   const router = useRouter();
 
-  const analytics = getAnalytics();
+  const { logEvent } = useAnalytics();
 
   useEffect(() => {
-    logEvent(analytics, "screen_view", {
+    logEvent("screen_view", {
       firebase_screen: "sign_up_success",
       firebase_screen_class: "sign_up_success",
     });
@@ -102,7 +102,7 @@ function SignUpSuccess() {
             ) : (
               <S.SuccessButton
                 onClick={() => {
-                  logEvent(analytics, "btn_click", {
+                  logEvent("btn_click", {
                     btn_name: "sign_up_hint_btn",
                     btn_position: "top",
                   });

@@ -7,9 +7,9 @@ import {
   SIGN_UP_PASSWORD,
   SIGN_UP_PASSWORD_CONFIRM,
 } from "@/consts/components/signUp";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 import { useSignUpState } from "@/components/atoms/signup.atom";
+import useAnalytics from "@/hooks/useAnalytics";
 import PasswordView from "./PasswordView";
 
 interface FormValues {
@@ -27,7 +27,7 @@ function Password() {
     formState: { errors, isValid },
   } = useForm<FormValues>({ mode: "onChange" });
   const formValue = watch();
-  const analytics = getAnalytics();
+  const { logEvent } = useAnalytics();
 
   const browserPreventEvent = () => {
     // eslint-disable-next-line no-restricted-globals
@@ -66,20 +66,20 @@ function Password() {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setSignUpState({ ...signUpState, password: data.password, level: 4 });
-    logEvent(analytics, "btn_click", {
+    logEvent("btn_click", {
       btn_name: "sign_up_password_btn",
       btn_position: "top",
     });
   };
 
   useEffect(() => {
-    logEvent(analytics, "screen_view", {
+    logEvent("screen_view", {
       firebase_screen: "sign_up_password",
       firebase_screen_class: "sign_up_password",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   const formProps = {
     component: "form",
     noValidate: true,

@@ -2,14 +2,14 @@ import React from "react";
 // import Image from "next/image";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./ComponentMobile.styled";
 
 export default function Component2Mobile() {
-  const analytics = getAnalytics();
-  logEvent(analytics, "screen_view", {
+  const { logEvent } = useAnalytics();
+  logEvent("screen_view", {
     firebase_screen: "homepage_carrer",
     firebase_screen_class: "homepage_carrer",
   });

@@ -1,14 +1,14 @@
 import React from "react";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./Component.styled";
 
 export default function Component8() {
-  const analytics = getAnalytics();
-  logEvent(analytics, "screen_view", {
+  const { logEvent } = useAnalytics();
+  logEvent("screen_view", {
     firebase_screen: "homepage_plan",
     firebase_screen_class: "homepage_plan",
   });

@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { EMAIL } from "@/consts/components/trial";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase";
 import { usePostInfo } from "@/mutations/postInfo";
+import useAnalytics from "@/hooks/useAnalytics";
 import TrialView from "./TrialView";
 
 interface FormValues {
@@ -13,14 +13,14 @@ interface FormValues {
 }
 function Trial() {
   const { mutate: postMutate } = usePostInfo();
+  const { logEvent } = useAnalytics();
 
   useEffect(() => {
-    const analytics = getAnalytics();
-    logEvent(analytics, "screen_view", {
+    logEvent("screen_view", {
       firebase_screen: "homepage_input_contact",
       firebase_screen_class: "homepage_input_contact",
     });
-  }, []);
+  }, [logEvent]);
   const {
     register,
     handleSubmit,

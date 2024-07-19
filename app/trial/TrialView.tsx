@@ -14,20 +14,20 @@ import {
   CONTACT_CONFIRMATION,
   RETURN_HOME,
 } from "@/consts/components/trial";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "@/apis/firebase"; // Firebase 초기화 파일 임포트
 
+import useAnalytics from "@/hooks/useAnalytics";
 import * as S from "./TrialView.styled";
 
 type Props = Record<string, any>;
 function TrialView(props: Props) {
   const { formProps, emailProps, buttonProps, isComplete } = props;
+  const { logEvent } = useAnalytics();
   useEffect(() => {
-    const analytics = getAnalytics();
-    logEvent(analytics, "btn_click", {
+    logEvent("btn_click", {
       btn_name: "homepage_apply_free_trial",
     });
-  }, []);
+  }, [logEvent]);
 
   const navigateToLanding = () => {
     if (typeof window !== "undefined") {
