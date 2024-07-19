@@ -1,4 +1,3 @@
-//useClickOutside.ts
 import { useEffect, MutableRefObject } from "react";
 
 function useClickOutside<T extends HTMLElement>(
