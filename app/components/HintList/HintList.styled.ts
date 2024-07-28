@@ -71,6 +71,7 @@ export const FloatButton = styled(Button)<{ active?: boolean }>`
   left: calc((100% - 360px) / 2 + 360px);
   transform: translateX(-50%);
   font-weight: 600;
+  width: 215px;
 
   ${(props) =>
     props.active
