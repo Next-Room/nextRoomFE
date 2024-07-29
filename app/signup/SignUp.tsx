@@ -33,8 +33,10 @@ function SignUp() {
     setFocus,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<FormValues>();
+    watch,
+  } = useForm<FormValues>({ defaultValues: { email: "" } });
   useCheckSignIn();
+  const emailValue = watch("email");
 
   const { logEvent } = useAnalytics();
 
@@ -87,6 +89,7 @@ function SignUp() {
     error: Boolean(errors?.email) || isError,
     variant: "filled",
     label: SIGN_UP_EMAIL,
+    value: emailValue,
     placeholder: SIGN_UP_PLACEHOLDER,
     ref,
     inputProps: {

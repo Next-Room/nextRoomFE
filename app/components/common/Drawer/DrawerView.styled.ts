@@ -42,6 +42,7 @@ export const ListWrap = styled(List)`
   background-repeat: no-repeat;
   background-position: center bottom;
   overflow-y: auto;
+  position: fixed;
 `;
 
 export const LogoWrapper = styled.div`

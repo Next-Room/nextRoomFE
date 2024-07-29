@@ -51,7 +51,12 @@ function StoreInfo() {
     setFocus,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    defaultValues: {
+      name: "",
+      reason: "",
+    },
+  });
   const formValue = watch();
 
   useEffect(() => {
@@ -69,7 +74,7 @@ function StoreInfo() {
     }
     setTimeout(() => {
       setFocus("reason");
-    }, 100);
+    }, 10);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
@@ -126,6 +131,7 @@ function StoreInfo() {
     disabled: isChecked,
     inputProps: { ...register("name") },
     style: { margin: "40px 0 6px" },
+    value: formValue.name,
   };
 
   const reasonProps = {
@@ -137,6 +143,7 @@ function StoreInfo() {
     placeholder: "방문사유",
     inputProps: { ...register("reason") },
     style: { marginTop: "26px" },
+    value: formValue.reason,
   };
   const checkBoxProps = {
     label: "매장명이 없습니다.",
