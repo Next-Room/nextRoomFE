@@ -30,7 +30,7 @@ const preview = {
       values: [
         {
           name: "main",
-          value: "#000000",
+          value: "#1A1B1B",
         },
         {
           name: "gray",

@@ -8,7 +8,6 @@ export const Wrapper = styled(Box)`
   height: 100vh;
   overflow-y: hidden;
   overflow-x: scroll;
-
 `;
 
 export const Cont = styled(Box)`
