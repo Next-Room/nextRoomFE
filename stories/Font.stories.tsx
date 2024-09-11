@@ -7,72 +7,148 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
     label: { control: "text" },
-
     disabled: { control: "boolean" },
   },
 };
 
-export const variants = {
-  render: () => <></>,
-};
 
 export const Title = {
   render: () => (
     <>
-      <Font type="title24M">title24M</Font>
-      <Font type="title20SB">title20SB</Font>
-      <Font type="title20M">title20M</Font>
-      <Font type="title18SB">title18SB</Font>
-      <Font type="title18M">title18M</Font>
-      <Font type="title16SB">title16SB</Font>
-      <Font type="title16M">title16M</Font>
-    </>
-  ),
-};
-
-export const Body = {
-  render: () => (
-    <>
-      <Font type="body16M" lineHeight="140%">
-        body16M
-      </Font>
-      <Font type="body16R" lineHeight="140%">
-        body16R
-      </Font>
-      <Font type="body14M" lineHeight="140%">
-        body14M
-      </Font>
-      <Font type="body14R" lineHeight="140%">
-        body14R
-      </Font>
-      <Font type="body12M" lineHeight="140%">
-        body12M
-      </Font>
-      <Font type="body12R" lineHeight="140%">
-        body12R
-      </Font>
-    </>
-  ),
-};
-
-export const Caption = {
-  render: () => (
-    <>
-      <Font type="caption12SB">caption12SB</Font>
-      <Font type="caption12M">caption12M</Font>
-    </>
-  ),
-};
-
-export const Button = {
-  render: () => (
-    <>
-      <Font type="body14M" lineHeight="100%">
-        button14M
-      </Font>
-      <Font type="body12M" lineHeight="100%">
-        button12M
-      </Font>
+      <table style={{ gap: "10px", color: "white" }}>
+        <tr>
+          <td>
+            <Font type="title24SB">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>title 24SB</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title24M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>title 24M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title20SB">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>title 20SB</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title20M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>title 20M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title18SB">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>title 18SB</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title18M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>title 18M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title16SB">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>title 16SB</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="title16M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>title 16M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="body16M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>body 16M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="body16R">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>body 16R</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="body14M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>body 14M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="body14R">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>body 14R</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="body12M">방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM</Font>
+          </td>
+          <td>
+            <p>body 12M</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="caption12SB">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>caption 12SB</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Font type="caption12M">
+              방탈출 힌트폰 서비스 넥스트룸 NEXT ROOM
+            </Font>
+          </td>
+          <td>
+            <p>caption 12M</p>
+          </td>
+        </tr>
+      </table>
     </>
   ),
 };

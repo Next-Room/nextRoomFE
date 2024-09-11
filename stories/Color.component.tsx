@@ -14,7 +14,8 @@ const ColorBox = styled.div<ColorProps>`
   border: 1px solid #8487901f;
   margin: 10px;
   background-color: ${({ type }) => backGroundColor[type]};
-  color: white;
+  color: ${({ type }) =>
+    backGroundColor[type] === "white" ? "balck" : "white"};
   text-align: center;
   line-height: 100px;
 `;

@@ -10,10 +10,14 @@ interface FontProps {
 
 // 스타일 정의
 const Title = styled.p<FontProps>`
+  font-family: "Pretendard";
   ${({ type }) => theme[type]};
   line-height: ${({ lineHeight }) => lineHeight};
   color: white;
+  
 `;
+
+
 
 export function Font({ children, type, lineHeight = "120%" }: FontProps) {
   return (

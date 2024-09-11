@@ -22,6 +22,8 @@ const color = {
 };
 
 export const backGroundColor = {
+  black: "black",
+  white: "white",
   main: "#131417",
   sub1: "#1F2023",
   sub2: "#3A3B3D",
@@ -31,17 +33,25 @@ export const backGroundColor = {
   white20: "#FFFFFF33",
   white50: "#FFFFFF80",
   white70: "#FFFFFFB2",
+  black60: "#00000099",
+  sRed300: "#F04438",
+  sRed400: "#D92D20",
+  sRed500: "#B42318",
 };
 
-
-export const title24M = css`
+export const title24SB = css`
   font-size: 24px;
   font-weight: 600;
 `;
 
+export const title24M = css`
+  font-size: 24px;
+  font-weight: 500;
+`;
+
 export const title20M = css`
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const title20SB = css`
@@ -112,6 +122,7 @@ const theme = {
   fontWeight,
   color,
   backGroundColor,
+  title24SB,
   title24M,
   title20M,
   title20SB,
