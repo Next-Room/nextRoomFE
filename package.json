@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -35,7 +36,7 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.45.1",
+    "react-hook-form": "^7.47.0",
     "react-intersection-observer": "^9.5.2",
     "react-lottie-player": "^1.5.4",
     "recoil": "^0.7.7",
