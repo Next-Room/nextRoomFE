@@ -21,8 +21,8 @@ function Admin() {
   const isLoggedIn = useCheckSignIn();
 
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
-  const shopName = getShopName();
-  const adminCode = getAdminCode();
+  const adminCode: string = getAdminCode() || ""; 
+  const shopName: string = getShopName() || "";
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -62,7 +62,7 @@ function Admin() {
     return <Loader />;
   }
 
-  return <AdminView props={SidebarViewProps} />;
+  return <AdminView {...SidebarViewProps} />;
 }
 
 export default Admin;

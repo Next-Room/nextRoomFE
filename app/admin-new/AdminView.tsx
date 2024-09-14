@@ -3,15 +3,44 @@ import Image from "next/image";
 import "./admin.css";
 import classNames from "classnames";
 import { NewTextField } from "@/signup/NewTextField.component";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Props = Record<string, any>;
 
-function AdminView({ props }: Props) {
+interface LogoProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface PlusProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface Theme {
+  id: number;
+  title: string;
+  timeLimit: number;
+  hintLimit: number;
+}
+
+interface Props {
+  logoProps: LogoProps;
+  plusProps: PlusProps;
+  adminCode: string;
+  shopName: string;
+  categories: Theme[];
+  selectedTheme: Theme;
+  handleClickSelected: (theme: Theme) => void;
+}
+
+function AdminView(props: Props) {
   const {
     logoProps,
     plusProps,
-    adminCode,
-    shopName,
+    adminCode = "",
+    shopName = "",
     categories,
     selectedTheme,
     handleClickSelected,
