@@ -53,6 +53,7 @@
     "@storybook/react": "^7.4.2",
     "@storybook/testing-library": "^0.2.1",
     "@svgr/webpack": "^8.0.1",
+    "@types/http-proxy": "^1.17.15",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",

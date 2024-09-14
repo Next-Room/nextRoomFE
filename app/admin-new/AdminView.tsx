@@ -39,6 +39,7 @@ function AdminView({ props }: Props) {
                 title={theme.title}
               >
                 <button
+                  type="button"
                   className={classNames("sidebar__theme-button", {
                     selected: selectedTheme.id === theme.id,
                   })}
@@ -49,7 +50,10 @@ function AdminView({ props }: Props) {
               </li>
             ))}
             <li className="sidebar__theme-item">
-              <button className="sidebar__theme-button sidebar__add-theme">
+              <button
+                type="button"
+                className="sidebar__theme-button sidebar__add-theme"
+              >
                 <Image {...plusProps} /> 새 테마 추가하기
               </button>
             </li>
@@ -61,7 +65,10 @@ function AdminView({ props }: Props) {
             <p className="sidebar__subscribe-value">
               사진을 추가하려면 유료 구독이 필요해요
             </p>
-            <button className="sidebar__subscribe-button button32">
+            <button
+              type="button"
+              className="sidebar__subscribe-button button32"
+            >
               구독 알아보기
             </button>
           </div>
@@ -79,7 +86,7 @@ function AdminView({ props }: Props) {
         </div>
       </div>
       <div className="sub">
-        <NewTextField></NewTextField>
+        <NewTextField />
       </div>
     </div>
   );

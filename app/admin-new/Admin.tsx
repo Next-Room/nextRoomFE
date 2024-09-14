@@ -4,12 +4,16 @@ import React, { useEffect } from "react";
 import useCheckSignIn from "@/hooks/useCheckSignIn";
 import Loader from "@/components/Loader/Loader";
 import { getAdminCode, getShopName } from "@/utils/localStorage";
-import {
-  InitialSelectedTheme,
-  useSelectedTheme,
-} from "@/components/atoms/selectedTheme.atom";
-import AdminView from "./AdminView";
+import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useGetThemeList } from "@/queries/getThemeList";
+import AdminView from "./AdminView";
+
+type Theme = {
+  id: number;
+  title: string;
+  timeLimit: number;
+  hintLimit: number;
+};
 
 function Admin() {
   const { data: categories = [] } = useGetThemeList();
@@ -26,7 +30,7 @@ function Admin() {
     }
   }, [categories, setSelectedTheme]);
 
-  const handleClickSelected = (theme: object) => {
+  const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);
   };
 

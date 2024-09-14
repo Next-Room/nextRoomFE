@@ -53,9 +53,10 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
-        const lastThemeId = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].id
-        );
+        // const lastThemeId = encodeURIComponent(
+        //   currentTheme[currentTheme.length - 1].id
+        // );
+        // router.push(`/admin?themeId=${lastThemeId}`);
         router.push(`/admin-new`);
       } else {
         router.push("/admin");
@@ -84,15 +85,13 @@ function RequireAuth({
   if (isLoggedIn && (pathname === "/" || "/admin-new")) return <>{children}</>;
 
   return (
-    <>
-      <S.Wrapper>
-        <MainDrawer {...{ categories }} />
-        <S.Cont component="main">
-          <Header />
-          {children}
-        </S.Cont>
-      </S.Wrapper>
-    </>
+    <S.Wrapper>
+      <MainDrawer {...{ categories }} />
+      <S.Cont component="main">
+        <Header />
+        {children}
+      </S.Cont>
+    </S.Wrapper>
   );
 }
 
