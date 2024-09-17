@@ -1,0 +1,80 @@
+.font {
+  font-family: "Pretendard";
+}
+.font__title-24m {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 120%;
+}
+.font__title-20m {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+}
+.font__title-16sb {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 120%;
+}
+.font__title-18m {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+}
+.font__title-18sb {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 120%;
+}
+.font__title-16m {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+}
+.font__title-16sb {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 120%;
+}
+.font__body-16m {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+}
+.font__body-16r {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+}
+.font__body-14m {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+}
+.font__body-14r {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 140%;
+}
+.font__body-12m {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+}
+.font__body-12r {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 140%;
+}
+.font__caption-12sb {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 120%;
+}
+.font__caption-12m {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+/*# sourceMappingURL=_font.css.map */

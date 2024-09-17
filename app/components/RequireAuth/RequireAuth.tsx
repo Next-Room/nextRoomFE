@@ -53,10 +53,11 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
-        const lastThemeId = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].id
-        );
-        router.push(`/admin?themeId=${lastThemeId}`);
+        // const lastThemeId = encodeURIComponent(
+        //   currentTheme[currentTheme.length - 1].id
+        // );
+        // router.push(`/admin?themeId=${lastThemeId}`);
+        router.push(`/admin-new`);
       } else {
         router.push("/admin");
       }
@@ -69,6 +70,7 @@ function RequireAuth({
     pathname,
     modalState,
   ]);
+  console.log(pathname);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -80,7 +82,7 @@ function RequireAuth({
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (!isLoggedIn) return <>{children}</>;
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  if (isLoggedIn && pathname === "/") return <>{children}</>;
+  if (isLoggedIn && (pathname === "/" || "/admin-new")) return <>{children}</>;
 
   return (
     <S.Wrapper>
