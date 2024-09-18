@@ -44,7 +44,7 @@
   background-color: #131417;
   padding: 24px 24px 40px 24px;
   margin-right: 40px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1215686275);
+  border-right: 1px solid rgba(255, 255, 255, 0.0784313725);
 }
 .sidebar__top {
   flex-shrink: 0;
@@ -100,7 +100,7 @@
   background-color: rgba(255, 255, 255, 0.0509803922);
 }
 .sidebar__theme-button:active {
-  background-color: rgba(255, 255, 255, 0.1215686275);
+  background-color: rgba(255, 255, 255, 0.0784313725);
 }
 .sidebar__add-theme {
   font-size: 14px;
@@ -153,6 +153,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 140%;
+  color: rgba(255, 255, 255, 0.5019607843);
 }
 .sidebar__admin-code-value {
   text-align: center;
@@ -163,7 +164,7 @@
   margin: 12px 0 7px;
   height: 30px;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1215686275);
+  border: 1px solid rgba(255, 255, 255, 0.0784313725);
   padding: 5.5px 0;
   background-color: #1f2023;
 }
@@ -179,5 +180,3 @@
   background-color: rgba(255, 255, 255, 0.0509803922);
   border-radius: 8px;
 }
-
-/*# sourceMappingURL=admin.css.map */

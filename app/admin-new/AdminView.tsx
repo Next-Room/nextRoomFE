@@ -4,20 +4,6 @@ import "./admin.css";
 import classNames from "classnames";
 import { NewTextField } from "@/signup/NewTextField.component";
 
-interface LogoProps {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
-
-interface PlusProps {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
-
 interface Theme {
   id: number;
   title: string;
@@ -26,8 +12,6 @@ interface Theme {
 }
 
 interface Props {
-  logoProps: LogoProps;
-  plusProps: PlusProps;
   adminCode: string;
   shopName: string;
   categories: Theme[];
@@ -37,14 +21,26 @@ interface Props {
 
 function AdminView(props: Props) {
   const {
-    logoProps,
-    plusProps,
     adminCode = "",
     shopName = "",
     categories,
     selectedTheme,
     handleClickSelected,
   } = props;
+
+  const logoProps = {
+    src: "/images/svg/icon.svg",
+    alt: "NEXT ROOM",
+    width: 32,
+    height: 32,
+  };
+
+  const plusProps = {
+    src: "/images/svg/plus.svg",
+    alt: "plus icon",
+    width: 16,
+    height: 16,
+  };
 
   return (
     <div className="main">

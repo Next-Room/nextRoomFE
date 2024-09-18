@@ -34,23 +34,8 @@ function Admin() {
     setSelectedTheme(theme);
   };
 
-  const logoProps = {
-    src: "/images/svg/icon.svg",
-    alt: "NEXT ROOM",
-    width: 32,
-    height: 32,
-  };
-
-  const plusProps = {
-    src: "/images/svg/plus.svg",
-    alt: "plus icon",
-    width: 16,
-    height: 16,
-  };
 
   const SidebarViewProps = {
-    logoProps,
-    plusProps,
     adminCode,
     shopName,
     categories,
