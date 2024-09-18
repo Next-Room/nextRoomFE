@@ -5,19 +5,20 @@
 .main
   display: flex
   overflow: hidden
-.sub
+.content-area
   flex-grow: 1
   flex-shrink: 1
-  overflow-x: auto
-  overflow-y: hidden
+  overflow-x: hidden
   padding-top: 50px
+  margin-right: 40px
+  &:hover
+    overflow-x: overlay 
   div
     max-width: 1596px
     width: 100%
     min-width: 960px 
 .sidebar
   flex-shrink: 0
-
   display: flex
   flex-direction: column
   width: 282px
@@ -52,11 +53,9 @@
 
   &__scroll
     flex-grow: 1
-    // overflow-y: auto
     overflow: hidden 
 
     &:hover
-      
       overflow: overlay 
 
   &__theme-list
