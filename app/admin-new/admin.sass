@@ -6,12 +6,15 @@
   display: flex
   overflow: hidden
 .sub
+  flex-grow: 1
   flex-shrink: 1
   overflow-x: auto
   overflow-y: hidden
   padding-top: 50px
   div
-    width: 1560px
+    max-width: 1596px
+    width: 100%
+    min-width: 960px 
 .sidebar
   flex-shrink: 0
 
@@ -49,7 +52,12 @@
 
   &__scroll
     flex-grow: 1
-    overflow-y: auto
+    // overflow-y: auto
+    overflow: hidden 
+
+    &:hover
+      
+      overflow: overlay 
 
   &__theme-list
     list-style-type: none

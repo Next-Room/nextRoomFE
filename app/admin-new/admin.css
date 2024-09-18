@@ -26,13 +26,16 @@
 }
 
 .sub {
+  flex-grow: 1;
   flex-shrink: 1;
   overflow-x: auto;
   overflow-y: hidden;
   padding-top: 50px;
 }
 .sub div {
-  width: 1560px;
+  max-width: 1596px;
+  width: 100%;
+  min-width: 960px;
 }
 
 .sidebar {
@@ -76,7 +79,10 @@
 }
 .sidebar__scroll {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow: hidden;
+}
+.sidebar__scroll:hover {
+  overflow: overlay;
 }
 .sidebar__theme-list {
   list-style-type: none;
