@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./node_modules/@testing-library"],
-    "types": ["node", "http-proxy", "jest"],
+    "types": ["node"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
