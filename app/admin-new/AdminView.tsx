@@ -1,6 +1,5 @@
 import React from "react";
 import "./admin.css";
-import { NewTextField } from "@/signup/NewTextField.component";
 import Sidebar from "@/admin-new/(components)/Sidebar";
 import ContentArea from "@/admin-new/(components)/ContentArea";
 
