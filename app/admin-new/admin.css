@@ -36,9 +36,9 @@
   overflow-x: overlay;
 }
 .content-area div {
-  max-width: 1596px;
+  max-width: 2198px;
   width: 100%;
-  min-width: 960px;
+  min-width: 918px;
 }
 
 .sidebar {
