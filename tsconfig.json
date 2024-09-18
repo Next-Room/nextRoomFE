@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./node_modules/@testing-library"],
     "types": ["node"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -31,8 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.js",
-    "app/landing/Landing.tsx",
-    "./jest.setup.ts"
+    "app/landing/Landing.tsx"
   ],
-  "exclude": ["node_modules", "cypress.config.ts", "cypress"]
+  "exclude": ["node_modules"]
 }
