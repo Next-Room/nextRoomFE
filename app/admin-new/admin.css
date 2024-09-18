@@ -25,14 +25,17 @@
   overflow: hidden;
 }
 
-.sub {
+.content-area {
   flex-grow: 1;
   flex-shrink: 1;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: hidden;
   padding-top: 50px;
+  margin-right: 40px;
 }
-.sub div {
+.content-area:hover {
+  overflow-x: overlay;
+}
+.content-area div {
   max-width: 1596px;
   width: 100%;
   min-width: 960px;
