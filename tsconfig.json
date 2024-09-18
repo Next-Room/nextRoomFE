@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "types": ["node", "http-proxy", "jest", "@testing-library/jest-dom"],
+    "typeRoots": ["./node_modules/@types", "./node_modules/@testing-library"],
+    "types": ["node", "http-proxy", "jest"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -30,7 +31,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.js",
-    "app/landing/Landing.tsx"
+    "app/landing/Landing.tsx",
+    "./jest.setup.ts"
   ],
   "exclude": ["node_modules", "cypress.config.ts", "cypress"]
 }
