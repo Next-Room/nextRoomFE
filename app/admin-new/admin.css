@@ -42,9 +42,9 @@
   width: 282px;
   height: 100vh;
   background-color: #131417;
-  padding: 24px 24px 40px 24px;
+  padding: 24px;
   margin-right: 40px;
-  border-right: 1px solid rgba(255, 255, 255, 0.0784313725);
+  border-right: 1px solid rgba(255, 255, 255, 0.1215686275);
 }
 .sidebar__top {
   flex-shrink: 0;
@@ -58,6 +58,8 @@
   width: 32px;
   height: 32px;
   margin-right: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.0784313725);
 }
 .sidebar__shop-name {
   font-size: 14px;
@@ -91,7 +93,7 @@
   color: rgba(255, 255, 255, 0.5019607843);
   text-align: left;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -141,10 +143,9 @@
 }
 .sidebar__bottom {
   flex-shrink: 0;
-  height: 164px;
   padding: 20px 24px 16px;
   margin: 0 -24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.0509803922);
+  border-top: 1px solid rgba(255, 255, 255, 0.1215686275);
 }
 .sidebar__admin-code {
   display: block;
