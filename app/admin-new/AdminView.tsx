@@ -2,6 +2,7 @@ import React from "react";
 import "./admin.css";
 import { NewTextField } from "@/signup/NewTextField.component";
 import Sidebar from "@/admin-new/(components)/Sidebar";
+import ContentArea from "@/admin-new/(components)/ContentArea";
 
 interface Theme {
   id: number;
@@ -22,9 +23,7 @@ function AdminView(props: Props) {
   return (
     <div className="main">
       <Sidebar {...props} />
-      <div className="content-area">
-        <NewTextField />
-      </div>
+      <ContentArea />
     </div>
   );
 }
