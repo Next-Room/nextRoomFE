@@ -1,12 +1,26 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from "react";
+import { ThemeInfoTextFieldType } from "./createThemeType";
+import { useCreateThemeWrite } from "@/components/atoms/createTheme.atom";
 
 export const useTextField = ({
+  id,
   content,
   checkError,
+  validReg,
+}: ThemeInfoTextFieldType) => {
   const [inputValue, setInputValue] = useState<string>(content || "");
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>(content || "");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const setCreateTheme = useCreateThemeWrite();
+
+  useEffect(() => {
+    setCreateTheme((prev) => ({
+      ...prev,
+      [id]: inputValue,
+    }));
+  }, [inputValue]);
 
   useEffect(() => {
     if (!isFocus || !inputRef.current) {

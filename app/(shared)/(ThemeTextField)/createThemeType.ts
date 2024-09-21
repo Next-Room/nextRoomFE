@@ -1,9 +1,9 @@
 type ValidationFunction<T> = (value: T) => string;
 
 export type ThemeInfoTextFieldType = {
-  id?: string;
+  id: string;
   title?: string;
-  content?: string | undefined;
+  content: string | undefined;
   infoText?: string | undefined;
   inputType?: string | undefined;
   inputPlaceholder?: string | undefined;
