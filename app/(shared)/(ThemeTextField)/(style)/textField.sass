@@ -1,0 +1,75 @@
+@import '../../style/variables'
+@import '../../style/mixins'
+@import '../../style/button'
+
+.theme-info
+  width: 100%
+  height: 82px
+  box-sizing: border-box
+  border-radius: 8px
+  display: flex
+
+  background-color: $color-sub1
+  border: 1px solid $color-white20
+  padding: 30px 22px
+  cursor: pointer
+  &.focus
+    background-color: $color-black
+    border: 1px solid $color-white
+    padding: 19.5px 20px
+    flex-direction: column
+    gap: 4px
+    cursor: text
+  &.filled
+    background-color: $color-main
+    border: 1px solid $color-white20
+    padding: 19.5px 20px
+    flex-direction: column
+    gap: 4px
+    cursor: pointer
+  &.error
+    border: 1px solid $color-semantic100
+    padding: 19.5px 20px
+    flex-direction: column
+    gap: 4px
+    cursor: text
+
+.theme-info-title
+  @include body16R
+  color: $color-white70
+  &.focus
+    @include body12R
+    color: $color-white70
+  &.filled
+    @include body12R
+    color: $color-white70
+  &.error
+    @include body12R
+    color: $color-semantic100
+
+.theme-info-text
+  margin: 4px 0 0 16px
+  cursor: default
+
+  @include body12R
+  color: $color-white50
+  &.filled
+    color: $color-white70
+  &.error
+    color: $color-semantic100
+
+.theme-info-input
+  text-align: left
+  width: 100%
+  border: none
+  padding: 0
+  background-color: inherit
+  @include body16R
+  color: $color-white50
+  &:focus
+    outline: none
+  &.filled
+    @include body16R
+    color: $color-white
+  &.error
+    color: $color-white

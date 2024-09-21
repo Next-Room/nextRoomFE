@@ -9,15 +9,42 @@
   flex-grow: 1
   flex-shrink: 1
   overflow-x: hidden
-  padding-top: 50px
-  margin-right: 40px
+  padding: 0 40px
   &:hover
     overflow-x: overlay 
-  div
-    max-width: 2198px
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: $color-main
+
+.create-theme
+  width: 368px
+  min-height: 453px
+  background-color: $color-main
+  margin: auto
+  &__title
+    color: $color-white
+    text-align: center
+    @include title24M
+    margin-bottom: 40px
+    cursor: default
+  &__body
+    color: $color-white
+    display: flex
+    flex-direction: column
+    gap: 20px
+  &__add-button
+    margin-top: 20px
     width: 100%
-    min-width: 918px 
-    margin: 0 auto
+    height: 58px
+    background-color: $color-white20
+    box-sizing: border-box
+    border-radius: 8px
+    text-align: center
+    padding: 19px 36px
+    @include title18SB
+    color: $color-white20
+
 
 .sidebar
   flex-shrink: 0
@@ -27,7 +54,6 @@
   height: 100vh
   background-color: $color-main
   padding: 24px 
-  margin-right: 40px
   border-right: 1px solid $color-white12
   &__top
     flex-shrink: 0
@@ -142,3 +168,4 @@
   color: $color-white 
   background-color: $color-white5
   border-radius: 8px
+

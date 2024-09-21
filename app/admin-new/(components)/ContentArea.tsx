@@ -1,10 +1,10 @@
-import { NewTextField } from "@/signup/NewTextField.component";
 import React from "react";
+import CreateTheme from "./CreateTheme";
 
 export default function ContentArea() {
   return (
     <div className="content-area">
-      <NewTextField />
+      <CreateTheme />
     </div>
   );
 }
