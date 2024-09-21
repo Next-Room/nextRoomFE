@@ -7,8 +7,8 @@ import {
 
 interface ThemeInfo {
   id: number;
-  title?: string;
-  timeLimit?: number;
+  title: string;
+  timeLimit: number;
   hintLimit?: number;
 }
 

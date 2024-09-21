@@ -6,7 +6,6 @@ export const useTextField = ({
   id,
   content,
   checkError,
-  validReg,
 }: ThemeInfoTextFieldType) => {
   const [inputValue, setInputValue] = useState<string>(content || "");
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -16,9 +15,10 @@ export const useTextField = ({
   const setCreateTheme = useCreateThemeWrite();
 
   useEffect(() => {
+    const inputValueData = id !== "title" ? Number(inputValue) : inputValue;
     setCreateTheme((prev) => ({
       ...prev,
-      [id]: inputValue,
+      [id]: inputValueData,
     }));
   }, [inputValue]);
 
