@@ -1,5 +1,5 @@
 import React from "react";
-import "./admin.css";
+import "./admin.modules.sass";
 import Sidebar from "@/admin-new/(components)/Sidebar";
 import ContentArea from "@/admin-new/(components)/ContentArea";
 

@@ -1,5 +1,4 @@
 import { ThemeInfoTextFieldType } from "@/(shared)/(ThemeTextField)/(types)/createThemeType";
-import "../(style)/textField.css";
 import React from "react";
 
 export default function ThemeFilledTextField({
