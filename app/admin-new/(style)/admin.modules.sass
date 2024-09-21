@@ -1,50 +1,10 @@
-@import '../style/variables'
-@import '../style/mixins'
-@import '../style/button'
+@import '../../style/variables'
+@import '../../style/mixins'
+@import '../../style/button'
     
 .main
   display: flex
   overflow: hidden
-.content-area
-  flex-grow: 1
-  flex-shrink: 1
-  overflow-x: hidden
-  padding: 0 40px
-  &:hover
-    overflow-x: overlay 
-  display: flex
-  justify-content: center
-  align-items: center
-  background-color: $color-main
-
-.create-theme
-  width: 368px
-  min-height: 453px
-  background-color: $color-main
-  margin: auto
-  &__title
-    color: $color-white
-    text-align: center
-    @include title24M
-    margin-bottom: 40px
-    cursor: default
-  &__body
-    color: $color-white
-    display: flex
-    flex-direction: column
-    gap: 20px
-  &__add-button
-    margin-top: 20px
-    width: 100%
-    height: 58px
-    background-color: $color-white20
-    box-sizing: border-box
-    border-radius: 8px
-    text-align: center
-    padding: 19px 36px
-    @include title18SB
-    color: $color-white20
-
 
 .sidebar
   flex-shrink: 0
