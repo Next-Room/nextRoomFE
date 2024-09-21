@@ -1,11 +1,8 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from "react";
-import { ThemeInfoTextFieldType } from "../(types)/createThemeType";
 
 export const useTextField = ({
   content,
   checkError,
-  validReg,
-}: ThemeInfoTextFieldType) => {
   const [inputValue, setInputValue] = useState<string>(content || "");
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>(content || "");

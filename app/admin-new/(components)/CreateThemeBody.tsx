@@ -1,10 +1,10 @@
 import React from "react";
-import ThemeTextField from "../../(shared)/(ThemeTextField)/(components)/ThemeTextField";
+import ThemeTextField from "../../(shared)/(ThemeTextField)/Container";
 import {
   hintCountTextFieldProps,
   nameTextFieldProps,
   timeTextFieldProps,
-} from "../../(shared)/(ThemeTextField)/(consts)/createTheme";
+} from "../../(shared)/(ThemeTextField)/createTheme";
 
 export default function CreateThemeBody() {
   return (
