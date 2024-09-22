@@ -1,8 +1,5 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from "react";
-import {
-  useCreateThemeReset,
-  useCreateThemeWrite,
-} from "@/components/atoms/createTheme.atom";
+import { useCreateThemeWrite } from "@/components/atoms/createTheme.atom";
 import { ThemeInfoTextFieldType } from "./createThemeType";
 
 export const useTextField = ({
@@ -16,8 +13,6 @@ export const useTextField = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const setCreateTheme = useCreateThemeWrite();
-  const resetCreateTheme = useCreateThemeReset();
-  resetCreateTheme();
 
   useEffect(() => {
     setCreateTheme((prev) => ({

@@ -1,4 +1,5 @@
 import React from "react";
+import { useCreateThemeReset } from "@/components/atoms/createTheme.atom";
 import ThemeTextField from "../../../(shared)/(ThemeTextField)/Container";
 import {
   hintCountTextFieldProps,
@@ -7,6 +8,8 @@ import {
 } from "../../../(shared)/(ThemeTextField)/createTheme";
 
 export default function CreateThemeBody() {
+  const resetCreateTheme = useCreateThemeReset();
+  resetCreateTheme();
   return (
     <div className="create-theme__body">
       <ThemeTextField {...nameTextFieldProps} />

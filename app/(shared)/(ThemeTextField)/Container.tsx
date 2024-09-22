@@ -86,9 +86,7 @@ export default function ThemeTextField({
           <div className="theme-info-title filled" tabIndex={-1}>
             {title}
           </div>
-          <div className="theme-info-input filled" tabIndex={0}>
-            {inputValue}
-          </div>
+          <div className="theme-info-input filled">{inputValue}</div>
         </button>
         {infoText && (
           <div className="theme-info-text filled" tabIndex={-1}>
@@ -106,9 +104,7 @@ export default function ThemeTextField({
         onClick={handleInfoClick}
         tabIndex={-1}
       >
-        <div className="theme-info-title" tabIndex={0}>
-          {title}
-        </div>
+        <div className="theme-info-title">{title}</div>
       </button>
       {infoText && (
         <div className="theme-info-text" tabIndex={-1}>
