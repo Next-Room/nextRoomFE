@@ -1,6 +1,9 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from "react";
 import { ThemeInfoTextFieldType } from "./createThemeType";
-import { useCreateThemeWrite } from "@/components/atoms/createTheme.atom";
+import {
+  useCreateThemeReset,
+  useCreateThemeWrite,
+} from "@/components/atoms/createTheme.atom";
 
 export const useTextField = ({
   id,
@@ -13,13 +16,18 @@ export const useTextField = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const setCreateTheme = useCreateThemeWrite();
+  const resetCreateTheme = useCreateThemeReset();
 
   useEffect(() => {
-    const inputValueData = id !== "title" ? Number(inputValue) : inputValue;
-    setCreateTheme((prev) => ({
-      ...prev,
-      [id]: inputValueData,
-    }));
+    resetCreateTheme();
+  }, []);
+  useEffect(() => {
+    setCreateTheme((prev) => {
+      return {
+        ...prev,
+        [id]: inputValue,
+      };
+    });
   }, [inputValue]);
 
   useEffect(() => {
@@ -67,6 +75,7 @@ export const useTextField = ({
   return {
     inputValue,
     isFocus,
+    setIsFocus,
     errorText,
     inputRef,
     handleInputChange,

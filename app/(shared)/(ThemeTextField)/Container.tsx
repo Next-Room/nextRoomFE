@@ -5,29 +5,32 @@ import { useTextField } from "./useTextField";
 
 export default function ThemeTextField({
   id,
+  tabIndex,
   title,
   content,
   infoText,
   inputType,
   inputPlaceholder,
   checkError,
-  validReg,
 }: ThemeInfoTextFieldType) {
   const {
     inputValue,
     isFocus,
+    setIsFocus,
     errorText,
     inputRef,
     handleInputChange,
     handleInfoClick,
     handleInputBlur,
-  } = useTextField({ id, content, checkError, validReg });
+  } = useTextField({ id, content, checkError });
 
   if (errorText) {
     return (
-      <div>
-        <button className="theme-info error" type="button">
-          <div className="theme-info-title error">{title}</div>
+      <div tabIndex={tabIndex} onFocus={() => setIsFocus(true)}>
+        <button className="theme-info error" type="button" tabIndex={-1}>
+          <div className="theme-info-title error" tabIndex={-1}>
+            {title}
+          </div>
           <input
             ref={inputRef}
             className="theme-info-input error"
@@ -36,17 +39,22 @@ export default function ThemeTextField({
             placeholder={inputPlaceholder}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
+            tabIndex={tabIndex}
           />
         </button>
-        <div className="theme-info-text error">{errorText}</div>
+        <div className="theme-info-text error" tabIndex={-1}>
+          {errorText}
+        </div>
       </div>
     );
   }
   if (isFocus) {
     return (
-      <div>
-        <button className="theme-info focus" type="button">
-          <div className="theme-info-title focus">{title}</div>
+      <div tabIndex={-1}>
+        <button className="theme-info focus" type="button" tabIndex={-1}>
+          <div className="theme-info-title focus" tabIndex={-1}>
+            {title}
+          </div>
           <input
             ref={inputRef}
             className="theme-info-input"
@@ -55,33 +63,58 @@ export default function ThemeTextField({
             placeholder={inputPlaceholder}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
+            tabIndex={tabIndex}
           />
         </button>
-        {infoText && <div className="theme-info-text">{infoText}</div>}
+        {infoText && (
+          <div className="theme-info-text" tabIndex={-1}>
+            {infoText}
+          </div>
+        )}
       </div>
     );
   }
   if (inputValue) {
     return (
-      <div>
+      <div tabIndex={tabIndex} onFocus={() => setIsFocus(true)}>
         <button
           className="theme-info filled"
           type="button"
           onClick={handleInfoClick}
+          tabIndex={-1}
         >
-          <div className="theme-info-title filled">{title}</div>
-          <div className="theme-info-input filled">{inputValue}</div>
+          <div className="theme-info-title filled" tabIndex={-1}>
+            {title}
+          </div>
+          <div className="theme-info-input filled" tabIndex={0}>
+            {inputValue}
+          </div>
         </button>
-        {infoText && <div className="theme-info-text filled">{infoText}</div>}
+        {infoText && (
+          <div className="theme-info-text filled" tabIndex={-1}>
+            {infoText}
+          </div>
+        )}
       </div>
     );
   }
   return (
-    <div>
-      <button className="theme-info" type="button" onClick={handleInfoClick}>
-        <div className="theme-info-title">{title}</div>
+    <div tabIndex={tabIndex} onFocus={() => setIsFocus(true)}>
+      <button
+        className="theme-info"
+        type="button"
+        onClick={handleInfoClick}
+        tabIndex={-1}
+      >
+        <div className="theme-info-title" tabIndex={0}>
+          {title}
+        </div>
       </button>
-      {infoText && <div className="theme-info-text">{infoText}</div>}
+      {infoText && (
+        <div className="theme-info-text" tabIndex={-1}>
+          {infoText}
+        </div>
+      )}
     </div>
   );
 }

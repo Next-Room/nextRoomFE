@@ -11,21 +11,21 @@ export default function CreateThemeAddButton() {
   const isDisabled = !(
     createTheme.title &&
     createTheme.timeLimit &&
-    (createTheme.hintLimit || createTheme.hintLimit === 0)
+    createTheme.hintLimit
   );
 
   const { data: getThemeList = [] } = useGetThemeList();
   const { mutateAsync: postTheme } = usePostTheme();
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
   const router = useRouter();
-
   const handleClickSubmit = () => {
-    if (isDisabled) return;
     postTheme(createTheme);
     setSelectedTheme(getThemeList[getThemeList.length - 1]);
-    if (selectedTheme.id) {
-      router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`);
-    }
+    // FIXME: 여기서 업데이트 안됨
+    // console.log(selectedTheme, getThemeList[getThemeList.length - 1]);
+    // if (selectedTheme.id) {
+    //   router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`);
+    // }
   };
 
   return (
