@@ -1,11 +1,12 @@
 import React from "react";
-import "../(style)/createTheme.modules.sass";
-import CreateTheme from "./CreateTheme";
+import CreateTheme from "./CreateTheme/Container";
+import ThemeInfo from "./ThemeInfo/Container";
 
 export default function ContentArea() {
   return (
     <div className="content-area">
-      <CreateTheme />
+      {/* <CreateTheme /> */}
+      <ThemeInfo />
     </div>
   );
 }

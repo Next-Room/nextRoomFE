@@ -14,13 +14,13 @@ export default function CreateThemeAddButton() {
     createTheme.hintLimit
   );
 
-  const { data: getThemeList = [] } = useGetThemeList();
+  const { data: categories = [] } = useGetThemeList();
   const { mutateAsync: postTheme } = usePostTheme();
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
   const router = useRouter();
   const handleClickSubmit = () => {
     postTheme(createTheme);
-    setSelectedTheme(getThemeList[getThemeList.length - 1]);
+    setSelectedTheme(categories[categories.length - 1]);
     // FIXME: 여기서 업데이트 안됨
     // console.log(selectedTheme, getThemeList[getThemeList.length - 1]);
     // if (selectedTheme.id) {
