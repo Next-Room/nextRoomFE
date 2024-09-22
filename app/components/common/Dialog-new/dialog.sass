@@ -1,0 +1,78 @@
+@import '../../../style/variables'
+@import '../../../style/mixins'
+@import '../../../style/button'
+
+
+// 변수 정의
+.theme-info-modal
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  background-color: $color-sub1
+  z-index: 1000
+  border-radius: 16px
+  padding: 24px 32px
+  width: 577px
+
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 20px
+
+    h2
+      @include title20SB
+
+
+    .close-button
+      position: absolute
+      top: 24px
+      right: 24px
+      background: none
+      border: none
+      font-size: 20px
+      cursor: pointer
+
+  &__content
+    .theme-name
+      background-color: lighten($color-sub1, 5%)
+      border: 1px solid $color-sub1
+      border-radius: 4px
+      padding: 10px
+      margin-bottom: 15px
+
+    .info-grid
+      display: grid
+      grid-template-columns: 1fr 1fr
+      gap: 10px
+
+      .info-item
+        background-color: lighten($color-sub1, 5%)
+        border: 1px solid $color-sub1
+        border-radius: 4px
+        padding: 10px
+
+        .label
+          font-size: 12px
+          color: darken($color-sub1, 20%)
+          margin-bottom: 5px
+
+        .value
+          font-size: 16px
+          font-weight: bold
+
+  &__footer
+    margin-top: 20px
+    display: flex
+    justify-content: space-between
+
+    .delete-button
+      width: 100px
+
+
+    .action-buttons
+      display: flex
+      gap: 10px
+
