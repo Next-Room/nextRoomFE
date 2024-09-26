@@ -8,6 +8,7 @@ import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useGetThemeList } from "@/queries/getThemeList";
 import { useToastInfo } from "@/components/atoms/toast.atom";
 import AdminView from "./AdminView";
+import { useRouter } from "next/navigation";
 
 type Theme = {
   id: number;
@@ -25,6 +26,7 @@ function Admin() {
   const adminCode: string = getAdminCode() || "";
   const shopName: string = getShopName() || "";
   const [toast, setToast] = useToastInfo();
+  const router = useRouter();
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -34,6 +36,11 @@ function Admin() {
 
   const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);
+    // FIXME: 여기서 업데이트 안됨
+    console.log(theme, categories[categories.length - 1]);
+    if (theme.id) {
+      router.push(`/admin-new?themeId=${encodeURIComponent(theme.id)}`);
+    }
   };
 
   useEffect(() => {
