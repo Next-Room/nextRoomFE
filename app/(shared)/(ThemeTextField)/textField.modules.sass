@@ -13,6 +13,9 @@
   border: 1px solid $color-white20
   padding: 30px 22px
   cursor: pointer
+
+  &:hover
+    background-color: $color-black
   &.focus
     background-color: $color-black
     border: 1px solid $color-white
@@ -40,6 +43,10 @@
   &.focus
     @include body12R
     color: $color-white70
+    &__ani
+      animation: fadeIn 0.1s ease-in
+    &__removeani
+      animation: none
   &.filled
     @include body12R
     color: $color-white70
@@ -47,12 +54,23 @@
     @include body12R
     color: $color-semantic100
 
+@keyframes fadeIn
+  from 
+    transform: translateY(10px)
+  to
+    transform: translateY(0)
+// @keyframes fadeOut
+//   from 
+//     transform: translateY(10px)
+//   to
+//     transform: translateY(0)
+
 .theme-info-text
   margin: 4px 0 0 16px
   cursor: default
 
   @include body12R
-  color: $color-white50
+  color: $color-white70
   &.filled
     color: $color-white70
   &.error

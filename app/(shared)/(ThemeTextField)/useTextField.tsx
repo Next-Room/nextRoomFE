@@ -45,10 +45,6 @@ export const useTextField = ({
     setInputValue(cur);
   };
 
-  const handleInfoClick = () => {
-    setIsFocus(true);
-  };
-
   const handleInputBlur = (e: FocusEvent<HTMLInputElement>) => {
     if (
       !e.relatedTarget ||
@@ -70,7 +66,6 @@ export const useTextField = ({
     errorText,
     inputRef,
     handleInputChange,
-    handleInfoClick,
     handleInputBlur,
   };
 };
