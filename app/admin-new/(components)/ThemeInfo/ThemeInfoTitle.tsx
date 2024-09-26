@@ -1,12 +1,13 @@
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import React from "react";
-
-export default function ThemeInfoTitle() {
+interface Props {
+  handleOpenModal: () => void;
+}
+export default function ThemeInfoTitle({ handleOpenModal }: Props) {
   const selectedTheme = useSelectedThemeValue();
-
   return (
     <div className="theme-info__title">
-      <div className="theme-info-fit">
+      <div className="theme-info-fit" onClick={handleOpenModal}>
         <div className="title">{selectedTheme.title}</div>
         <div className="image" />
       </div>
