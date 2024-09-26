@@ -4,7 +4,7 @@ import ModalPortal from "./ModalPortal";
 import Image from "next/image";
 import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
 import { usePutTheme } from "@/mutations/putTheme";
-import useModal from "@/components/atoms/useModal";
+import useModal from "@/hooks/useModal";
 import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
 import DialogBody from "./DialogBody";
 import "@/components/common/Dialog-new/dialog.css";

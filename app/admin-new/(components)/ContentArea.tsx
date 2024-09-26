@@ -2,7 +2,7 @@ import Dialog from "@/components/common/Dialog-new/Dialog";
 import { NewTextField } from "@/signup/NewTextField.component";
 import React from "react";
 import { useModalStateValue } from "@/components/atoms/modals.atom";
-import  useModal  from "@/components/atoms/useModal";
+import useModal from "@/hooks/useModal";
 
 export default function ContentArea() {
   const id: number = 48;

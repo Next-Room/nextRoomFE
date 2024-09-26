@@ -1,5 +1,5 @@
 import React from "react";
-import { useModalState } from "./modals.atom";
+import { useModalState } from "../components/atoms/modals.atom";
 
 // Modal 상태 타입 정의
 interface ModalComponentProps<P> {
