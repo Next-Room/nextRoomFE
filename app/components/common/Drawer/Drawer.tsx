@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AddIcon from "@mui/icons-material/Add";
-import { useModalState } from "@/components/atoms/modals.atom";
+import { useModalState } from "@/components/atoms/modalState.atom";
 import {
   InitialSelectedTheme,
   useSelectedTheme,

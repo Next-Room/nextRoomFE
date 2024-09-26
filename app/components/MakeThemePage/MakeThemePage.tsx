@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { usePostTheme } from "@/mutations/postTheme";
 import { usePutTheme } from "@/mutations/putTheme";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
-import { useModalState } from "@/components/atoms/modals.atom";
+import { useModalState } from "@/components/atoms/modalState.atom";
 import { useRouter } from "next/navigation";
 import { useGetThemeList } from "@/queries/getThemeList";
 import useChannelTalk from "@/hooks/useChannelTalk";

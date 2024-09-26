@@ -22,10 +22,10 @@ export default function CreateThemeAddButton() {
     postTheme(createTheme);
     setSelectedTheme(categories[categories.length - 1]);
     // FIXME: 여기서 업데이트 안됨
-    // console.log(selectedTheme, categories[categories.length - 1]);
-    // if (selectedTheme.id) {
-    //   router.push(`/admin?themeId=${encodeURIComponent(selectedTheme.id)}`);
-    // }
+    console.log(selectedTheme, categories[categories.length - 1]);
+    if (selectedTheme.id) {
+      router.push(`/admin-new?themeId=${encodeURIComponent(selectedTheme.id)}`);
+    }
   };
 
   return (

@@ -12,7 +12,7 @@ import * as S from "@/home/HomeView.styled";
 import Header from "@/components/common/Header/Header";
 import MainDrawer from "@/components/common/Drawer/Drawer";
 import Mobile from "../Mobile/Mobile";
-import { useModalStateValue } from "../atoms/modals.atom";
+import { useModalStateValue } from "../atoms/modalState.atom";
 
 interface RequireAuthProps {
   children: ReactNode;
@@ -56,7 +56,7 @@ function RequireAuth({
         // const lastThemeId = encodeURIComponent(
         //   currentTheme[currentTheme.length - 1].id
         // );
-        // router.push(`/admin?themeId=${lastThemeId}`);
+        // router.push(`//admin-new`?themeId=${lastThemeId}`);
         router.push(`/admin-new`);
       } else {
         router.push("/admin");
