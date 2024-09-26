@@ -1,19 +1,18 @@
 import React, { forwardRef } from "react";
+// import { usePutTheme } from "@/mutations/putTheme";
+// import { useDeleteTheme } from "@/mutations/deleteTheme";
 import { SubmitHandler, useForm } from "react-hook-form";
-import ModalPortal from "./ModalPortal";
 import Image from "next/image";
 import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
-import { usePutTheme } from "@/mutations/putTheme";
 import useModal from "@/hooks/useModal";
 import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
 import DialogBody from "./DialogBody";
 import "@/components/common/Dialog-new/dialog.css";
-import { useDeleteTheme } from "@/mutations/deleteTheme";
+import ModalPortal from "./ModalPortal";
 
 interface DialogProps {
-  id?: number;
-  ref?: HTMLDivElement;
-  type?: string;
+  id?: number | 0;
+  type?: string | "";
 }
 
 interface FormValues {
@@ -22,28 +21,31 @@ interface FormValues {
   timeLimit: number;
   hintLimit: number;
 }
-const Dialog = forwardRef<HTMLFormElement, DialogProps>(({ id, type }, ref) => {
+const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
   const { open, close } = useModal();
+  const { id = 0, type = "" } = props;
 
   const handleOpenModal = () => {
     open(Dialog, { id, type: "delete" });
   };
   const { handleSubmit } = useForm<FormValues>();
-  const { mutateAsync: putTheme } = usePutTheme();
-  const { mutateAsync: deleteTheme } = useDeleteTheme();
+  // const { mutateAsync: putTheme } = usePutTheme();
+  // const { mutateAsync: deleteTheme } = useDeleteTheme();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const submitData = {
-      id: 48,
-      title: "test",
-      timeLimit: 60,
-      hintLimit: 60,
-    };
+  const onSubmit: SubmitHandler<FormValues> = () =>
+    // _data
+    {
+      // const submitData = {
+      //   id: 48,
+      //   title: "test",
+      //   timeLimit: 60,
+      //   hintLimit: 60,
+      // };
 
-    // type === "put" ? putTheme(submitData) : deleteTheme({ id });
-    close();
-  };
+      // type === "put" ? putTheme(submitData) : deleteTheme({ id });
+      close();
+    };
 
   return (
     <ModalPortal>
@@ -89,4 +91,8 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>(({ id, type }, ref) => {
   );
 });
 
+Dialog.defaultProps = {
+  id: 0,
+  type: "",
+};
 export default Dialog;

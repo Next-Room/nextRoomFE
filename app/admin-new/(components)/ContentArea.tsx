@@ -5,7 +5,7 @@ import { useModalStateValue } from "@/components/atoms/modals.atom";
 import useModal from "@/hooks/useModal";
 
 export default function ContentArea() {
-  const id: number = 48;
+  const id = 48;
 
   const { open } = useModal();
 

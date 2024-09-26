@@ -42,7 +42,7 @@ function Admin() {
         setToast({ ...toast, isOpen: false });
       }, 3000);
     }
-  }, [toast]);
+  }, [toast, setToast]);
 
   const SidebarViewProps = {
     adminCode,

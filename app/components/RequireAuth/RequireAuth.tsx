@@ -53,12 +53,13 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
-        const lastThemeId = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].id
-        );
-        // router.push(`/admin-new`);
+        // const lastThemeId = encodeURIComponent(
+        //   currentTheme[currentTheme.length - 1].id
+        // );
+        // router.push(`//admin-new`?themeId=${lastThemeId}`);
+        router.push(`/admin-new`);
       } else {
-        router.push("/admin-new");
+        router.push("/admin");
       }
     }
   }, [
@@ -85,7 +86,7 @@ function RequireAuth({
 
   return (
     <S.Wrapper>
-      {/* <MainDrawer {...{ categories }} /> */}
+      <MainDrawer {...{ categories }} />
       <S.Cont component="main">
         <Header />
         {children}
