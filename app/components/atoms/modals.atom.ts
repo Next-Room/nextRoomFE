@@ -1,19 +1,21 @@
 import {
   atom,
-  useRecoilValue,
   useRecoilState,
+  useRecoilValue,
   useSetRecoilState,
 } from "recoil";
+import React from "react";
 
-interface Modal {
-  isOpen: boolean;
-  type: "post" | "put";
+interface ModalComponentProps<P> {
+  Component: React.FC<P>;
+  props?: P;
 }
-const modalState = atom<Modal>({
-  key: "modalState",
-  default: { isOpen: false, type : "post" },
+
+export const modals = atom<ModalComponentProps<any>[]>({
+  key: "modals",
+  default: [],
 });
 
-export const useModalState = () => useRecoilState(modalState);
-export const useModalStateValue = () => useRecoilValue(modalState);
-export const useModalStateWrite = () => useSetRecoilState(modalState);
+export const useModalState = () => useRecoilState(modals);
+export const useModalStateValue = () => useRecoilValue(modals);
+export const useModalStateWrite = () => useSetRecoilState(modals);
