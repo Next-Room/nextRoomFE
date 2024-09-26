@@ -1,7 +1,5 @@
-// src/components/ModalPortal.ts
 import { ReactNode } from "react";
 import ReactDom from "react-dom";
-import "@/components/common/Dialog-new/dialog.css";
 interface Props {
   children: ReactNode;
 }

@@ -47,7 +47,7 @@ export default function RootLayout({
             </StyledProvider>
           </ReactQueryProvider>
         </Recoil>
-        <div id="modal-root"></div>
+        <div id="modal-root"/>
       </body>
     </html>
   );

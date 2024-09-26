@@ -1,54 +1,92 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ModalPortal from "./ModalPortal";
 import Image from "next/image";
 import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
-// import "@/style/_button.css";
-export default function Dialog() {
+import { usePutTheme } from "@/mutations/putTheme";
+import useModal from "@/components/atoms/useModal";
+import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
+import DialogBody from "./DialogBody";
+import "@/components/common/Dialog-new/dialog.css";
+import { useDeleteTheme } from "@/mutations/deleteTheme";
+
+interface DialogProps {
+  id?: number;
+  ref?: HTMLDivElement;
+  type?: string;
+}
+
+interface FormValues {
+  id: number;
+  title: string;
+  timeLimit: number;
+  hintLimit: number;
+}
+const Dialog = forwardRef<HTMLFormElement, DialogProps>(({ id, type }, ref) => {
+  const { open, close } = useModal();
+
+  const handleOpenModal = () => {
+    open(Dialog, { id, type: "delete" });
+  };
+  const { handleSubmit } = useForm<FormValues>();
+  const { mutateAsync: putTheme } = usePutTheme();
+  const { mutateAsync: deleteTheme } = useDeleteTheme();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const submitData = {
+      id: 48,
+      title: "test",
+      timeLimit: 60,
+      hintLimit: 60,
+    };
+
+    // type === "put" ? putTheme(submitData) : deleteTheme({ id });
+    close();
+  };
+
   return (
     <ModalPortal>
-      <div className="theme-info-modal">
+      <form
+        className="theme-info-modal"
+        ref={ref}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="theme-info-modal__header">
-          <h2>테마 정보 수정</h2>
-          <button className="close-button">
+          <h2> {type === "put" ? "테마 정보" : "정말로 삭제하시겠어요?"}</h2>
+
+          <button className="close-button" type="button" onClick={close}>
             <Image {...xProps} />
           </button>
         </div>
-        {/* <div className="theme-info-modal__content">
-          <div className="theme-name">
-            <input
-              type="text"
-              value="개발자의 이중생활"
-              placeholder="테마 이름"
-            />
-          </div>
-
-          <div className="info-grid">
-            <div className="info-item">
-              <div className="label">탈출 제한 시간(분)</div>
-              <div className="value">
-                <input type="number" value="60" />
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="label">사용 가능 힌트 수</div>
-              <div className="value">
-                <input type="number" value="5" />
-              </div>
-            </div>
-          </div>
-        </div> */}
-
+        {type === "put" ? <DialogBody /> : <DialogDeleteBody />}
         <div className="theme-info-modal__footer">
-          <button className="delete-button icon_button32">
-            <Image {...deleteProps} />
-            테마 삭제하기
-          </button>
+          {type === "put" && (
+            <button
+              className="delete-button icon_button32"
+              onClick={handleOpenModal}
+              type="button"
+            >
+              <Image {...deleteProps} />
+              테마 삭제하기
+            </button>
+          )}
           <div className="action-buttons">
-            <button className="cancel outline_button32">취소</button>
-            <button className="button32">저장</button>
+            <button
+              className="cancel outline_button32"
+              type="button"
+              onClick={close}
+            >
+              취소
+            </button>
+            <button className="button32" type="submit">
+              {type === "delete" ? "삭제하기" : "저장"}
+            </button>
           </div>
         </div>
-      </div>
+      </form>
     </ModalPortal>
   );
-}
+});
+
+export default Dialog;
