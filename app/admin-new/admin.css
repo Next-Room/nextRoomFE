@@ -81,7 +81,7 @@
 .content-area:hover {
   overflow-x: overlay;
 }
-.content-area div {
+.content-area__box {
   max-width: 2198px;
   width: 100%;
   min-width: 918px;

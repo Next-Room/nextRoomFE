@@ -1,22 +1,34 @@
 import Dialog from "@/components/common/Dialog-new/Dialog";
 import { NewTextField } from "@/signup/NewTextField.component";
-import React, { useState } from "react";
+import React from "react";
+import { useModalStateValue } from "@/components/atoms/modals.atom";
+import  useModal  from "@/components/atoms/useModal";
 
 export default function ContentArea() {
-  const [modalOpen, setModalOpen] = useState<boolean>();
+  const id: number = 48;
+
+  const { open } = useModal();
+
+  const handleOpenModal = () => {
+    open(Dialog, { id, type: "put" });
+  };
+
+  const modals = useModalStateValue();
 
   return (
     <div className="content-area">
       <NewTextField />
-      <button
-        type="button"
-        onClick={() => {
-          setModalOpen(true);
-        }}
-      >
+      <button type="button" onClick={handleOpenModal}>
         확인
       </button>
-      {modalOpen && <Dialog />}
+      {modals.map((modal) => {
+        const { Component, props } = modal;
+        return (
+          <div className="modal">
+            <Component {...props} />
+          </div>
+        );
+      })}
     </div>
   );
 }
