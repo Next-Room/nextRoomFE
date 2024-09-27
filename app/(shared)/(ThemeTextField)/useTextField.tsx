@@ -10,7 +10,7 @@ export const useTextField = ({
 }: ThemeInfoTextFieldType) => {
   const [inputValue, setInputValue] = useState<string>(content || "");
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [errorText, setErrorText] = useState<string>(content || "");
+  const [errorText, setErrorText] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedTheme] = useSelectedTheme();
 

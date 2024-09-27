@@ -1,8 +1,9 @@
-import { ThemeInfoTextFieldType } from "@/(shared)/(ThemeTextField)/createThemeType";
 import React from "react";
 import "./textField.modules.sass";
 import classNames from "classnames";
+
 import { useTextField } from "./useTextField";
+import { ThemeInfoTextFieldType } from "./TextFieldType";
 
 export default function ThemeTextField({
   id,
@@ -27,7 +28,7 @@ export default function ThemeTextField({
   return (
     <div tabIndex={isFocus ? -1 : tabIndex} onFocus={() => setIsFocus(true)}>
       <button
-        className={classNames("theme-info", {
+        className={classNames("theme-textfield", {
           focus: isFocus,
           filled: inputValue && !isFocus,
           error: errorText,
@@ -36,7 +37,7 @@ export default function ThemeTextField({
         tabIndex={-1}
       >
         <div
-          className={classNames("theme-info-title", {
+          className={classNames("theme-textfield-title", {
             focus: isFocus,
             filled: inputValue,
             error: errorText,
@@ -50,7 +51,7 @@ export default function ThemeTextField({
         {(errorText || isFocus) && (
           <input
             ref={inputRef}
-            className={classNames("theme-info-input", {
+            className={classNames("theme-textfield-input", {
               error: errorText,
             })}
             type={inputType}
@@ -62,19 +63,19 @@ export default function ThemeTextField({
           />
         )}
         {inputValue && !(errorText || isFocus) && (
-          <div className="theme-info-input filled" tabIndex={-1}>
+          <div className="theme-textfield-input filled" tabIndex={-1}>
             {inputValue}
           </div>
         )}
       </button>
       {errorText && (
-        <div className="theme-info-text error" tabIndex={-1}>
+        <div className="theme-textfield-text error" tabIndex={-1}>
           {errorText}
         </div>
       )}
       {infoText && (
         <div
-          className={classNames("theme-info-text", {
+          className={classNames("theme-textfield-text", {
             filled: inputValue,
           })}
           tabIndex={-1}

@@ -39,7 +39,6 @@ export const nameTextFieldProps: ThemeInfoTextFieldType = {
   infoText: "손님에게는 테마 이름이 노출되지 않아요",
   inputType: "text",
   inputPlaceholder: "테마 이름을 입력해 주세요",
-  // FIXME: 이름 text
   checkErrorText: undefined,
 };
 
