@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { logoProps, plusProps } from "@/admin-new/(consts)/sidebar";
+import { useRouter } from "next/navigation";
 
 interface Theme {
   id: number;
@@ -19,6 +20,7 @@ interface Props {
 }
 
 export default function Sidebar(props: Props) {
+  const router = useRouter();
   const {
     adminCode = "",
     shopName = "",
@@ -62,6 +64,7 @@ export default function Sidebar(props: Props) {
             <button
               type="button"
               className="sidebar__theme-button sidebar__add-theme"
+              onClick={() => router.push("/admin-new")}
             >
               <Image {...plusProps} /> 새 테마 추가하기
             </button>

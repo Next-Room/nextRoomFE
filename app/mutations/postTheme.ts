@@ -4,31 +4,47 @@ import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
 import { MutationConfigOptions } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders } from "axios";
 
 interface Request {
   title: string;
   timeLimit: number;
 }
-type Response = void;
+
+export interface PostThemeResponseType<T = any, D = any> {
+  id: number;
+  data: T;
+  status: number;
+  statusText: string;
+  code: number;
+  message: string;
+  headers: AxiosResponseHeaders;
+  config: AxiosRequestConfig<D>;
+}
 
 const URL_PATH = `/v1/theme`;
 const MUTATION_KEY = [URL_PATH];
 
-export const postTheme = async (req: Request) => {
-  const res = await apiClient.post<Request, AxiosResponse<Response>>(
-    URL_PATH,
-    req
-  );
-
-  return res.data;
+export const postTheme = async (
+  req: Request
+): Promise<AxiosResponse<PostThemeResponseType>> => {
+  const res = await apiClient.post<
+    Request,
+    AxiosResponse<PostThemeResponseType>
+  >(URL_PATH, req);
+  return res;
 };
 
 export const usePostTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
   const setSnackBar = useSnackBarWrite();
 
-  const info = useMutation<Response, void, Request, void>({
+  const info = useMutation<
+    AxiosResponse<PostThemeResponseType>,
+    void,
+    Request,
+    void
+  >({
     mutationKey: MUTATION_KEY,
     mutationFn: (req) => postTheme(req),
     ...configOptions?.options,
@@ -37,7 +53,7 @@ export const usePostTheme = (configOptions?: MutationConfigOptions) => {
       // console.log("성공 시 실행")
       setSnackBar({
         isOpen: true,
-        message: '테마를 추가했습니다. 단말기에서 업데이트를 진행해 주세요.',
+        message: "테마를 추가했습니다. 단말기에서 업데이트를 진행해 주세요.",
       });
     },
     onSettled: () => {

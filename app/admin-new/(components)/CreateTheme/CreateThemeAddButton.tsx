@@ -1,7 +1,7 @@
 import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
 import { usePostTheme } from "@/mutations/postTheme";
 import classNames from "classnames";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function CreateThemeAddButton() {
@@ -13,13 +13,14 @@ export default function CreateThemeAddButton() {
   );
 
   const { mutateAsync: postTheme } = usePostTheme();
-  // const router = useRouter();
-  const handleClickSubmit = () => {
-    postTheme(createTheme);
-    // FIXME: 여기서 업데이트 안됨
-    // if (selectedTheme.id) {
-    //   router.push(`/admin-new?themeId=${encodeURIComponent(selectedTheme.id)}`);
-    // }
+  const router = useRouter();
+
+  const handleClickSubmit = async () => {
+    const response = await postTheme(createTheme);
+    const { id } = response.data;
+    if (id) {
+      router.push(`/admin?themeId=${encodeURIComponent(id)}`);
+    }
   };
 
   return (
