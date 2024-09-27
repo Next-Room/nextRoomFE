@@ -1,5 +1,4 @@
-import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
-
+import { useToastWrite } from "@/components/atoms/toast.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
 import { MutationConfigOptions } from "@/types";
@@ -27,7 +26,7 @@ export const putTheme = async (req: Request) => {
 
 export const usePutTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
-  const setSnackBar = useSnackBarWrite();
+  const setToast = useToastWrite();
 
   const info = useMutation<Response, void, Request, void>({
     mutationKey: MUTATION_KEY,
@@ -35,19 +34,21 @@ export const usePutTheme = (configOptions?: MutationConfigOptions) => {
     ...configOptions?.options,
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEY);
-      // console.log("성공 시 실행")
-      setSnackBar({
+      console.log("성공 시 실행");
+      setToast({
         isOpen: true,
-        message: '힌트를 수정했습니다. 단말기에서 업데이트를 진행해 주세요.',
+        title: "힌트를 수정했습니다.",
+        text: "단말기에서 업데이트를 진행해 주세요.",
       });
     },
     onSettled: () => {
       //   console.log("항상 실행");
     },
     onError: (error) => {
-      setSnackBar({
+      setToast({
         isOpen: true,
-        message: `${(error as any)?.response?.data?.message || error}`,
+        title: `${(error as any)?.response?.data?.message || error}`,
+        text: "",
       });
     },
   });

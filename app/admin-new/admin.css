@@ -3,6 +3,7 @@
   padding: 10px 11px;
   border-radius: 8px;
   margin: auto;
+  background-color: #fff;
   font-size: 12px;
   font-weight: 600;
   line-height: 100%;
@@ -20,6 +21,51 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.outline_button32 {
+  height: 32px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: auto;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.outline_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.outline_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.outline_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1215686275);
+}
+
+.icon_button32 {
+  height: 32px;
+  padding: 8px 8px 8px 6px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.icon_button32 img {
+  vertical-align: text-top;
+  margin-right: 4px;
+}
+.icon_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.icon_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.icon_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+}
+
 .main {
   display: flex;
   overflow: hidden;
@@ -35,7 +81,7 @@
 .content-area:hover {
   overflow-x: overlay;
 }
-.content-area div {
+.content-area__box {
   max-width: 2198px;
   width: 100%;
   min-width: 918px;
