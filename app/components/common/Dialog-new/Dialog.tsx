@@ -10,7 +10,10 @@ import DialogBody from "./DialogBody";
 import "@/components/common/Dialog-new/dialog.css";
 import ModalPortal from "./ModalPortal";
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
-import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
+import {
+  useCreateThemeReset,
+  useCreateThemeValue,
+} from "@/components/atoms/createTheme.atom";
 
 interface DialogProps {
   type?: string | "";
@@ -32,7 +35,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
   const { handleSubmit } = useForm<FormValues>();
   const selectedTheme = useSelectedThemeValue();
   const createTheme = useCreateThemeValue();
-
+  const resetCreateTheme = useCreateThemeReset();
   const isDisabled = !(
     createTheme.title &&
     createTheme.timeLimit &&
@@ -51,6 +54,8 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
     const id: number = selectedTheme.id;
     type === "put" ? putTheme(submitData) : deleteTheme({ id });
     close();
+    resetCreateTheme();
+
     return close();
   };
 

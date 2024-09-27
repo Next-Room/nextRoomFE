@@ -19,12 +19,12 @@ export default function DialogBody() {
       />
       <div className="info-grid">
         <ThemeTextField
-          {...hintCountTextFieldProps}
-          content={selectedTheme.hintLimit.toString()}
-        />
-        <ThemeTextField
           {...timeTextFieldProps}
           content={selectedTheme.timeLimit.toString()}
+        />
+        <ThemeTextField
+          {...hintCountTextFieldProps}
+          content={selectedTheme.hintLimit.toString()}
         />
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function ContentArea() {
           {modals.map((modal) => {
             const { Component, props } = modal;
             return (
-              <div className="modal">
+              <div className={`modal ${props.type}`}>
                 <Component {...props} />
               </div>
             );
