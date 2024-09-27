@@ -9,13 +9,23 @@ import {
 
 export default function DialogBody() {
   const selectedTheme = useSelectedThemeValue();
+
   return (
     <div className="theme-info-modal__content">
-      <ThemeTextField {...nameTextFieldProps} content={selectedTheme.title} />
-
+      <ThemeTextField
+        {...nameTextFieldProps}
+        content={selectedTheme.title}
+        infoText={""}
+      />
       <div className="info-grid">
-        <ThemeTextField {...hintCountTextFieldProps} />
-        <ThemeTextField {...timeTextFieldProps} />
+        <ThemeTextField
+          {...hintCountTextFieldProps}
+          content={selectedTheme.hintLimit}
+        />
+        <ThemeTextField
+          {...timeTextFieldProps}
+          content={selectedTheme.timeLimit}
+        />
       </div>
     </div>
   );

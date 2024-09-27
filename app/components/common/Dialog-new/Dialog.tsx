@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-// import { usePutTheme } from "@/mutations/putTheme";
-// import { useDeleteTheme } from "@/mutations/deleteTheme";
+import { usePutTheme } from "@/mutations/putTheme";
+import { useDeleteTheme } from "@/mutations/deleteTheme";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
 import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
@@ -9,6 +9,8 @@ import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
 import DialogBody from "./DialogBody";
 import "@/components/common/Dialog-new/dialog.css";
 import ModalPortal from "./ModalPortal";
+import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
+import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
 
 interface DialogProps {
   type?: string | "";
@@ -28,23 +30,29 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
     open(Dialog, { type: "delete" });
   };
   const { handleSubmit } = useForm<FormValues>();
-  // const { mutateAsync: putTheme } = usePutTheme();
-  // const { mutateAsync: deleteTheme } = useDeleteTheme();
+  const selectedTheme = useSelectedThemeValue();
+  const createTheme = useCreateThemeValue();
+
+  const isDisabled = !(
+    createTheme.title &&
+    createTheme.timeLimit &&
+    createTheme.hintLimit
+  );
+
+  const { mutateAsync: putTheme } = usePutTheme();
+  const { mutateAsync: deleteTheme } = useDeleteTheme();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit: SubmitHandler<FormValues> = () =>
-    // _data
-    {
-      // const submitData = {
-      //   id: 48,
-      //   title: "test",
-      //   timeLimit: 60,
-      //   hintLimit: 60,
-      // };
-
-      // type === "put" ? putTheme(submitData) : deleteTheme({ id });
-      close();
+  const onSubmit: SubmitHandler<FormValues> = () => {
+    const submitData = {
+      ...createTheme,
+      id: selectedTheme.id,
     };
+    const id: number = selectedTheme.id;
+    type === "put" ? putTheme(submitData) : deleteTheme({ id });
+    close();
+    return close();
+  };
 
   return (
     <ModalPortal>
@@ -81,7 +89,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
             >
               취소
             </button>
-            <button className="button32" type="submit">
+            <button className="button32" type="submit" disabled={isDisabled}>
               {type === "delete" ? "삭제하기" : "저장"}
             </button>
           </div>

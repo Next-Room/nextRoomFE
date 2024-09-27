@@ -19,9 +19,9 @@ export const useTextField = ({
   useEffect(() => {
     setCreateTheme((prev) => ({
       ...prev,
-      [id]: selectedTheme[id] + inputValue,
+      [id]: inputValue,
     }));
-  }, [inputValue, id, setCreateTheme, selectedTheme]);
+  }, [inputValue, id, setCreateTheme]);
 
   useEffect(() => {
     if (!isFocus || !inputRef.current) {
