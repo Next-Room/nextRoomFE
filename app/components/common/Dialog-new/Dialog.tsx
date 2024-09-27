@@ -11,7 +11,6 @@ import "@/components/common/Dialog-new/dialog.css";
 import ModalPortal from "./ModalPortal";
 
 interface DialogProps {
-  id?: number | 0;
   type?: string | "";
 }
 
@@ -23,10 +22,10 @@ interface FormValues {
 }
 const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
   const { open, close } = useModal();
-  const { id = 0, type = "" } = props;
+  const { type = "" } = props;
 
   const handleOpenModal = () => {
-    open(Dialog, { id, type: "delete" });
+    open(Dialog, { type: "delete" });
   };
   const { handleSubmit } = useForm<FormValues>();
   // const { mutateAsync: putTheme } = usePutTheme();
@@ -50,13 +49,14 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
   return (
     <ModalPortal>
       <form
-        className="theme-info-modal"
+        className={`theme-info-modal ${type}`}
         ref={ref}
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="theme-info-modal__header">
-          <h2> {type === "put" ? "테마 정보" : "정말로 삭제하시겠어요?"}</h2>
-
+          <h2>
+            {type === "put" ? "테마 정보 수정" : "정말로 삭제하시겠어요?"}
+          </h2>
           <button className="close-button" type="button" onClick={close}>
             <Image {...xProps} />
           </button>
@@ -92,7 +92,6 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
 });
 
 Dialog.defaultProps = {
-  id: 0,
   type: "",
 };
 export default Dialog;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../(style)/createTheme.modules.sass";
+import "@/admin-new/(style)/createTheme.modules.css";
 import CreateThemeTitle from "./CreateThemeTitle";
 import CreateThemeBody from "./CreateThemeBody";
 import CreateThemeAddButton from "./CreateThemeAddButton";
