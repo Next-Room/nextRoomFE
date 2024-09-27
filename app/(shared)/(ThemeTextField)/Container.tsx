@@ -12,7 +12,7 @@ export default function ThemeTextField({
   infoText,
   inputType,
   inputPlaceholder,
-  checkError,
+  checkErrorText,
 }: ThemeInfoTextFieldType) {
   const {
     inputValue,
@@ -22,7 +22,7 @@ export default function ThemeTextField({
     inputRef,
     handleInputChange,
     handleInputBlur,
-  } = useTextField({ id, content, checkError });
+  } = useTextField({ id, content, checkErrorText });
 
   return (
     <div tabIndex={isFocus ? -1 : tabIndex} onFocus={() => setIsFocus(true)}>

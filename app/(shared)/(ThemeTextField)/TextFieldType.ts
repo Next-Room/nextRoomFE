@@ -8,5 +8,5 @@ export type ThemeInfoTextFieldType = {
   infoText?: string;
   inputType?: string;
   inputPlaceholder?: string;
-  checkError?: ValidationFunction<unknown>;
+  checkErrorText?: ValidationFunction<unknown>;
 };

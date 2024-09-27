@@ -1,5 +1,6 @@
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import React from "react";
+
 interface Props {
   handleOpenModal: () => void;
 }
@@ -17,14 +18,14 @@ export default function ThemeInfoBody({ handleOpenModal }: Props) {
   ];
 
   return (
-    <div className="theme-info__body">
-      <div className="theme-info-text">테마 정보</div>
-      <div className="theme-info-container">
+    <div className="theme-infomation__body">
+      <div className="theme-infomation-text">테마 정보</div>
+      <div className="theme-infomation-container">
         {themeInfo.map((info) => (
-          <div className="theme-info-box" onClick={handleOpenModal}>
-            <div className="theme-info-text">{info.title}</div>
-            <div className="theme-info-content-text">{info.content}</div>
-            <div className="theme-info-modify-text">수정</div>
+          <div className="theme-infomation-box" onClick={handleOpenModal}>
+            <div className="theme-infomation-text">{info.title}</div>
+            <div className="theme-infomation-content-text">{info.content}</div>
+            <div className="theme-infomation-modify-text">수정</div>
           </div>
         ))}
       </div>

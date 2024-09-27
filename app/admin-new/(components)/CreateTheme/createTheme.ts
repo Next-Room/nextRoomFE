@@ -1,4 +1,4 @@
-import { ThemeInfoTextFieldType } from "./createThemeType";
+import { ThemeInfoTextFieldType } from "../../../(shared)/(ThemeTextField)/TextFieldType";
 
 export const CREATE_THEME_TITLE_TEXT = "테마 정보를 입력해 주세요";
 
@@ -39,7 +39,8 @@ export const nameTextFieldProps: ThemeInfoTextFieldType = {
   infoText: "손님에게는 테마 이름이 노출되지 않아요",
   inputType: "text",
   inputPlaceholder: "테마 이름을 입력해 주세요",
-  checkError: undefined,
+  // FIXME: 이름 text
+  checkErrorText: undefined,
 };
 
 export const timeTextFieldProps: ThemeInfoTextFieldType = {
@@ -50,7 +51,7 @@ export const timeTextFieldProps: ThemeInfoTextFieldType = {
   infoText: "",
   inputType: "text",
   inputPlaceholder: "분 단위 숫자로 입력해 주세요",
-  checkError: timeValidations,
+  checkErrorText: timeValidations,
 };
 
 export const hintCountTextFieldProps: ThemeInfoTextFieldType = {
@@ -61,5 +62,5 @@ export const hintCountTextFieldProps: ThemeInfoTextFieldType = {
   infoText: "",
   inputType: "text",
   inputPlaceholder: "숫자로 입력해 주세요",
-  checkError: hintValidations,
+  checkErrorText: hintValidations,
 };

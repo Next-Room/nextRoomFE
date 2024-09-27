@@ -5,7 +5,7 @@ import {
   hintCountTextFieldProps,
   nameTextFieldProps,
   timeTextFieldProps,
-} from "../../../(shared)/(ThemeTextField)/createTheme";
+} from "./createTheme";
 
 export default function CreateThemeBody() {
   const resetCreateTheme = useCreateThemeReset();
