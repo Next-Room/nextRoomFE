@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import classNames from "classnames";
-import { logoProps, plusProps } from "@/admin-new/(consts)/sidebar";
+import {
+  logoProps,
+  plusDisableProps,
+  plusProps,
+} from "@/admin-new/(consts)/sidebar";
 import { useRouter } from "next/navigation";
 
 interface Theme {
@@ -63,10 +67,18 @@ export default function Sidebar(props: Props) {
           <li className="sidebar__theme-item">
             <button
               type="button"
-              className="sidebar__theme-button sidebar__add-theme"
+              className={classNames(
+                "sidebar__theme-button sidebar__add-theme",
+                {
+                  selected: selectedTheme.id === 0,
+                }
+              )}
               onClick={() => router.push("/admin-new")}
             >
-              <Image {...plusProps} /> 새 테마 추가하기
+              <Image
+                {...(selectedTheme.id === 0 ? plusProps : plusDisableProps)}
+              />
+              새 테마 추가하기
             </button>
           </li>
         </ul>

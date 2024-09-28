@@ -6,7 +6,14 @@ export const logoProps = {
 };
 
 export const plusProps = {
-  src: "/images/svg/plus.svg",
+  src: "/images/svg/plus_abled.svg",
+  alt: "plus icon",
+  width: 16,
+  height: 16,
+};
+
+export const plusDisableProps = {
+  src: "/images/svg/plus_disabled.svg",
   alt: "plus icon",
   width: 16,
   height: 16,
