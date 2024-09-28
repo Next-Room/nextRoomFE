@@ -1,4 +1,4 @@
-import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
+import { useToastWrite } from "@/components/atoms/toast.atom";
 
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
@@ -37,7 +37,7 @@ export const postTheme = async (
 
 export const usePostTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
-  const setSnackBar = useSnackBarWrite();
+  const setToast = useToastWrite();
 
   const info = useMutation<
     AxiosResponse<PostThemeResponseType>,
@@ -51,18 +51,20 @@ export const usePostTheme = (configOptions?: MutationConfigOptions) => {
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEY);
       // console.log("성공 시 실행")
-      setSnackBar({
+      setToast({
         isOpen: true,
-        message: "테마를 추가했습니다. 단말기에서 업데이트를 진행해 주세요.",
+        title: "테마를 추가했습니다.",
+        text: "",
       });
     },
     onSettled: () => {
       //   console.log("항상 실행");
     },
     onError: (error) => {
-      setSnackBar({
+      setToast({
         isOpen: true,
-        message: `${(error as any)?.response?.data?.message || error}`,
+        title: `${(error as any)?.response?.data?.message || error}`,
+        text: "",
       });
     },
   });
