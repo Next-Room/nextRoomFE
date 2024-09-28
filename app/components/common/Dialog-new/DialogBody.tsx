@@ -15,7 +15,7 @@ export default function DialogBody() {
       <ThemeTextField
         {...nameTextFieldProps}
         content={selectedTheme.title}
-        infoText={""}
+        infoText=""
       />
       <div className="info-grid">
         <ThemeTextField

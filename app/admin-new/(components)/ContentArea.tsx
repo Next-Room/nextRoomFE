@@ -17,10 +17,7 @@ export default function ContentArea() {
           {modals.map((modal) => {
             const { Component, props } = modal;
             return (
-              <div
-                className={`modal ${props.type}`}
-                key={`${params}_${props.type}`}
-              >
+              <div className="modal" key={`${params}`}>
                 <Component {...props} />
               </div>
             );
@@ -32,3 +29,7 @@ export default function ContentArea() {
     </div>
   );
 }
+
+ContentArea.defaultProps = {
+  type: "", // 기본값 설정
+};

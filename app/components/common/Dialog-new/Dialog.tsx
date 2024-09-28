@@ -1,20 +1,21 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { forwardRef, useRef } from "react";
 import { usePutTheme } from "@/mutations/putTheme";
 import { useDeleteTheme } from "@/mutations/deleteTheme";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
-import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
-import useModal from "@/hooks/useModal";
-import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
-import DialogBody from "./DialogBody";
-import "@/components/common/Dialog-new/dialog.css";
-import ModalPortal from "./ModalPortal";
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import {
   useCreateThemeReset,
   useCreateThemeValue,
 } from "@/components/atoms/createTheme.atom";
 import useClickOutside from "@/hooks/useClickOutside";
+import { deleteProps, xProps } from "@/admin-new/(consts)/sidebar";
+import useModal from "@/hooks/useModal";
+import DialogDeleteBody from "@/components/common/Dialog-new/DialogDeleteBody";
+import DialogBody from "./DialogBody";
+import "@/components/common/Dialog-new/dialog.css";
+import ModalPortal from "./ModalPortal";
 
 interface DialogProps {
   type?: string | "";
@@ -26,14 +27,15 @@ interface FormValues {
   timeLimit: number;
   hintLimit: number;
 }
-const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
+
+const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
   const { open, close } = useModal();
   const { type = "" } = props;
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleOpenDeleteModal = (event: React.MouseEvent) => {
     event.stopPropagation();
-    open(Dialog, { type: "delete" }); 
+    open(Dialog, { type: "delete" });
   };
 
   const { handleSubmit } = useForm<FormValues>();
@@ -50,11 +52,13 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
   const { mutateAsync: deleteTheme } = useDeleteTheme();
 
   const onSubmit: SubmitHandler<FormValues> = () => {
+    const { id } = selectedTheme;
+
     const submitData = {
       ...createTheme,
-      id: selectedTheme.id,
+      id,
     };
-    const id: number = selectedTheme.id;
+
     if (type === "put") {
       putTheme(submitData);
     } else if (type === "delete") {
@@ -62,6 +66,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
     }
     close();
     resetCreateTheme();
+
     return close();
   };
 
@@ -73,7 +78,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
         className={`theme-info-modal ${type}`}
         ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
-        onClick={(e) => e.stopPropagation()} 
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="theme-info-modal__header">
           <h2>
@@ -88,7 +93,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props, ref) => {
           {type === "put" && (
             <button
               className="delete-button icon_button32"
-              onClick={handleOpenDeleteModal} 
+              onClick={handleOpenDeleteModal}
               type="button"
             >
               <Image {...deleteProps} />
