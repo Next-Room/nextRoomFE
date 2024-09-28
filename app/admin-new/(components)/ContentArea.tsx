@@ -14,10 +14,10 @@ export default function ContentArea() {
       {params ? (
         <>
           <ThemeInfo />
-          {modals.map((modal) => {
+          {modals.map((modal, index) => {
             const { Component, props } = modal;
             return (
-              <div className="modal" key={`${params}`}>
+              <div className={`modal-${index}`} key={`${params}`}>
                 <Component {...props} />
               </div>
             );

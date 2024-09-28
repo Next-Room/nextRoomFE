@@ -76,12 +76,6 @@
   padding: 24px 32px;
   width: 577px;
 }
-.theme-info-modal .delete {
-  z-index: 500;
-}
-.theme-info-modal .put {
-  z-index: 1000;
-}
 .theme-info-modal__header {
   display: flex;
   justify-content: space-between;
@@ -125,4 +119,12 @@
   margin-left: auto;
   display: flex;
   gap: 10px;
+}
+
+.delete {
+  z-index: 600;
+}
+
+.put {
+  z-index: 100;
 }
