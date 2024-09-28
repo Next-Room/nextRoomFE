@@ -37,13 +37,22 @@ function RequireAuth({
       setIsMobile(mobileRegex.test(userAgent));
       setIsLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (categories.length > 0) {
-      setCurrentTheme(categories.map(({ id, title }) => ({ id, title })));
-    }
+    const newTheme = categories.map(({ id, title }) => ({ id, title }));
+    setCurrentTheme((prevTheme) => {
+      const isSame =
+        prevTheme.length === newTheme.length &&
+        prevTheme.every(
+          (theme, idx) =>
+            theme.id === newTheme[idx].id && theme.title === newTheme[idx].title
+        );
+      if (!isSame) {
+        return newTheme;
+      }
+      return prevTheme;
+    });
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {
@@ -51,6 +60,8 @@ function RequireAuth({
       router.push("/login");
     } else if (isLoggedIn && pathname === "/") {
       router.push(pathname);
+    } else if (isLoggedIn && currentTheme.length === 0) {
+      router.push("/admin-new");
     } else if (isLoggedIn && !modalState.isOpen) {
       if (currentTheme.length > 0) {
         const lastThemeId = encodeURIComponent(
