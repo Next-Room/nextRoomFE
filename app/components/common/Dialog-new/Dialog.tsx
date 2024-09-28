@@ -46,8 +46,12 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
     type === "put"
       ? // FIXME: type 문제때문에 === 하면 같지 않음
         (createTheme.title === selectedTheme.title &&
-          createTheme.timeLimit == selectedTheme.timeLimit &&
-          createTheme.hintLimit == selectedTheme.hintLimit) ||
+          Number(createTheme.timeLimit) ===
+            Number(
+              selectedTheme.timeLimit &&
+                Number(createTheme.hintLimit) ===
+                  Number(selectedTheme.hintLimit)
+            )) ||
         !(createTheme.title && createTheme.timeLimit && createTheme.hintLimit)
       : !(createTheme.title && createTheme.timeLimit && createTheme.hintLimit);
 
@@ -111,11 +115,7 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
             >
               취소
             </button>
-            <button
-              className="button32"
-              type="submit"
-              disabled={isDisabled && type === "put"}
-            >
+            <button className="button32" type="submit" disabled={isDisabled}>
               {type === "delete" ? "삭제하기" : "저장"}
             </button>
           </div>

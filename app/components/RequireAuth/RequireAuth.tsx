@@ -3,16 +3,18 @@
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 
 import { useGetThemeList } from "@/queries/getThemeList";
-import { useCurrentTheme } from "@/components/atoms/currentTheme.atom";
+import {
+  useCurrentTheme,
+  useCurrentThemeReset,
+} from "@/components/atoms/currentTheme.atom";
+import { useModalStateValue } from "@/components/atoms/modalState.atom";
+import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
-
 import * as S from "@/home/HomeView.styled";
-
 import Header from "@/components/common/Header/Header";
 import MainDrawer from "@/components/common/Drawer/Drawer";
 import Mobile from "../Mobile/Mobile";
-import { useModalStateValue } from "../atoms/modalState.atom";
 
 interface RequireAuthProps {
   children: ReactNode;
@@ -22,6 +24,9 @@ function RequireAuth({
 }: RequireAuthProps): React.ReactElement | null {
   const isLoggedIn = useIsLoggedInValue();
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
+  const resetCurrentTheme = useCurrentThemeReset();
+  const resetSelectedTheme = useSelectedThemeReset();
+
   const router = useRouter();
   const pathname = usePathname();
   const allowUnauthPaths = useMemo(() => ["/", "/trial", "/signup"], []);
@@ -40,19 +45,13 @@ function RequireAuth({
   }, []);
 
   useEffect(() => {
-    const newTheme = categories.map(({ id, title }) => ({ id, title }));
-    setCurrentTheme((prevTheme) => {
-      const isSame =
-        prevTheme.length === newTheme.length &&
-        prevTheme.every(
-          (theme, idx) =>
-            theme.id === newTheme[idx].id && theme.title === newTheme[idx].title
-        );
-      if (!isSame) {
-        return newTheme;
-      }
-      return prevTheme;
-    });
+    if (categories.length > 0) {
+      setCurrentTheme(categories.map(({ id, title }) => ({ id, title })));
+    } else {
+      resetCurrentTheme();
+      resetSelectedTheme();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories, setCurrentTheme]);
 
   useEffect(() => {

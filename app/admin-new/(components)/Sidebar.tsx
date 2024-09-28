@@ -7,6 +7,7 @@ import {
   plusProps,
 } from "@/admin-new/(consts)/sidebar";
 import { useRouter } from "next/navigation";
+import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 
 interface Theme {
   id: number;
@@ -25,6 +26,9 @@ interface Props {
 
 export default function Sidebar(props: Props) {
   const router = useRouter();
+
+  const resetSelectedTheme = useSelectedThemeReset();
+
   const {
     adminCode = "",
     shopName = "",
@@ -73,7 +77,11 @@ export default function Sidebar(props: Props) {
                   selected: selectedTheme.id === 0,
                 }
               )}
-              onClick={() => router.push("/admin-new")}
+              onClick={() => {
+                resetSelectedTheme();
+
+                router.push("/admin-new");
+              }}
             >
               <Image
                 {...(selectedTheme.id === 0 ? plusProps : plusDisableProps)}
