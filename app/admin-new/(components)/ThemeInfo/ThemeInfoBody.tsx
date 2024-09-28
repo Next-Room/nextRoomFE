@@ -21,8 +21,12 @@ export default function ThemeInfoBody({ handleOpenModal }: Props) {
     <div className="theme-infomation__body">
       <div className="theme-infomation-text">테마 정보</div>
       <div className="theme-infomation-container">
-        {themeInfo.map((info) => (
-          <div className="theme-infomation-box" onClick={handleOpenModal}>
+        {themeInfo.map((info, index) => (
+          <div
+            className="theme-infomation-box"
+            onClick={handleOpenModal}
+            key={index}
+          >
             <div className="theme-infomation-text">{info.title}</div>
             <div className="theme-infomation-content-text">{info.content}</div>
             <div className="theme-infomation-modify-text">수정</div>
