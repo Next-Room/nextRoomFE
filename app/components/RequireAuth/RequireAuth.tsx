@@ -59,7 +59,7 @@ function RequireAuth({
         router.push(`/admin-new?themeId=${lastThemeId}`);
         // router.push(`/admin-new`);
       } else {
-        router.push("/admin");
+        router.push("/admin-new");
       }
     }
   }, [
