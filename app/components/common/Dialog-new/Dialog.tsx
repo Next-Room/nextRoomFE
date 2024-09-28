@@ -108,7 +108,11 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
             >
               취소
             </button>
-            <button className="button32" type="submit" disabled={isDisabled}>
+            <button
+              className="button32"
+              type="submit"
+              disabled={isDisabled && type === "put"}
+            >
               {type === "delete" ? "삭제하기" : "저장"}
             </button>
           </div>
