@@ -6,6 +6,8 @@
   padding: 10px 11px
   border-radius: 8px
   margin: auto 
+  background-color: $color-white
+
   @include button12SB
   &:hover 
     color: $color-black
@@ -19,8 +21,41 @@
     color: $color-white20
     background-color: $color-white20
 
-// .button:disabled:hover,
-// .button:disabled:active {
-//   background-color: #d6d6d6;
-//   transform: none; /* 변형 제거 */
-// }
+.outline_button32
+  height: 32px
+  padding: 10px 11px
+  border-radius: 8px
+  border: 1px solid  $color-white20
+  margin: auto 
+  color: $color-white
+
+  @include button12SB
+  &:hover 
+    background-color: $color-white5
+
+  &:active 
+    background-color: $color-white8
+
+  &:disabled 
+    color: $color-white20
+    border: 1px solid  $color-white12
+
+
+.icon_button32
+  height: 32px
+  padding: 8px 8px 8px 6px  
+  border-radius: 8px
+  color: $color-white
+
+  img
+    vertical-align: text-top
+    margin-right: 4px
+  @include button12SB
+  &:hover 
+    background-color: $color-white5
+
+  &:active 
+    background-color: $color-white8
+
+  &:disabled 
+    color: $color-white20

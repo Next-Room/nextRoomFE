@@ -4,7 +4,7 @@ import DeleteDialog from "../common/DeleteDialog/DeleteDialog";
 import ThemeDetailView from "./ThemeDetailView";
 import Dialog from "../common/Dialog/Dialog";
 import { useActiveHintState } from "../atoms/activeHint.atom";
-import { useModalStateWrite } from "../atoms/modals.atom";
+import { useModalStateWrite } from "../atoms/modalState.atom";
 
 function ThemeDetail() {
   const selectedTheme = useSelectedThemeValue();

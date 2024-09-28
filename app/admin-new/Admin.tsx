@@ -6,6 +6,8 @@ import Loader from "@/components/Loader/Loader";
 import { getAdminCode, getShopName } from "@/utils/localStorage";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useGetThemeList } from "@/queries/getThemeList";
+import { useToastInfo } from "@/components/atoms/toast.atom";
+import { useRouter } from "next/navigation";
 import AdminView from "./AdminView";
 
 type Theme = {
@@ -21,8 +23,10 @@ function Admin() {
   const isLoggedIn = useCheckSignIn();
 
   const [selectedTheme, setSelectedTheme] = useSelectedTheme();
-  const adminCode: string = getAdminCode() || ""; 
+  const adminCode: string = getAdminCode() || "";
   const shopName: string = getShopName() || "";
+  const [toast, setToast] = useToastInfo();
+  const router = useRouter();
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -32,8 +36,21 @@ function Admin() {
 
   const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);
+
+    setTimeout(() => {
+      if (theme.id) {
+        router.push(`/admin-new?themeId=${encodeURIComponent(theme.id)}`);
+      }
+    }, 10);
   };
 
+  useEffect(() => {
+    if (toast.isOpen) {
+      setTimeout(() => {
+        setToast({ ...toast, isOpen: false });
+      }, 3000);
+    }
+  }, [toast, setToast]);
 
   const SidebarViewProps = {
     adminCode,
@@ -41,6 +58,7 @@ function Admin() {
     categories,
     selectedTheme,
     handleClickSelected,
+    isOpen: toast.isOpen,
   };
 
   if (!isLoggedIn) {

@@ -1,23 +1,10 @@
-@import '../style/variables'
-@import '../style/mixins'
-@import '../style/button'
+@import '../../style/variables'
+@import '../../style/mixins'
+@import '../../style/button'
     
 .main
   display: flex
   overflow: hidden
-.content-area
-  flex-grow: 1
-  flex-shrink: 1
-  overflow-x: hidden
-  padding-top: 50px
-  margin-right: 40px
-  &:hover
-    overflow-x: overlay 
-  div
-    max-width: 2198px
-    width: 100%
-    min-width: 918px 
-    margin: 0 auto
 
 .sidebar
   flex-shrink: 0
@@ -27,7 +14,6 @@
   height: 100vh
   background-color: $color-main
   padding: 24px 
-  margin-right: 40px
   border-right: 1px solid $color-white12
   &__top
     flex-shrink: 0
@@ -142,3 +128,33 @@
   color: $color-white 
   background-color: $color-white5
   border-radius: 8px
+
+.content-area
+  flex-grow: 1
+  flex-shrink: 1
+  overflow-x: hidden
+  padding: 0 40px
+  &:hover
+    overflow-x: overlay 
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: $color-main
+
+.modal-0
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-color: $color-black60
+  z-index: 100
+.modal-1
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-color: $color-black60
+  z-index: 600
+

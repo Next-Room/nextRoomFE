@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Stack, Grid, IconButton, Menu, MenuItem } from "@mui/material";
 import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
-import { useModalStateWrite } from "@/components/atoms/modals.atom";
+import { useModalStateWrite } from "@/components/atoms/modalState.atom";
 import { useActiveHintStateValue } from "@/components/atoms/activeHint.atom";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import MoreVertIcon from "@mui/icons-material/MoreVert";

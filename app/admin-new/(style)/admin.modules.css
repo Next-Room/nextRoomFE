@@ -3,6 +3,7 @@
   padding: 10px 11px;
   border-radius: 8px;
   margin: auto;
+  background-color: #fff;
   font-size: 12px;
   font-weight: 600;
   line-height: 100%;
@@ -20,26 +21,54 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.outline_button32 {
+  height: 32px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: auto;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.outline_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.outline_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.outline_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1215686275);
+}
+
+.icon_button32 {
+  height: 32px;
+  padding: 8px 8px 8px 6px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+}
+.icon_button32 img {
+  vertical-align: text-top;
+  margin-right: 4px;
+}
+.icon_button32:hover {
+  background-color: rgba(255, 255, 255, 0.0509803922);
+}
+.icon_button32:active {
+  background-color: rgba(255, 255, 255, 0.0784313725);
+}
+.icon_button32:disabled {
+  color: rgba(255, 255, 255, 0.2);
+}
+
 .main {
   display: flex;
   overflow: hidden;
-}
-
-.content-area {
-  flex-grow: 1;
-  flex-shrink: 1;
-  overflow-x: hidden;
-  padding-top: 50px;
-  margin-right: 40px;
-}
-.content-area:hover {
-  overflow-x: overlay;
-}
-.content-area div {
-  max-width: 2198px;
-  width: 100%;
-  min-width: 918px;
-  margin: 0 auto;
 }
 
 .sidebar {
@@ -50,7 +79,6 @@
   height: 100vh;
   background-color: #131417;
   padding: 24px;
-  margin-right: 40px;
   border-right: 1px solid rgba(255, 255, 255, 0.1215686275);
 }
 .sidebar__top {
@@ -190,4 +218,38 @@
   color: #fff;
   background-color: rgba(255, 255, 255, 0.0509803922);
   border-radius: 8px;
+}
+
+.content-area {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-x: hidden;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #131417;
+}
+.content-area:hover {
+  overflow-x: overlay;
+}
+
+.modal-0 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.modal-1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 600;
 }
