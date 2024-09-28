@@ -6,14 +6,11 @@ import {
   nameTextFieldProps,
   timeTextFieldProps,
 } from "./createTheme";
-import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 
 export default function CreateThemeBody() {
   const resetCreateTheme = useCreateThemeReset();
-  const resetSelectedTheme = useSelectedThemeReset();
 
   resetCreateTheme();
-  resetSelectedTheme();
   return (
     <div className="create-theme__body">
       <ThemeTextField {...nameTextFieldProps} />

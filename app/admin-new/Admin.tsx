@@ -36,12 +36,10 @@ function Admin() {
 
   const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);
-
-    setTimeout(() => {
-      if (theme.id) {
-        router.push(`/admin-new?themeId=${encodeURIComponent(theme.id)}`);
-      }
-    }, 10);
+    // FIXME: 여기서 업데이트 안됨
+    if (theme.id) {
+      router.push(`/admin-new?themeId=${encodeURIComponent(theme.id)}`);
+    }
   };
 
   useEffect(() => {
