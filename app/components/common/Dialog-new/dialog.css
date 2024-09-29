@@ -88,9 +88,7 @@
   line-height: 120%;
 }
 .theme-info-modal__header .close-button {
-  position: absolute;
-  top: 24px;
-  right: 24px;
+  display: flex;
   background: none;
   border: none;
   cursor: pointer;
