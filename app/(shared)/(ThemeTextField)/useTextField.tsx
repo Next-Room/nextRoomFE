@@ -1,15 +1,6 @@
-import {
-  ChangeEvent,
-  FocusEvent,
-  KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from "react";
 import { useCreateTheme } from "@/components/atoms/createTheme.atom";
 import { ThemeInfoTextFieldType } from "./TextFieldType";
-import { usePostTheme } from "@/mutations/postTheme";
-import { useRouter } from "next/navigation";
 
 export const useTextField = ({
   id,
@@ -20,9 +11,7 @@ export const useTextField = ({
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
   const [createTheme, setCreateTheme] = useCreateTheme();
-  const { mutateAsync: postTheme } = usePostTheme();
 
   useEffect(() => {
     setCreateTheme((prev) => ({
@@ -67,24 +56,6 @@ export const useTextField = ({
     setIsFocus(true);
   };
 
-  const handleKeyDownSubmit = async (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter") {
-      const isDisabled = !(
-        createTheme.title &&
-        createTheme.timeLimit &&
-        createTheme.hintLimit
-      );
-      if (isDisabled) {
-        return;
-      }
-      const response = await postTheme(createTheme);
-      const { id } = response.data;
-      if (id) {
-        router.push(`/admin?themeId=${encodeURIComponent(id)}`);
-      }
-    }
-  };
-
   return {
     inputValue,
     isFocus,
@@ -93,7 +64,6 @@ export const useTextField = ({
     inputRef,
     handleInputChange,
     handleInputBlur,
-    handleKeyDownSubmit,
   };
 };
 

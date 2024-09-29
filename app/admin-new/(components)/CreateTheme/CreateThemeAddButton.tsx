@@ -1,7 +1,5 @@
 import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
-import { usePostTheme } from "@/mutations/postTheme";
 import classNames from "classnames";
-import { useRouter } from "next/navigation";
 
 export default function CreateThemeAddButton() {
   const createTheme = useCreateThemeValue();
@@ -11,24 +9,12 @@ export default function CreateThemeAddButton() {
     createTheme.hintLimit
   );
 
-  const { mutateAsync: postTheme } = usePostTheme();
-  const router = useRouter();
-
-  const handleClickSubmit = async () => {
-    const response = await postTheme(createTheme);
-    const { id } = response.data;
-    if (id) {
-      router.push(`/admin?themeId=${encodeURIComponent(id)}`);
-    }
-  };
-
   return (
     <button
       type="submit"
       className={classNames("create-theme__add-button", {
         disable: isDisabled,
       })}
-      onClick={handleClickSubmit}
       disabled={isDisabled}
     >
       테마 추가
