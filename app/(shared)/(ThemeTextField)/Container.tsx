@@ -23,10 +23,15 @@ export default function ThemeTextField({
     inputRef,
     handleInputChange,
     handleInputBlur,
+    handleKeyDownSubmit,
   } = useTextField({ id, content, checkErrorText });
 
   return (
-    <div tabIndex={isFocus ? -1 : tabIndex} onFocus={() => setIsFocus(true)}>
+    <div
+      tabIndex={isFocus ? -1 : tabIndex}
+      onFocus={() => setIsFocus(true)}
+      onKeyDown={handleKeyDownSubmit}
+    >
       <button
         className={classNames("theme-textfield", {
           focus: isFocus,

@@ -2,7 +2,6 @@ import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
 import { usePostTheme } from "@/mutations/postTheme";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 export default function CreateThemeAddButton() {
   const createTheme = useCreateThemeValue();
@@ -30,6 +29,7 @@ export default function CreateThemeAddButton() {
         disable: isDisabled,
       })}
       onClick={handleClickSubmit}
+      disabled={isDisabled}
     >
       테마 추가
     </button>
