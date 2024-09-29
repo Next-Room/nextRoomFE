@@ -44,14 +44,9 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
   const resetCreateTheme = useCreateThemeReset();
   const isDisabled =
     type === "put"
-      ? // FIXME: type 문제때문에 === 하면 같지 않음
-        (createTheme.title === selectedTheme.title &&
-          Number(createTheme.timeLimit) ===
-            Number(
-              selectedTheme.timeLimit &&
-                Number(createTheme.hintLimit) ===
-                  Number(selectedTheme.hintLimit)
-            )) ||
+      ? (String(createTheme.title) === String(selectedTheme.title) &&
+          Number(createTheme.timeLimit) === Number(selectedTheme.timeLimit) &&
+          Number(createTheme.hintLimit) === Number(selectedTheme.hintLimit)) ||
         !(createTheme.title && createTheme.timeLimit && createTheme.hintLimit)
       : !(createTheme.title && createTheme.timeLimit && createTheme.hintLimit);
 
