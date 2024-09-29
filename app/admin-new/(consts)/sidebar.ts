@@ -32,3 +32,6 @@ export const deleteProps = {
   width: 16,
   height: 16,
 };
+
+export const subscribeLinkURL =
+  "https://sponge-wood-68d.notion.site/ec2a28c470094769bc787acb74760da5";
