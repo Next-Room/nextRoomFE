@@ -37,8 +37,8 @@ export const usePutTheme = (configOptions?: MutationConfigOptions) => {
       console.log("성공 시 실행");
       setToast({
         isOpen: true,
-        title: "힌트를 수정했습니다.",
-        text: "단말기에서 업데이트를 진행해 주세요.",
+        title: "테마 정보를 수정했습니다.",
+        text: "앱에서 반드시 업데이트를 진행해 주세요.",
       });
     },
     onSettled: () => {
