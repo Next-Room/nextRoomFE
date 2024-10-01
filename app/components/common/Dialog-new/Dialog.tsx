@@ -7,7 +7,6 @@ import Image from "next/image";
 import {
   useSelectedTheme,
   useSelectedThemeReset,
-  useSelectedThemeValue,
 } from "@/components/atoms/selectedTheme.atom";
 import {
   useCreateThemeReset,

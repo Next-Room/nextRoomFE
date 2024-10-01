@@ -1,7 +1,4 @@
-import {
-  useSelectedTheme,
-  useSelectedThemeValue,
-} from "@/components/atoms/selectedTheme.atom";
+import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
 import { useToastWrite } from "@/components/atoms/toast.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
