@@ -7,7 +7,10 @@ import {
   useCurrentTheme,
   useCurrentThemeReset,
 } from "@/components/atoms/currentTheme.atom";
-import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
+import {
+  useSelectedThemeReset,
+  useSelectedThemeValue,
+} from "@/components/atoms/selectedTheme.atom";
 import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import * as S from "@/home/HomeView.styled";
@@ -25,7 +28,7 @@ function RequireAuth({
   const [currentTheme, setCurrentTheme] = useCurrentTheme();
   const resetCurrentTheme = useCurrentThemeReset();
   const resetSelectedTheme = useSelectedThemeReset();
-
+  const selectedTheme = useSelectedThemeValue();
   const router = useRouter();
   const pathname = usePathname();
   const allowUnauthPaths = useMemo(() => ["/", "/trial", "/signup"], []);
@@ -58,8 +61,17 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && currentTheme.length === 0) {
       router.push("/admin-new");
+    } else if (selectedTheme.id !== 0) {
+      router.push(`/admin-new?themeId=${selectedTheme.id}`);
     }
-  }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
+  }, [
+    isLoggedIn,
+    currentTheme,
+    router,
+    allowUnauthPaths,
+    pathname,
+    selectedTheme,
+  ]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment

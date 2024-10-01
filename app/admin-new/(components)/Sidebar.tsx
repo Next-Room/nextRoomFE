@@ -7,7 +7,7 @@ import {
   plusProps,
   subscribeLinkURL,
 } from "@/admin-new/(consts)/sidebar";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 
 interface Theme {
@@ -29,6 +29,10 @@ export default function Sidebar(props: Props) {
   const router = useRouter();
 
   const resetSelectedTheme = useSelectedThemeReset();
+
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams.toString()).toString();
+  console.log(params);
 
   const {
     adminCode = "",
@@ -61,7 +65,7 @@ export default function Sidebar(props: Props) {
               <button
                 type="button"
                 className={classNames("sidebar__theme-button", {
-                  selected: selectedTheme.id === theme.id,
+                  selected: selectedTheme.id === theme.id && params,
                 })}
                 onClick={() => handleClickSelected(theme)}
               >
@@ -75,7 +79,7 @@ export default function Sidebar(props: Props) {
               className={classNames(
                 "sidebar__theme-button sidebar__add-theme",
                 {
-                  selected: selectedTheme.id === 0,
+                  selected: !params,
                 }
               )}
               onClick={() => {
@@ -84,10 +88,8 @@ export default function Sidebar(props: Props) {
                 router.push("/admin-new");
               }}
             >
-              <Image
-                {...(selectedTheme.id === 0 ? plusProps : plusDisableProps)}
-              />
-              새 테마 추가하기
+              <Image {...(params ? plusDisableProps : plusProps)} />새 테마
+              추가하기
             </button>
           </li>
         </ul>
