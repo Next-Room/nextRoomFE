@@ -64,14 +64,9 @@ function RequireAuth({
     } else if (selectedTheme.id !== 0) {
       router.push(`/admin-new?themeId=${selectedTheme.id}`);
     }
-  }, [
-    isLoggedIn,
-    currentTheme,
-    router,
-    allowUnauthPaths,
-    pathname,
-    selectedTheme,
-  ]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
