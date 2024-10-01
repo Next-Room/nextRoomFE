@@ -15,6 +15,9 @@ const timeValidations = (value: unknown) => {
   if (strValue.length > 0 && numValue <= 0) {
     return "1분 이상 입력해 주세요.";
   }
+  if (numValue > 10000) {
+    return "10,000분 이하로 입력해 주세요.";
+  }
   return "";
 };
 
@@ -24,9 +27,14 @@ const hintValidations = (value: unknown) => {
   if (
     Number.isNaN(numValue) ||
     strValue.includes(".") ||
-    strValue.includes("e")
+    strValue.includes("e") ||
+    strValue.includes("-") ||
+    strValue.includes("+")
   ) {
     return "숫자로 입력해 주세요. (힌트 개수)";
+  }
+  if (numValue > 1000) {
+    return "1,000개 이하로 입력해 주세요.";
   }
   return "";
 };

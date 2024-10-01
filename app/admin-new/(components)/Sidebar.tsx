@@ -5,6 +5,7 @@ import {
   logoProps,
   plusDisableProps,
   plusProps,
+  subscribeLinkURL,
 } from "@/admin-new/(consts)/sidebar";
 import { useRouter } from "next/navigation";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
@@ -97,7 +98,13 @@ export default function Sidebar(props: Props) {
           <p className="sidebar__subscribe-value">
             사진을 추가하려면 유료 구독이 필요해요
           </p>
-          <button type="button" className="sidebar__subscribe-button button32">
+          <button
+            type="button"
+            className="sidebar__subscribe-button button32"
+            onClick={() => {
+              window.open(subscribeLinkURL, "_blank", "noopener, noreferrer");
+            }}
+          >
             구독 알아보기
           </button>
         </div>
