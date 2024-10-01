@@ -11,17 +11,19 @@ export const useTextField = ({
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [createTheme, setCreateTheme] = useCreateTheme();
+  const [, setCreateTheme] = useCreateTheme();
 
   useEffect(() => {
+    if (errorText) return;
     setCreateTheme((prev) => ({
       ...prev,
       [id]: inputValue,
     }));
-  }, [inputValue, id, setCreateTheme]);
+  }, [inputValue, id, setCreateTheme, errorText]);
 
   useEffect(() => {
     if (!isFocus || !inputRef.current) {
+      setErrorText("");
       return;
     }
     inputRef.current.focus();
