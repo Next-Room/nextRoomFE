@@ -10,12 +10,12 @@ interface ThemeInfo {
   id: number;
   title: string;
   timeLimit: number;
-  hintLimit?: number;
+  hintLimit: number;
 }
 
 const createThemeState = atom<ThemeInfo>({
   key: "createTheme",
-  default: { id: 0, title: "", timeLimit: 0 },
+  default: { id: 0, title: "", timeLimit: 0, hintLimit: 0 },
 });
 
 export const useCreateTheme = () => useRecoilState(createThemeState);

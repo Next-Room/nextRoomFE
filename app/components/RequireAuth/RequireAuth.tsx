@@ -8,7 +8,10 @@ import {
   useCurrentThemeReset,
 } from "@/components/atoms/currentTheme.atom";
 import { useModalStateValue } from "@/components/atoms/modalState.atom";
-import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
+import {
+  useSelectedThemeReset,
+  useSelectedThemeValue,
+} from "@/components/atoms/selectedTheme.atom";
 import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
 import * as S from "@/home/HomeView.styled";
@@ -53,7 +56,7 @@ function RequireAuth({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories, setCurrentTheme]);
-
+  const selectedTheme = useSelectedThemeValue();
   useEffect(() => {
     if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
       router.push("/login");
@@ -66,7 +69,11 @@ function RequireAuth({
         const lastThemeId = encodeURIComponent(
           currentTheme[currentTheme.length - 1].id
         );
-        router.push(`/admin-new?themeId=${lastThemeId}`);
+        // router.push(
+        //   selectedTheme.id === 0
+        //     ? `/admin-new?themeId=${lastThemeId}`
+        //     : `/admin-new?themeId=${selectedTheme.id}`
+        // );
         // router.push(`/admin-new`);
       } else {
         router.push("/admin-new");

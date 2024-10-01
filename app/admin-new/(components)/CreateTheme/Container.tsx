@@ -6,10 +6,12 @@ import { useCreateThemeValue } from "@/components/atoms/createTheme.atom";
 import CreateThemeTitle from "./CreateThemeTitle";
 import CreateThemeBody from "./CreateThemeBody";
 import CreateThemeAddButton from "./CreateThemeAddButton";
+import { useSelectedThemeWrite } from "@/components/atoms/selectedTheme.atom";
 
 export default function CreateTheme() {
   const router = useRouter();
   const createTheme = useCreateThemeValue();
+  const setSelectedTheme = useSelectedThemeWrite();
   const { mutateAsync: postTheme } = usePostTheme();
 
   const handleKeyDownSubmit = async (e: FormEvent) => {
@@ -23,9 +25,10 @@ export default function CreateTheme() {
       return;
     }
     const response = await postTheme(createTheme);
-    const { id } = response.data;
+    const { id } = response.data.data;
     if (id) {
-      router.push(`/admin?themeId=${encodeURIComponent(id)}`);
+      setSelectedTheme(createTheme);
+      router.push(`/admin-new?themeId=${encodeURIComponent(id)}`);
     }
   };
 

@@ -4,7 +4,11 @@ import { usePutTheme } from "@/mutations/putTheme";
 import { useDeleteTheme } from "@/mutations/deleteTheme";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
-import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
+import {
+  useSelectedTheme,
+  useSelectedThemeReset,
+  useSelectedThemeValue,
+} from "@/components/atoms/selectedTheme.atom";
 import {
   useCreateThemeReset,
   useCreateThemeValue,
@@ -39,9 +43,10 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
   };
 
   const { handleSubmit } = useForm<FormValues>();
-  const selectedTheme = useSelectedThemeValue();
+  const [selectedTheme, setSelectedTheme] = useSelectedTheme();
   const createTheme = useCreateThemeValue();
   const resetCreateTheme = useCreateThemeReset();
+  const resetSelectedTheme = useSelectedThemeReset();
   const isDisabled =
     type === "put"
       ? (String(createTheme.title) === String(selectedTheme.title) &&
@@ -63,8 +68,10 @@ const Dialog = forwardRef<HTMLFormElement, DialogProps>((props) => {
 
     if (type === "put") {
       putTheme(submitData);
+      setSelectedTheme(submitData);
     } else if (type === "delete") {
       deleteTheme({ id });
+      resetSelectedTheme();
     }
     close();
     resetCreateTheme();
