@@ -7,7 +7,7 @@ import { getAdminCode, getShopName } from "@/utils/localStorage";
 import { useSelectedTheme } from "@/components/atoms/selectedTheme.atom";
 import { useGetThemeList } from "@/queries/getThemeList";
 import { useToastInfo } from "@/components/atoms/toast.atom";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import AdminView from "./AdminView";
 
 type Theme = {
@@ -28,8 +28,12 @@ function Admin() {
   const [toast, setToast] = useToastInfo();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams.toString()).toString();
+  console.log(params);
+
   useEffect(() => {
-    if (categories.length > 0 && selectedTheme.id === 0) {
+    if (categories.length > 0 && selectedTheme.id === 0 ) {
       setSelectedTheme(categories[categories.length - 1]);
     }
   }, [categories, selectedTheme, setSelectedTheme]);
