@@ -7,7 +7,6 @@ import {
   useCurrentTheme,
   useCurrentThemeReset,
 } from "@/components/atoms/currentTheme.atom";
-import { useModalStateValue } from "@/components/atoms/modalState.atom";
 import { useSelectedThemeReset } from "@/components/atoms/selectedTheme.atom";
 import { useRouter, usePathname } from "next/navigation";
 import { useIsLoggedInValue } from "@/components/atoms/account.atom";
@@ -33,7 +32,6 @@ function RequireAuth({
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { data: categories = [] } = useGetThemeList();
-  const modalState = useModalStateValue();
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { userAgent } = window.navigator;
@@ -53,7 +51,6 @@ function RequireAuth({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories, setCurrentTheme]);
-
   useEffect(() => {
     if (!isLoggedIn && !allowUnauthPaths.includes(pathname)) {
       router.push("/login");
@@ -61,26 +58,8 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && currentTheme.length === 0) {
       router.push("/admin-new");
-    } else if (isLoggedIn) {
-      if (currentTheme.length > 0) {
-        const lastThemeId = encodeURIComponent(
-          currentTheme[currentTheme.length - 1].id
-        );
-        router.push(`/admin-new?themeId=${lastThemeId}`);
-        // router.push(`/admin-new`);
-      } else {
-        router.push("/admin-new");
-      }
     }
-  }, [
-    isLoggedIn,
-    currentTheme,
-    router,
-    allowUnauthPaths,
-    pathname,
-    modalState,
-  ]);
-  console.log(pathname);
+  }, [isLoggedIn, currentTheme, router, allowUnauthPaths, pathname]);
 
   if (isLoading) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
