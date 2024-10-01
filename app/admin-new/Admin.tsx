@@ -29,10 +29,10 @@ function Admin() {
   const router = useRouter();
 
   useEffect(() => {
-    if (categories.length > 0) {
+    if (categories.length > 0 && selectedTheme.id === 0) {
       setSelectedTheme(categories[categories.length - 1]);
     }
-  }, [categories, setSelectedTheme]);
+  }, [categories, selectedTheme, setSelectedTheme]);
 
   const handleClickSelected = (theme: Theme) => {
     setSelectedTheme(theme);

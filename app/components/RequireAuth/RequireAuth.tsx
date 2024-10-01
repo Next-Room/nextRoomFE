@@ -61,7 +61,7 @@ function RequireAuth({
       router.push(pathname);
     } else if (isLoggedIn && currentTheme.length === 0) {
       router.push("/admin-new");
-    } else if (isLoggedIn && !modalState.isOpen) {
+    } else if (isLoggedIn) {
       if (currentTheme.length > 0) {
         const lastThemeId = encodeURIComponent(
           currentTheme[currentTheme.length - 1].id
