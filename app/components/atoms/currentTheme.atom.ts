@@ -3,6 +3,7 @@ import {
   useRecoilValue,
   useRecoilState,
   useSetRecoilState,
+  useResetRecoilState,
 } from "recoil";
 
 interface ThemeInfo {
@@ -18,3 +19,4 @@ const currentThemeState = atom<ThemeInfo[]>({
 export const useCurrentTheme = () => useRecoilState(currentThemeState);
 export const useCurrentThemeValue = () => useRecoilValue(currentThemeState);
 export const useCurrentThemeWrite = () => useSetRecoilState(currentThemeState);
+export const useCurrentThemeReset = () => useResetRecoilState(currentThemeState);

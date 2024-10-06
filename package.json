@@ -27,6 +27,7 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "axios": "^1.4.0",
+    "classnames": "^2.5.1",
     "eslint-config-next": "13.4.7",
     "firebase": "^10.6.0",
     "framer-motion": "^10.16.4",
@@ -38,6 +39,7 @@
     "react-intersection-observer": "^9.5.2",
     "react-lottie-player": "^1.5.4",
     "recoil": "^0.7.7",
+    "sass": "^1.79.3",
     "styled-components": "^6.0.2",
     "tss-react": "^4.8.6",
     "typescript": "5.1.6"
@@ -52,6 +54,7 @@
     "@storybook/react": "^7.4.2",
     "@storybook/testing-library": "^0.2.1",
     "@svgr/webpack": "^8.0.1",
+    "@types/http-proxy": "^1.17.15",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",

@@ -25,7 +25,13 @@ function Password() {
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm<FormValues>({ mode: "onChange" });
+  } = useForm<FormValues>({
+    mode: "onChange",
+    defaultValues: {
+      password: "",
+      passwordConfirm: "",
+    },
+  });
   const formValue = watch();
   const { logEvent } = useAnalytics();
 
@@ -106,6 +112,7 @@ function Password() {
         },
       }),
     },
+    value: formValue.password,
     onKeyDown: handleKeyDown,
   };
 
@@ -124,6 +131,7 @@ function Password() {
           value === formValue.password || "비밀번호가 일치하지 않습니다.", // 현재 필드의 값을 password와 직접 비교
       }),
     },
+    value: formValue.passwordConfirm,
   };
 
   const buttonProps = {

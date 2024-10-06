@@ -1,0 +1,8 @@
+.input_item.focus .text_label {
+  left: 20px;
+  bottom: 46px;
+  font-size: 12px;
+  width: auto;
+  font-weight: 400;
+  line-height: 16px;
+}

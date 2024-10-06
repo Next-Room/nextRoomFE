@@ -1,10 +1,11 @@
-import { useSnackBarWrite } from "@/components/atoms/snackBar.atom";
-
+import { useSelectedThemeValue } from "@/components/atoms/selectedTheme.atom";
+import { useToastWrite } from "@/components/atoms/toast.atom";
 import { apiClient } from "@/lib/reactQueryProvider";
 import { QUERY_KEY } from "@/queries/getThemeList";
 import { MutationConfigOptions } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
+import { useRouter } from "next/navigation";
 
 interface Request {
   id: number;
@@ -27,27 +28,31 @@ export const putTheme = async (req: Request) => {
 
 export const usePutTheme = (configOptions?: MutationConfigOptions) => {
   const queryClient = useQueryClient();
-  const setSnackBar = useSnackBarWrite();
-
+  const setToast = useToastWrite();
+  const selectedTheme = useSelectedThemeValue();
+  const router = useRouter();
   const info = useMutation<Response, void, Request, void>({
     mutationKey: MUTATION_KEY,
     mutationFn: (req) => putTheme(req),
     ...configOptions?.options,
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEY);
-      // console.log("성공 시 실행")
-      setSnackBar({
+      router.push(`/admin-new?themeId=${selectedTheme.id}`);
+
+      setToast({
         isOpen: true,
-        message: '힌트를 수정했습니다. 단말기에서 업데이트를 진행해 주세요.',
+        title: "테마 정보를 수정했습니다.",
+        text: "앱에서 반드시 업데이트를 진행해 주세요.",
       });
     },
     onSettled: () => {
       //   console.log("항상 실행");
     },
     onError: (error) => {
-      setSnackBar({
+      setToast({
         isOpen: true,
-        message: `${(error as any)?.response?.data?.message || error}`,
+        title: `${(error as any)?.response?.data?.message || error}`,
+        text: "",
       });
     },
   });

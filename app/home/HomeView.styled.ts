@@ -4,9 +4,10 @@ import { MAIN_GRID_WIDTH } from "@/consts/styles/common";
 
 export const Wrapper = styled(Box)`
   display: flex;
-  min-width: 1280px;
+  min-width: 840px;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
 `;
 
 export const Cont = styled(Box)`
@@ -16,6 +17,8 @@ export const Cont = styled(Box)`
   margin: 0;
   padding: 0 16px 80px 80px;
   overflow-y: auto;
+  min-width: 840px;
+  overflow-x: scroll;
 `;
 export const TopNav = styled.div`
   display: flex;

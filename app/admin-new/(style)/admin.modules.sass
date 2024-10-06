@@ -1,0 +1,159 @@
+@import '../../style/variables'
+@import '../../style/mixins'
+@import '../../style/button'
+    
+.main
+  display: flex
+  overflow: hidden
+
+.sidebar
+  flex-shrink: 0
+  display: flex
+  flex-direction: column
+  width: 282px
+  height: 100vh
+  background-color: $color-main
+  padding: 24px 
+  border-right: 1px solid $color-white12
+  &__top
+    flex-shrink: 0
+
+  &__shop-info
+    display: flex
+    align-items: center
+    margin-bottom: 24px
+
+  &__shop-logo
+    width: 32px
+    height: 32px
+    margin-right: 6px
+    border-radius: 8px
+    border: 1px solid $color-white8
+
+  &__shop-name
+    @include body14M
+    color: $color-white70
+
+  &__theme-title
+    @include body14M
+    color: $color-white50
+    margin-bottom: 12px
+
+  &__scroll
+    flex-grow: 1
+    overflow: hidden 
+
+    &:hover
+      overflow: overlay 
+
+  &__theme-list
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+  &__theme-button
+    width: 100%
+    height: fit-content
+    padding: 10px 16px
+    @include body14R
+    color: $color-white50
+    text-align: left
+    cursor: pointer
+    border-radius: 8px
+    text-overflow: ellipsis
+    overflow: hidden
+    &:hover
+      background-color: $color-white5
+    &:active
+      background-color: $color-white8
+
+  &__add-theme
+    @include body14R
+    color: $color-white50
+    img
+      vertical-align: text-top
+      margin-right: 2px
+
+  &__subscribe
+    flex-shrink: 0
+    width: 232px
+    height: 110px
+    padding: 16px 17px 
+    margin-top: 14px 
+    border-radius: 8px
+    background-color: $color-sub1
+    border: 1px solid $color-white20
+
+    &-title
+      @include body12R
+      color: $color-white
+
+    &-value
+      @include body12R
+      color: $color-white50
+      margin-bottom: 12px 
+
+    &-button
+      width: 100%
+      background-color: $color-white
+
+  &__bottom
+    flex-shrink: 0
+    padding: 20px 24px 16px
+    margin: 0 -24px
+    border-top: 1px solid $color-white12
+
+  &__admin-code
+    display: block
+
+    &-title
+      @include body14M
+      color: $color-white50
+      
+    &-value
+      text-align: center
+      color: $color-white
+      @include title16SB
+      margin: 12px 0 7px
+      height: 30px
+      border-radius: 4px 
+      border: 1px solid $color-white8
+      padding: 5.5px 0
+      background-color: $color-sub1
+  &__admin-hint
+    color: $color-white70
+    @include body12R
+.selected
+  color: $color-white 
+  background-color: $color-white5
+  border-radius: 8px
+
+.content-area
+  flex-grow: 1
+  flex-shrink: 1
+  overflow-x: hidden
+  padding: 0 40px
+  &:hover
+    overflow-x: overlay
+  display: flex
+  max-width: 2198px
+  min-width: 918px
+  background-color: $color-main
+
+.modal-0
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-color: $color-black60
+  z-index: 100
+.modal-1
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-color: $color-black60
+  z-index: 600
+
