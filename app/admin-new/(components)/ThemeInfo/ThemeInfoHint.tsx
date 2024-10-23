@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ThemeInfoHint() {
-  const isHints = true;
+  const isHints = false;
   return (
     <div className="theme-hint__container">
       <div className="theme-hint__title">

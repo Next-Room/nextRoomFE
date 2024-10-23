@@ -102,6 +102,8 @@
     align-items: center
     margin-bottom: 8px
     @include title16SB
+    span
+      cursor: default
     button
       width: 81px
       height: 100%
@@ -118,6 +120,7 @@
     &>div
       height: 36px
     .table-header
+      cursor: default
       display: flex
       gap: 4px
       padding: 8px 4px
@@ -143,6 +146,12 @@
         width: 100%
         min-height: 60px
         padding: 10px 4px
+        cursor: pointer
+        border: none
+        &:hover
+          background-color: $color-white5
+        &:active
+          background-color: $color-white8
         .code
           width: 57px
           height: 24px
@@ -151,6 +160,7 @@
           align-items: center
           border: 1px solid $color-white12
           border-radius: 6px
+          background-color: $color-black
           box-sizing: content-box
           color: white
           @include body14M
@@ -163,6 +173,7 @@
           align-items: center
           border: 1px solid $color-white12
           border-radius: 6px
+          background-color: $color-black
           box-sizing: content-box
           color: white
           @include body14M
@@ -192,6 +203,7 @@
       justify-content: center
       align-items: center
       text-align: center
+      cursor: default
       .main-text
         @include title16M
         margin-bottom: 4px
@@ -206,3 +218,24 @@
         background-color: white
         border-radius: 8px
         @include body14M
+
+.theme-drawer
+  &__container
+    position: absolute
+    top: 0
+    right: 0
+    width: 520px
+    height: 100%
+    background-color: $color-main
+    border-left: 1px solid $color-white12
+    box-shadow: -20px 0 80px 0 $color-black60
+  &__title
+    height: 78px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 27px 24px
+    @include title20SB
+    border-bottom: 1px solid $color-white12
+  &__content
+    padding: 24px

@@ -5,6 +5,7 @@ import Dialog from "@/components/common/Dialog-new/Dialog";
 import ThemeInfoTitle from "./ThemeInfoTitle";
 import ThemeInfoBody from "./ThemeInfoBody";
 import ThemeInfoHint from "./ThemeInfoHint";
+import ThemeDrawer from "./ThemeDrawer";
 
 export default function ThemeInfo() {
   const { open } = useModal();
@@ -31,6 +32,7 @@ export default function ThemeInfo() {
       <ThemeInfoTitle handleOpenModal={handleOpenModal} />
       <ThemeInfoBody handleOpenModal={handleOpenModal} />
       <ThemeInfoHint />
+      <ThemeDrawer />
     </div>
   );
 }
