@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function ThemeInfoHint() {
+  const isHints = true;
   return (
     <div className="theme-hint__container">
       <div className="theme-hint__title">
@@ -22,13 +23,77 @@ export default function ThemeInfoHint() {
             <span>정답 내용</span>
           </div>
         </div>
-        <div className="table-content-box">
-          <div>
+        {isHints ? (
+          <ul className="table-content-box">
+            <li className="table-content-element-box table-header">
+              <div className="table-code">
+                <div className="code">0001</div>
+              </div>
+              <div className="table-rate">
+                <div className="rate">2%</div>
+              </div>
+              <div className="table-hint">
+                <div className="hint-content">
+                  달력에 있는 숫자들을 조합해 보세요.
+                </div>
+                <div className="hint-images">
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                </div>
+              </div>
+              <div className="table-answer">
+                <div className="hint-content">2812</div>
+                <div className="hint-images">
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li className="table-content-element-box table-header">
+              <div className="table-code">
+                <div className="code">0001</div>
+              </div>
+              <div className="table-rate">
+                <div className="rate">2%</div>
+              </div>
+              <div className="table-hint">
+                <div className="hint-content">
+                  달력에 있는 숫자들을 조합해 보세요.달력에 있는 숫자들을 조합해
+                  보세요.달력에 있는 숫자들을 조합해 보세요.달력에 있는 숫자들을
+                  조합해 보세요.달력에 있는 숫자들을 조합해 보세요.달력에 있는
+                  숫자들을 조합해 보세요.달력에 있는 숫자들을 조합해
+                  보세요.달력에 있는 숫자들을 조합해 보세요.달력에 있는 숫자들을
+                  조합해 보세요.달력에 있는 숫자들을 조합해 보세요.
+                </div>
+              </div>
+              <div className="table-answer">
+                <div className="hint-content">2812</div>
+                <div className="hint-images">
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                  <div className="hint-image-box">
+                    <div className="hint-image" />
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        ) : (
+          <div className="table-content-box__none-hint">
             <div className="main-text">여기서 힌트를 추가해 보세요.</div>
             <div className="sub-text">아직 저장된 힌트가 없어요.</div>
             <button type="button">추가하기</button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
