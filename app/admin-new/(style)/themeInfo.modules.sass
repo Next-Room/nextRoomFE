@@ -8,7 +8,7 @@
 
   &__title
     height: fit-content
-    padding: 22px 0
+    padding: 23px 0
     @include title24M
     color: $color-white
     .theme-infomation-fit
@@ -85,3 +85,230 @@
   right: 24px
   top: 31px
   @include body14M
+
+
+.theme-hint
+  width: 100%
+  height: 100%
+  &__container
+    margin-top: 40px
+    display: flex
+    flex-direction: column
+  &__title
+    width: 100%
+    height: 40px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 8px
+    @include title16SB
+    span
+      cursor: default
+
+  &__table
+    width: 100%
+    height: fit-content
+    border: 1px solid $color-white12
+    border-radius: 8px
+    &>div
+      height: 36px
+    .table-header
+      cursor: default
+      display: flex
+      gap: 4px
+      padding: 8px 4px
+      border-bottom: 1px solid $color-white12
+      @include body14M
+      color: $color-white50
+    .table-code
+      min-width: 84px
+      padding: 0 4px 0 12px
+    .table-rate
+      min-width: 85px
+      padding: 0 4px
+    .table-hint
+      width: 831px
+      padding: 0 4px
+    .table-answer
+      min-width: 300px
+      padding: 0 4px
+    .table-content-box
+      width: 100%
+      height: fit-content
+      .table-content-element-box
+        width: 100%
+        min-height: 60px
+        padding: 10px 4px
+        cursor: pointer
+        border: none
+        &:hover
+          background-color: $color-white5
+        &:active
+          background-color: $color-white8
+        .code
+          width: 57px
+          height: 24px
+          display: flex
+          justify-content: center
+          align-items: center
+          border: 1px solid $color-white12
+          border-radius: 6px
+          background-color: $color-black
+          box-sizing: content-box
+          color: white
+          @include body14M
+        .rate
+          width: fit-content
+          height: 24px
+          padding: 0 12px
+          display: flex
+          justify-content: center
+          align-items: center
+          border: 1px solid $color-white12
+          border-radius: 6px
+          background-color: $color-black
+          box-sizing: content-box
+          color: white
+          @include body14M
+        .hint-content
+          color: white
+          @include body14R
+          padding: 0 0 6px 4px
+        .hint-images
+          display: flex
+        .hint-image-box
+          width: 24px
+          height: 24px
+          margin: 0 0 0 4px
+          padding: 5px
+          border: 1px solid $color-white12
+          border-radius: 38px
+        .hint-image
+          width: 100%
+          height: 100%
+          background-image: url(/images/svg/icon_gallery.svg)
+
+    .table-content-box__none-hint
+      width: 100%
+      height: 300px
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      text-align: center
+      cursor: default
+      .main-text
+        @include title16M
+        margin-bottom: 4px
+      .sub-text
+        @include body14R
+        color: $color-white70
+      button
+        margin-top: 16px
+
+.theme-drawer
+  &__container
+    position: absolute
+    top: 0
+    right: 0
+    width: 520px
+    height: 100%
+    overflow-y: auto
+    background-color: $color-main
+    border-left: 1px solid $color-white12
+    box-shadow: -20px 0 80px 0 $color-black60
+  &__title
+    height: 78px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 27px 24px
+    @include title20SB
+    border-bottom: 1px solid $color-white12
+    cursor: default
+  &__content
+    padding: 24px
+  &__footer
+    width: 100%
+    height: 78px
+    padding: 19px 24px
+    position: sticky
+    bottom: 0
+    display: flex
+    justify-content: right
+    gap: 8px
+    background-color: $color-main
+    border-top: 1px solid $color-white12
+
+.drawer-category-title
+  height: 28px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 8px
+  color: $color-white
+  @include title16SB
+  cursor: default
+  button
+    display: flex
+    justify-content: space-between
+    gap: 4px
+.drawer-image-subtext-section
+  height: 26px
+  display: flex
+  margin: 40px 0 16px 0
+  justify-content: center
+  cursor: default
+  position: relative
+.drawer-image-subtext-line
+  width: 100%
+  height: 1px
+  background-color: $color-white12
+  position: absolute
+  top: 50%
+.drawer-image-subtext
+  width: fit-content
+  padding: 2px 12px
+  background-color: $color-black
+  border: 1px solid $color-white12
+  border-radius: 6px
+  box-sizing: content-box
+  @include body14M
+  z-index: 1
+.drawer-image-section
+  display: flex
+  justify-content: center
+  margin: 16px 0 12px 0
+.drawer-hint
+  margin-top: 40px
+.drawer-answer
+  margin-top: 40px
+.drawer-content-textarea
+  width: 100%
+  min-height: 120px
+  padding: 8px 12px
+  border: 1px solid $color-white20
+  border-radius: 8px
+  background-color: $color-main
+  resize: none
+  color: $color-white
+  &:focus
+    outline: none
+.drawer-images
+  display: flex
+  flex-direction: column
+  gap: 10px
+  margin-bottom: 10px
+.drawer-image-box
+  width: 100%
+  min-height: 299px
+  padding: 20px
+  border-radius: 8px
+  background-color: $color-white5
+  display: flex
+  justify-content: center
+  align-items: center
+  position: relative
+  img
+    object-fit: contain
+    padding: 20px

@@ -117,10 +117,6 @@ export default function Sidebar(props: Props) {
         <p className="sidebar__admin-code-value">
           {adminCode?.replaceAll(`"`, "")}
         </p>
-        <div className="sidebar__admin-hint">
-          힌트 수정 및 추가 후 앱에서 업데이트 버튼을 <br />
-          눌러주세요.
-        </div>
       </div>
     </div>
   );
