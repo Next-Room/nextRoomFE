@@ -8,7 +8,7 @@
 
   &__title
     height: fit-content
-    padding: 22px 0
+    padding: 23px 0
     @include title24M
     color: $color-white
     .theme-infomation-fit
@@ -104,14 +104,7 @@
     @include title16SB
     span
       cursor: default
-    button
-      width: 81px
-      height: 100%
-      padding: 10px 16px
-      background-color: $color-white5
-      border-radius: 8px
-      color: white
-      @include body14M
+
   &__table
     width: 100%
     height: fit-content
@@ -211,13 +204,7 @@
         @include body14R
         color: $color-white70
       button
-        width: 81px
-        height: 40px
-        padding: 10px 16px
         margin-top: 16px
-        background-color: white
-        border-radius: 8px
-        @include body14M
 
 .theme-drawer
   &__container
@@ -247,19 +234,11 @@
     padding: 19px 24px
     position: sticky
     bottom: 0
-    // text-align: right
     display: flex
     justify-content: right
     gap: 8px
     background-color: $color-main
     border-top: 1px solid $color-white12
-    button
-      height: 40px
-      padding: 8px 16px
-      background-color: $color-white
-      border-radius: 8px
-      color: $color-black
-      @include body14M
 
 .drawer-category-title
   height: 28px
@@ -271,21 +250,22 @@
   @include title16SB
   cursor: default
   button
-    height: 28px
     display: flex
     justify-content: space-between
     gap: 4px
-    padding: 8px 12px
-    border-radius: 6px
-    background-color: $color-white5 
-    color: white
-    @include button12M
 .drawer-image-subtext-section
   height: 26px
   display: flex
   margin: 40px 0 16px 0
   justify-content: center
   cursor: default
+  position: relative
+.drawer-image-subtext-line
+  width: 100%
+  height: 1px
+  background-color: $color-white12
+  position: absolute
+  top: 50%
 .drawer-image-subtext
   width: fit-content
   padding: 2px 12px
@@ -294,6 +274,7 @@
   border-radius: 6px
   box-sizing: content-box
   @include body14M
+  z-index: 1
 .drawer-image-section
   display: flex
   justify-content: center
@@ -311,6 +292,8 @@
   background-color: $color-main
   resize: none
   color: $color-white
+  &:focus
+    outline: none
 .drawer-images
   display: flex
   flex-direction: column
@@ -322,3 +305,10 @@
   padding: 20px
   border-radius: 8px
   background-color: $color-white5
+  display: flex
+  justify-content: center
+  align-items: center
+  position: relative
+  img
+    object-fit: contain
+    padding: 20px

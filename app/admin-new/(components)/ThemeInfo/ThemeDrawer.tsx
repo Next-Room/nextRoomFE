@@ -22,6 +22,11 @@ export default function ThemeDrawer() {
     width: 11,
     height: 11,
   };
+  const TestImageProps = {
+    src: "/images/landing/hint_phone.png",
+    alt: "gallery_image",
+    layout: "fill",
+  };
 
   const codeTextFieldProps: ThemeInfoTextFieldType = {
     id: "title",
@@ -57,6 +62,7 @@ export default function ThemeDrawer() {
           <ThemeTextField {...codeTextFieldProps} />
         </div>
         <div className="drawer-image-subtext-section">
+          <div className="drawer-image-subtext-line" />
           <div className="drawer-image-subtext">보여질 내용</div>
         </div>
         <div className="drawer-image-section">
@@ -69,13 +75,16 @@ export default function ThemeDrawer() {
         <div className="drawer-hint">
           <div className="drawer-category-title">
             힌트
-            <button type="button">
+            <button className="secondary_button28" type="button">
               <Image {...GalleryImageProps} />
               이미지 추가
             </button>
           </div>
           <div className="drawer-images">
-            <div className="drawer-image-box">image1</div>
+            {/* TODO: 이미지 받을 때 비율유지를 위해 가로가 길면 가로에 맞추고 (cover), 세로가 길면 세로에 맞춰 (contain) style 다르게 줘야함 */}
+            <div className="drawer-image-box">
+              <Image {...TestImageProps} />
+            </div>
             <div className="drawer-image-box">image2</div>
           </div>
           <textarea
@@ -86,7 +95,7 @@ export default function ThemeDrawer() {
         <div className="drawer-answer">
           <div className="drawer-category-title">
             정답
-            <button type="button">
+            <button className="secondary_button28" type="button">
               <Image {...GalleryImageProps} />
               이미지 추가
             </button>
@@ -98,8 +107,12 @@ export default function ThemeDrawer() {
         </div>
       </div>
       <div className="theme-drawer__footer">
-        <button type="submit">삭제하기</button>
-        <button type="submit">추가하기</button>
+        <button className="button40" type="submit" disabled>
+          삭제하기
+        </button>
+        <button className="secondary_button40" type="submit">
+          추가하기
+        </button>
       </div>
     </div>
   );

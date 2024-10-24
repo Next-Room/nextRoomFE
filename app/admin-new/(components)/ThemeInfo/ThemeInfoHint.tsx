@@ -6,7 +6,9 @@ export default function ThemeInfoHint() {
     <div className="theme-hint__container">
       <div className="theme-hint__title">
         <span>힌트</span>
-        <button type="button">추가하기</button>
+        <button className="secondary_button40" type="button">
+          추가하기
+        </button>
       </div>
       <div className="theme-hint__table">
         <div className="table-header">
@@ -91,7 +93,9 @@ export default function ThemeInfoHint() {
           <div className="table-content-box__none-hint">
             <div className="main-text">여기서 힌트를 추가해 보세요.</div>
             <div className="sub-text">아직 저장된 힌트가 없어요.</div>
-            <button type="button">추가하기</button>
+            <button className="button40" type="button">
+              추가하기
+            </button>
           </div>
         )}
       </div>
